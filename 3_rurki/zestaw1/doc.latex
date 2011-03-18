@@ -1,0 +1,310 @@
+\documentclass[a4paper]{article}
+\usepackage[MeX]{polski}
+\usepackage[latin2]{inputenc}
+\usepackage{amsmath}
+
+\author{Konrad~G±dek}
+\title{Równania ró¿niczkowe i ró¿nicowe - laboratorium. Grupa 2, zestaw 1.}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Wstêp}
+Naszym zadaniem by³o napisanie programu w jêzyku C/C++, który dla zadanej funkcji jednej zmiennej oblicza³:
+\begin{itemize}
+\item warto¶æ pierwszej pochodnej funkcji obliczonej metod± ró¿nicy prawostronnej, lewostronnej oraz
+centralnej
+\item warto¶æ drugiej pochodnej funkcji obliczonej metod± ró¿nicy centralnej
+\item dok³adne warto¶ci pierwszej i drugiej pochodnej
+\item b³±d aproksymacji stosowanych metod
+\end{itemize}
+Mieli¶my zbadaæ nastêpuj±ce funkcje:
+\begin{enumerate}
+\item wielomian trzeciego stopnia
+\item wielomian czwartego stopnia
+\item wielomian pi±tego stopnia
+\item funkcjê $\sin (\alpha x)$ dla $\alpha\in\left\{1,2,10\right\}$
+\item funkcjê $\exp (\alpha x)$ dla $\alpha\in\left\{\frac{1}{10},1,10\right\}$
+\end{enumerate}
+
+
+\section{Opis dzia³ania programu}
+\subsection{Parametry wywo³ania}
+Informacji dostarcza sam program -- wystarczy wydaæ polecenie \verb+./zad1+ \\
+{\scriptsize
+\begin{verbatim}
+Uzycie programu:
+  ./zad1 id ...
+gdzie:
+    id - obliczana funkcja:
+       1    - wielomian. Nastepnie:
+                x - punkt wokol ktorego obliczamy pochodna
+                D - stopien wielomianu (l. calkowita)
+                h - probkowanie pochodnej nast. w odleglosci 10^(-h), h=0, ..., 5
+                aD, ..., a1, a0 - wsp. wielomianu
+       2, 3 - funkcja sin(ax)/exp(ax). Nastepnie:
+                x - punkt wokol ktorego obliczamy pochodna
+                a - wspolczynnik
+                h - probkowanie pochodnej nast. w odleglosci 10^(-h), h=0, ..., 5
+\end{verbatim}
+}
+
+\subsection{Przyk³ad dzia³ania: wielomian 3. stopnia}
+Przyk³adowe wywo³anie programu:\\
+\verb+./zad1 1 10.0 3 2 4.5 3.5 2.5 1.5+\\
+co odpowiada badaniu wielomianu w punkcie $x=10$; wielomian jest trzeciego stopnia, próbkowanie
+ustalone na $h=10^{-2}=0.01$; wielomian jest postaci $f(x)=4.5x^3+3.5x^2+2.5x+1.5$.
+\newpage
+Oto wynik dzia³ania programu:
+{\scriptsize
+\begin{verbatim}
+f(x) =  4.500 x^3 +3.500 x^2 +2.500 x^1 +1.500,		h = 0.01000,	x = 10.000
+  Opis                              Wynik                  B³±d bezwzglêdny i wzglêdny
++---------------------------------+----------------------+---------------------------------------------------+
+| f'(x)  metoda roznicy prawostr. |            +1423.885 |              -1.385e+00              +9.740e-02 % |
+| f'(x)  metoda roznicy lewostr.  |            +1421.115 |              +1.385e+00              -9.733e-02 % |
+| f'(x)  metoda roznicy centr.    |            +1422.500 |              -4.500e-04              +3.163e-05 % |
++---------------------------------+----------------------+---------------------------------------------------+
+| f'(x)  wartosc dokladna         |            +1422.500 | -   -   -   -   -   -   -   -   -   -   -   -   - |
++---------------------------------+----------------------+---------------------------------------------------+
+| f''(x) metoda roznicy centr.    |             +277.000 |              -5.501e-09              +1.986e-09 % |
++---------------------------------+----------------------+---------------------------------------------------+
+| f''(x) wartosc dokladna         |             +277.000 | -   -   -   -   -   -   -   -   -   -   -   -   - |
++---------------------------------+----------------------+---------------------------------------------------+
+\end{verbatim} }
+
+
+\section{Wyniki}
+\subsection{Wielomiany}
+B³êdy wzglêdne aproksymacji pochodnych funkcji $f(x)=x^3+x^2+x+1$ w pobli¿u punktu $x=10$:
+$h$ ($h\in\{10^0,10^{-1},\ldots,10^{-5}\}$):\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & 9&969 & -9&346 & 3&115$\times 10^{-1}$ & 0&000 \\
+1 & 9&688$\times 10^{-1}$ & -9&626$\times 10^{-1}$ & 3&115$\times 10^{-3}$ & 1&906$\times 10^{-11}$ \\
+2 & 9&660$\times 10^{-2}$ & -9&654$\times 10^{-2}$ & 3&115$\times 10^{-5}$ & -3&098$\times 10^{-9}$ \\
+3 & 9&658$\times 10^{-3}$ & -9&657$\times 10^{-3}$ & 3&115$\times 10^{-7}$ & 4&810$\times 10^{-7}$ \\
+4 & 9&657$\times 10^{-4}$ & -9&657$\times 10^{-4}$ & 2&877$\times 10^{-9}$ & 5&982$\times 10^{-6}$ \\
+5 & 9&657$\times 10^{-5}$ & -9&658$\times 10^{-5}$ & -4&561$\times 10^{-9}$ & 4&094$\times 10^{-4}$
+\end{tabular} }\\\\
+
+Dla funkcji $f(x)=4x^4+3x^3+2x^2+x$ w pobli¿u punktu $x=0$:\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & 9&000$\times 10^{+2}$ & -3&000$\times 10^{+2}$ & 3&000$\times 10^{+2}$ & 2&000$\times 10^{+2}$ \\
+1 & 2&340$\times 10^{+1}$ & -1&740$\times 10^{+1}$ & 3&000 & 2&000 \\
+2 & 2&030 & -1&970 & 3&000$\times 10^{-2}$ & 2&000$\times 10^{-2}$ \\
+3 & 2&003$\times 10^{-1}$ & -1&997$\times 10^{-1}$ & 3&000$\times 10^{-4}$ & 2&000$\times 10^{-4}$ \\
+4 & 2&000$\times 10^{-2}$ & -2&000$\times 10^{-2}$ & 3&000$\times 10^{-6}$ & 2&000$\times 10^{-6}$ \\
+5 & 2&000$\times 10^{-3}$ & -2&000$\times 10^{-3}$ & 3&000$\times 10^{-8}$ & 2&012$\times 10^{-8}$
+\end{tabular} }\\\\
+
+Dla funkcji $f(x)=100x^5+20x^4+7x^3+2.5x^2+1.123x+0.56$ w pobli¿u punktu $x=12.456$:\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & 1&153$\times 10^{+4}$ & 7&524$\times 10^{+3}$ & 9&528$\times 10^{+3}$ & 8&000$\times 10^{+2}$ \\
+1 & 3&117$\times 10^{+1}$ & -1&692$\times 10^{+1}$ & 7&124 & 8&000 \\
+2 & 2&290 & -2&166 & 6&242$\times 10^{-2}$ & 8&000$\times 10^{-2}$ \\
+3 & 2&232$\times 10^{-1}$ & -2&220$\times 10^{-1}$ & 6&233$\times 10^{-4}$ & 8&000$\times 10^{-4}$ \\
+4 & 2&227$\times 10^{-2}$ & -2&226$\times 10^{-2}$ & 6&233$\times 10^{-6}$ & 8&000$\times 10^{-6}$ \\
+5 & 2&226$\times 10^{-3}$ & -2&226$\times 10^{-3}$ & 6&233$\times 10^{-8}$ & 7&984$\times 10^{-8}$
+\end{tabular} }\\\\
+
+\subsection{Sinus}
+Dla funkcji $f(x)=\sin x$ w pobli¿u punktu $x=-3$:\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & -2&241$\times 10^{+1}$ & -9&300 & -1&585$\times 10^{+1}$ & -8&060 \\
+1 & -8&787$\times 10^{-1}$ & 5&456$\times 10^{-1}$ & -1&666$\times 10^{-1}$ & -8&331$\times 10^{-2}$ \\
+2 & -7&294$\times 10^{-2}$ & 6&961$\times 10^{-2}$ & -1&667$\times 10^{-3}$ & -8&333$\times 10^{-4}$ \\
+3 & -7&144$\times 10^{-3}$ & 7&111$\times 10^{-3}$ & -1&667$\times 10^{-5}$ & -8&341$\times 10^{-6}$ \\
+4 & -7&129$\times 10^{-4}$ & 7&126$\times 10^{-4}$ & -1&665$\times 10^{-7}$ & 7&103$\times 10^{-7}$ \\
+5 & -7&127$\times 10^{-5}$ & 7&127$\times 10^{-5}$ & -9&615$\times 10^{-10}$ & -1&562$\times 10^{-4}$
+\end{tabular} }\\\\
+
+Dla funkcji $f(x)=\sin 2x$ w pobli¿u punktu $x=-3$:\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & -7&514$\times 10^{+1}$ & -3&393$\times 10^{+1}$ & -5&454$\times 10^{+1}$ & -2&919$\times 10^{+1}$ \\
+1 & -3&566 & 2&235 & -6&653$\times 10^{-1}$ & -3&329$\times 10^{-1}$ \\
+2 & -2&977$\times 10^{-1}$ & 2&843$\times 10^{-1}$ & -6&667$\times 10^{-3}$ & -3&333$\times 10^{-3}$ \\
+3 & -2&917$\times 10^{-2}$ & 2&903$\times 10^{-2}$ & -6&667$\times 10^{-5}$ & -3&333$\times 10^{-5}$ \\
+4 & -2&911$\times 10^{-3}$ & 2&909$\times 10^{-3}$ & -6&665$\times 10^{-7}$ & 4&213$\times 10^{-8}$ \\
+5 & -2&910$\times 10^{-4}$ & 2&910$\times 10^{-4}$ & -5&964$\times 10^{-9}$ & -1&975$\times 10^{-5}$
+\end{tabular} }\\\\
+
+Dla funkcji $f(x)=\sin 10x$ w pobli¿u punktu $x=-3$:\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & -2&232$\times 10^{+2}$ & 1&236$\times 10^{+1}$ & -1&054$\times 10^{+2}$ & -9&632$\times 10^{+1}$ \\
+1 & -3&103$\times 10^{+2}$ & 2&786$\times 10^{+2}$ & -1&585$\times 10^{+1}$ & -8&060 \\
+2 & -3&217$\times 10^{+1}$ & 3&183$\times 10^{+1}$ & -1&666$\times 10^{-1}$ & -8&331$\times 10^{-2}$ \\
+3 & -3&204 & 3&201 & -1&667$\times 10^{-3}$ & -8&333$\times 10^{-4}$ \\
+4 & -3&203$\times 10^{-1}$ & 3&202$\times 10^{-1}$ & -1&667$\times 10^{-5}$ & -8&336$\times 10^{-6}$ \\
+5 & -3&203$\times 10^{-2}$ & 3&203$\times 10^{-2}$ & -1&670$\times 10^{-7}$ & 2&909$\times 10^{-7}$
+\end{tabular} }\\\\
+
+\subsection{Exp}
+Dla funkcji $f(x)=\exp \frac{x}{10}$ w pobli¿u punktu $x=13$:\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & 5&171 & -4&837 & 1&668$\times 10^{-1}$ & 8&336$\times 10^{-2}$ \\
+1 & 5&017$\times 10^{-1}$ & -4&983$\times 10^{-1}$ & 1&667$\times 10^{-3}$ & 8&333$\times 10^{-4}$ \\
+2 & 5&002$\times 10^{-2}$ & -4&998$\times 10^{-2}$ & 1&667$\times 10^{-5}$ & 8&345$\times 10^{-6}$ \\
+3 & 5&000$\times 10^{-3}$ & -5&000$\times 10^{-3}$ & 1&666$\times 10^{-7}$ & 5&749$\times 10^{-7}$ \\
+4 & 5&000$\times 10^{-4}$ & -5&000$\times 10^{-4}$ & 1&199$\times 10^{-9}$ & 2&233$\times 10^{-4}$ \\
+5 & 4&999$\times 10^{-5}$ & -5&000$\times 10^{-5}$ & -6&063$\times 10^{-9}$ & -6&312$\times 10^{-3}$
+\end{tabular} }\\\\
+
+Dla funkcji $f(x)=\exp x$ w pobli¿u punktu $x=3$:\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & 7&183$\times 10^{+1}$ & -3&679$\times 10^{+1}$ & 1&752$\times 10^{+1}$ & 8&616 \\
+1 & 5&171 & -4&837 & 1&668$\times 10^{-1}$ & 8&336$\times 10^{-2}$ \\
+2 & 5&017$\times 10^{-1}$ & -4&983$\times 10^{-1}$ & 1&667$\times 10^{-3}$ & 8&333$\times 10^{-4}$ \\
+3 & 5&002$\times 10^{-2}$ & -4&998$\times 10^{-2}$ & 1&667$\times 10^{-5}$ & 8&337$\times 10^{-6}$ \\
+4 & 5&000$\times 10^{-3}$ & -5&000$\times 10^{-3}$ & 1&669$\times 10^{-7}$ & -6&664$\times 10^{-7}$ \\
+5 & 5&000$\times 10^{-4}$ & -5&000$\times 10^{-4}$ & 2&206$\times 10^{-9}$ & 7&009$\times 10^{-5}$
+\end{tabular} }\\\\
+
+Dla funkcji $f(x)=\exp 10x$ w pobli¿u punktu $x=0.5$:\\*\\*
+{\small
+\begin{tabular}{l|r @{,} l | r @{,} l | r @{,} l | r @{,} l}
+$h=10^{-i}$ & \multicolumn{2}{c}{R. prawostronna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. lewostronna ($f^\prime(x)$)} &
+	\multicolumn{2}{c}{R. centralna ($f^\prime(x)$)} & \multicolumn{2}{c}{R. centralna ($f^{\prime\prime}(x)$)}\\\hline
+0 & 2&202$\times 10^{+5}$ & -9&000$\times 10^{+1}$ & 1&100$\times 10^{+5}$ & 2&192$\times 10^{+4}$ \\
+1 & 7&183$\times 10^{+1}$ & -3&679$\times 10^{+1}$ & 1&752$\times 10^{+1}$ & 8&616 \\
+2 & 5&171 & -4&837 & 1&668$\times 10^{-1}$ & 8&336$\times 10^{-2}$ \\
+3 & 5&017$\times 10^{-1}$ & -4&983$\times 10^{-1}$ & 1&667$\times 10^{-3}$ & 8&333$\times 10^{-4}$ \\
+4 & 5&002$\times 10^{-2}$ & -4&998$\times 10^{-2}$ & 1&667$\times 10^{-5}$ & 8&335$\times 10^{-6}$ \\
+5 & 5&000$\times 10^{-3}$ & -5&000$\times 10^{-3}$ & 1&664$\times 10^{-7}$ & 1&671$\times 10^{-6}$
+\end{tabular} }
+
+
+
+\section{Wnioski}
+Powy¿szy program jak i badane przeze mnie funkcje potwierdzaj± wyniki rozwa¿añ teoretycznych: wraz z 10-krotnym
+zwiêkszeniem dok³adno¶ci (poprzez zmniejszenie liczby $h$), ¶rednio 10-krotnie zwiêkszy³a siê dok³adno¶æ
+pochodnych obliczonych metod± ró¿nicy lewostronnej i prawostronnej, ale za to 100-krotnie zwiêkszy³a siê
+dok³adno¶æ wyników metody ró¿nicy centralnej. Z tego wynika wniosek, ¿e w miejscach, gdzie jest to mo¿liwe,
+do obliczania przybli¿enia pochodnej nale¿y korzystaæ raczej z metody ró¿nicy centralnej dla rozs±dnie dobranej
+warto¶ci liczby $h$.
+
+Dodam na marginesie, ¿e zaobserwowa³em znacz±ce zmniejszenie siê dok³adno¶ci obliczeñ dla wielomianów wraz ze wzrostem
+parametru $x$. Przyk³adowo, dla wielomianu trzeciego stopnia $f(x) = 4.5x^3+3.5x^2+2.5x+1.5$, przy ustalonej warto¶ci
+$h=10^{-5}=0.00001$, b³±d wzglêdny drugiej pochodnej obliczonej metod± centraln± dla kilku przyk³adowych warto¶ci $x$:\\
+{\small
+\begin{tabular}{r @{,} l|r @{,} l}
+\multicolumn{2}{c}{Warto¶æ $x$} & \multicolumn{2}{c}{B³±d wzglêdny}\\
+0&0 & -0&00002345\%\\
+1&0 & 0&00006052\%\\
+10&0 & -0&001550\%\\
+100&0 & 0&1163\%\\
+1000&0 & 5&936\%\\
+10000&0 & -100&\%\\
+100000&0 & -100&\%\\
+1000000&0 & -111200&\%
+\end{tabular} }\\
+Tak drastycznych zmian b³êdów nie zaobserwowa³em ani dla funkcji sin/exp, ani dla innych pochodnych. Nie jest to wina
+metody, gdy¿ b³êdy obliczeñ pierwszej pochodnej, obliczonej tak¿e metod± ró¿nicy centralnej, pozostaj± na niskim poziomie.
+
+\newpage
+\section{Kod ¼ród³owy programu}
+{
+\scriptsize
+\begin{verbatim}
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+
+int deg=0, id=0, hIn=0;
+double h=1.0, x=1.0, *wspTab=NULL;
+
+void showHelp(char* progname, int quitStat, const char *msg=NULL) {
+    printf( "%sUzycie programu:\n  %s id ...\ngdzie:\n"
+            "  id - obliczana funkcja:\n"
+            "       1    - wielomian. Nastepnie:\n"
+            "                x - punkt wokol ktorego obliczamy pochodna\n"
+            "                D - stopien wielomianu (l. calkowita)\n"
+            "                h - probkowanie pochodnej nast. w odleglosci 10^(-h), h=0, ..., 5\n"
+            "                aD, ..., a1, a0 - wsp. wielomianu\n"
+            "       2, 3 - funkcja sin(ax)/exp(ax). Nastepnie:\n"
+            "                x - punkt wokol ktorego obliczamy pochodna\n"
+            "                a - wspolczynnik\n"
+            "                h - probkowanie pochodnej nast. w odleglosci 10^(-h), h=0, ..., 5\n", msg?msg:"",progname);
+    exit(quitStat);
+}
+#define RES(a,b) 20, (a), 23, ((b)-(a)), 23, 100*(a-b)/(b)
+#define SEPARATE "+---------------------------------+----------------------\
++---------------------------------------------------+\n"
+void showRes(double exD, double d1R, double d1L, double d1C, double exDD, double d2C) {
+    printf(
+        "  Opis                              Wynik                  B³±d bezwzglêdny i wzglêdny\n" SEPARATE
+        "| f'(x)  metoda roznicy prawostr. | %+*.3f | %+*.3e %+*.3e %% |\n"
+        "| f'(x)  metoda roznicy lewostr.  | %+*.3f | %+*.3e %+*.3e %% |\n"
+        "| f'(x)  metoda roznicy centr.    | %+*.3f | %+*.3e %+*.3e %% |\n" SEPARATE
+        "| f'(x)  wartosc dokladna         | %+*.3f | -   -   -   -   -   -   -   -   -   -   -   -   - |\n" SEPARATE
+        "| f''(x) metoda roznicy centr.    | %+*.3f | %+*.3e %+*.3e %% |\n" SEPARATE
+        "| f''(x) wartosc dokladna         | %+*.3f | -   -   -   -   -   -   -   -   -   -   -   -   - |\n" SEPARATE,
+        RES(d1R,exD), RES(d1L,exD), RES(d1C,exD), 20, exD, RES(d2C,exDD), 20, exDD);
+}
+
+double d1(double (*fun)(double, int), int left=1) { return (fun(x+h*left,0) - fun(x,0))/(h*left); }
+double d1b (double (*fun)(double,int)) { return (fun(x+h,0)-fun(x-h,0))/(h*2); }
+double d2b (double (*fun)(double,int)) { return (fun(x+h,0)+fun(x-h,0)-2*fun(x,0))/(h*h); }
+double wspWielD(double a, double xx, int n, int d) {
+    if( abs(a)<0.0001 || d>n+1) return 0;
+    if( d==0 ) return a*pow(xx,n);
+    return wspWielD(a*n, xx, n-1, d-1);
+}
+double fPoly(double xx, int d) {
+    double res = 0.0;
+    for(int i=0;i<=deg;++i) res += wspWielD(wspTab[i],xx,deg-i,d);
+    return res;
+}
+double fSin(double xx, int d) { return pow(wspTab[0],d)*pow(-1,(int)(d/2))*( d%2?cos(wspTab[0]*xx):sin(wspTab[0]*xx) ); }
+double fExp(double xx, int d) { return pow(wspTab[0],d)*exp(wspTab[0]*xx); }
+
+int main(int argc, char **argv) {
+    if( argc<3 || (id=atoi(argv[1]))==0 || 3<id || id<1)
+        showHelp(argv[0],argc>1, argc!=1?"Podano nieprawidlowa ilosc argumentow lub sa one niepoprawne!\n":"");
+    x=atof(argv[2]);
+    if(argc>4) hIn=atoi(argv[4]);
+    if(        (id==1 && (argc<5 || (deg=atoi(argv[3]))==0 || 5<deg || deg<3 ||
+                        (wspTab=new double[deg+1])==NULL || 5<hIn || hIn<0 || argc<6+deg)) 
+            || (id>1 && (argc<5 || 5<hIn || hIn<0 || (wspTab=new double[1])==NULL ))) 
+        showHelp(argv[0],1,"Podano nieprawidlowe lub niepoprawne parametry!\n");
+    h = pow(10,-hIn);
+    for(int i=0;i<=deg;++i) wspTab[i] = atof(argv[i+3+2*(id==1)]);
+    switch(id) {
+        case 1: printf("f(x) = ");
+                for(int i=0;i<deg;++i) printf("%c%.3f x^%d ",(i==0)?' ':(wspTab[i]<0?0:'+'),wspTab[i],deg-i);
+                printf("%c%.3f,\t\t",(wspTab[deg]<0)?0:'+',wspTab[deg]);
+            break;
+        default: printf("f(x) = %s(%.3f x),\t\t",(id==2)?"sin":"exp",wspTab[0]);
+    }
+    printf("h = %.5f,\tx = %.3f\n",h,x);
+    double (*fTab[])(double,int) = {fPoly,fSin,fExp};
+    showRes( fTab[id-1](x,1), d1(fTab[id-1]), d1(fTab[id-1],-1), d1b(fTab[id-1]), fTab[id-1](x,2), d2b(fTab[id-1]) );
+    delete [] wspTab;
+    return 0;
+}
+\end{verbatim} }
+\end{document}

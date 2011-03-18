@@ -1,0 +1,219 @@
+\documentclass[a4paper,fleqn]{book}
+\usepackage[MeX]{polski}
+\usepackage[latin2]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\frenchspacing
+\usepackage{makeidx}
+\makeindex
+\newtheorem{twr}{Twierdzenie}
+\newtheorem{lem}[twr]{Lemat}
+\newtheorem{df}{Definicja}
+
+\newcommand{\linsp}[1]{\ensuremath{\mathbf{#1}}} % Przestrzeñ liniowa
+%\newcommand{\iffd}{\ensuremath{\stackrel{df}{\iff}}}
+\newcommand{\iffd}{\ensuremath{:\!\!\iff}}
+%\newcommand{\eqd}{\ensuremath{\stackrel{df}{=}}}
+\newcommand{\eqd}{\ensuremath{:=}}
+\newcommand{\cln}{\ensuremath{\colon}}
+\newcommand{\lp}{\ensuremath{\left(}}
+\newcommand{\rp}{\ensuremath{\right)}}
+\newcommand{\real}{\ensuremath{{\mathbb{R}}}}
+\newcommand{\realp}{\ensuremath{{{\mathbb{R}}_+}}}
+\newcommand{\defun}[3]{\ensuremath{#1\cln#2\to#3}}
+\newcommand{\defendo}[2]{\defun{#1}{#2}{#2}}
+\newcommand{\minf}{\ensuremath{\mathrm{inf}}}
+\newcommand{\msup}{\ensuremath{\mathrm{sup}}}
+\newcommand{\mset}[2]{\ensuremath{\left\{#1\cln#2\right\}}}
+
+\author{Konrad~G±dek}
+\title{Równania ró¿niczkowe i ró¿nicowe.\\Wyk³ady prof. R.~Schaefera dla II roku Informatyki na wydziale EAIiE}
+
+
+\begin{document}
+\maketitle
+% ==================================================================================
+% = Wyk³ad 1. z 5. X 2010                                                          =
+% ==================================================================================
+\chapter{Wyk³ad~1. (5.~X~2010)}
+
+
+
+\section{O prowadz±cym}
+
+Prof. dr hab. in¿. Robert Franciszek Schaefer,\\
+cz³onek Rady Wydzia³u Elektrotechniki, Automatyki, Informatyki i Elektroniki,\\
+profesor zwyczajny na AGH.\\
+mail: \verb+schaefer@agh.edu.pl+\\
+\verb+http://home.agh.edu.pl/~schaefer/+
+
+
+
+\section{Przestrzeñ liniowa, topologia}
+
+Niech \linsp{U} - przestrzeñ liniowa skoñczenie lub nieskoñczenie wymiarowa
+\begin{df}[Norma]\index{norma}
+\begin{align}
+\defun{\|\quad\|}{\linsp{U}}{\real}\index{norma}
+\end{align}
+W³asno¶ci:
+\begin{align*}
+&\|u\|=0 \iff u = 0\\
+&\forall u,v \in\linsp{U}\cln\|u+v\| \leq \|u\| + \|v\|\\
+&\|\alpha u\| = |\alpha |\cdot\|u\|\\
+\end{align*}
+\end{df}
+
+\begin{df}[Metryka]\index{metryka}
+\begin{align}
+\defun{\rho}{\linsp{U}\times\linsp{U}}{\realp}
+\end{align}
+W³asno¶ci:
+\begin{align*}
+\rho(x,y)=\|y-x\|
+\end{align*}
+\end{df}
+
+Bazê topologii\index{topologia} metrycznej\index{topologia!metryczna} stanowi rodzina wszystkich kul otwartych, tj. zbiorów postaci
+\[B(x,r) = {y\in\linsp{U}: \rho(x,y) < r}\]
+
+Topologia silna\index{topologia!silna} jest to topologia dyktowana przez normê.
+Normy s± równowa¿ne\index{normy!warunek równowa¿no¶ci} \iffd generuj± tê sam± topologiê.
+A tak¿e:
+\[\exists 0<c_0<c_1 \forall u\in\linsp{U}\cln c_0\cdot\|u\|_1\leq\|u\|_2\leq c_1\cdot\|u\|_1\]
+to $\|\quad\|_1$ i $\|\quad\|_2$ s± równowa¿ne.
+
+
+
+\section{Przestrzeñ Banacha}
+
+Przestrzeñ Banacha\index{Banacha!przestrzeñ}\index{przestrzeñ!Banacha} jest przestrzeni± unormowan±, w której metryka
+(indukowana przez normê) jest norm± zupe³n±\index{norma!zupe³na}\footnote{norma jest zupe³na, je¿eli ka¿dy ci±g
+Cauchy'ego w jej przestrzeni jest zbie¿ny do granicy nale¿±cej do jej przestrzeni}.
+
+\begin{twr}[Banacha o kontrakcji\index{Banacha!twierdzenie o kontrakcji}]
+Niech $\linsp{U}$ - przestrzeñ Banacha\\
+\begin{align*}
+\defendo{f}{\linsp{U}},\ d\in(0,1)\cln\quad
+\|f(x)-f(y)\|\leq d\|y-x\|
+\end{align*}
+T:
+\begin{align}
+\exists!\bar{x}\in\linsp{U}\cln f(\bar{x})=\bar{x}
+\end{align}
+Ponadto, mo¿emy wyznaczyæ $\bar{x}$ przy pomocy granicy ci±gu:
+\begin{align*}
+\bar{x} &= \lim_{n \rightarrow \infty} x_n\\
+x_0\in\linsp{U},\ x_{n+1} &= f(x_n) \quad\longrightarrow\quad x_n = f^n(x)
+\end{align*}
+\end{twr}
+
+
+Niech \linsp{U}, \linsp{V} - przestrzenie liniowe. $\defun{\linsp{\mathsf L}}{\linsp{U}}{\linsp{V}}$
+- odwzorowanie liniowe.\\
+Wszystkie odwzorowania liniowe $\linsp{U}\to\linsp{V}$ tworz± przestrzeñ liniow±
+$\mathcal{L} \lp\linsp(U),\linsp(V)\rp$.\\
+Je¿eli \linsp{U},\linsp{V} s± unormowane\index{przestrzeñ!unormowana}\footnote{przestrzeñ
+unormowana to przestrzeñ liniowa, w której okre¶lono pojêcie normy}, to
+przestrzeñ $L_1\lp\linsp(U),\linsp(V)\rp$ te¿ jest unormowana.
+
+
+Norma jest silniejsza\index{norma!silniejsza} od drugiej \iffd wszystkie ci±gi
+pierwszej przestrzeni s± podzbiorem zbioru wszystkich ci±gów drugiej przestrzeni.
+
+
+\begin{df}[Norma Czebyszewa\index{norma!Czebyszewa}]
+\begin{align}
+\|\mathsf{L}\| \eqd \minf\mset{M}{\frac{\|L_1(x)\|}{\|x\|}\leq M, x\in\linsp{U}}
+\end{align}
+Zauwa¿my, ¿e $\|x\|$ to norma z $x\in\linsp{U}$ (krótko: norma w \linsp{U}), notmiast
+$\|L_1(x)\|$ to norma z warto¶ci (krótko: norma w \linsp{V}).
+\end{df}
+\begin{align*}
+\frac{1}{\|x\|} \|L_1(x)\| \stackrel{x\not= 0}{=} \|L_1\lp\frac{1}{\|x\|} x\rp\|
+\|L_1\| = \msup\mset{\|L_1(e)\|}{e\in\linsp{V},\ \|e\|=1}
+\end{align*}
+
+
+\begin{twr}[Banacha o operatorze liniowych ci±g³ym\index{Banacha!twierdzenie o op. liniowym ci±g³ym}]
+Niech \linsp{U},\linsp{V} - przestrzenie Banacha.\\
+T:
+\defun{\mathsf{L}}{\linsp{U}}{\linsp{V}} - jest (silnie) ci±g³ym\footnote{por. z def. Heinego. Dzia³a wy³±cznie dla
+przestrzeni metrycznych, ale w³a¶nie w takich siê obracamy.} odwzorowaniem liniowym \iffd
+$L_1$ jest ograniczone, tzn.
+\[\exists M>0\forall u \in\linsp{U}\cln \|\mathsf{L}(u)\| \leq M\cdot\|u\|\]
+$M$ jest norm± $\mathsf{L}$.
+\end{twr}
+
+
+\begin{df}[Przestrzeñ Banacha\index{Banacha!przestrzeñ}\index{przestrzeñ!Banacha},
+	dualna\index{przestrzeñ!dualna} i sprzê¿ona\index{przestrzeñ!sprzê¿ona}]\ \\
+\linsp{U} - przestrzeñ Banacha.\\
+$\linsp{U}^*$ - przestrzeñ dualna do \linsp{U} czyli przestrzeñ funkcjona³ów liniowych\index{funkcjona³ liniowy}
+\footnote{funkcjona³ liniowy to odwzorowanie liniowe przestrzeni wektorowej w cia³o nad którym jest zdefiniowane}
+na \linsp{U}\\
+$\linsp{U}^\prime\in\linsp{U}^*$ - przestrzeñ sprzê¿ona do \linsp{U} czyli przestrzeñ
+funkcjona³ów liniowych ci±g³ych na \linsp{U}.
+\end{df}
+
+\begin{df}[Iloczyn skalarny\index{iloczyn skalarny}]
+\begin{align}
+\defun{(\ ,\ )}{\linsp{U}\times\linsp{U}}{\real}
+\end{align}
+W³asno¶ci:
+\begin{align*}
+\forall u,v\in\linsp{U}\cln(u,v)=(v,u)\\
+(\ ,\ )\ \mathrm{jest\ dwuliniowy}\\
+\forall x\not=0,\ x\in\linsp{U}\cln(x,x)>0
+\end{align*}
+\end{df}
+
+Je¿eli \linsp{U} posiada zdefiniowany iloczyn skalarny $(\ ,\ )$, to $\|u\|\eqd\sqrt{(u,v)}$.
+
+Iloczyny skalarne s± równowa¿ne\index{iloczyn skalarny!równowa¿no¶æ} \iffd normy przez nie
+generowane s± równowa¿ne.
+
+
+\begin{df}[Nierówno¶æ Schwartza\index{nierówno¶æ Schwartza}]\ \\
+\linsp{U} jest ze zdef. iloczynem skalarnym $(\ ,\ )$\\
+$\|\quad\|_1$ jest równowa¿na normie $\sqrt{(\ ,\ )}$\\
+$\exists c>0\cln |(u,v)| \leq c\cdot\|u\|\cdot\|v\|$\\
+\end{df}
+
+
+\begin{df}[Przestrzeñ Hilberta\index{przestrzeñ!Hilberta}\index{Hilberta!przestrzeñ}]
+Przestrzeñ wektorow± z iloczynem skalarnym nazywamy przestrzeni± Hilberta \iffd
+metryka podyktowana przez normê wynikaj±c± z iloczynu skalarnego jest metryk± zupe³n±.
+\end{df}
+
+\begin{twr}[Riesza\index{twierdzenie!Riesza}]
+\linsp{U} - przestrzeñ Hilberta
+\begin{align*} \forall f\in\linsp{U^\prime} \ \exists ! g\in\linsp{U}\cln \langle f, x \rangle = \lp g,x\rp \end{align*}
+Mo¿emy zdefiniowaæ $\defun{\tau}{\linsp{U^\prime}}{\linsp{U}}$, które jest izometri± liniow±\footnote{Izometria liniowa:
+liniowo¶æ, bijekcja, izometria}
+\end{twr}
+
+Zbie¿no¶æ silna\index{zbie¿no¶æ!silna w przestreni} (w unormowanej przestrzeni Banacha) jest to zbie¿no¶æ
+wzglêdem normy w tej przestrzeni.
+Zbie¿no¶æ s³aba\index{zbie¿no¶æ!s³aba}: dla $a_n \infty x$ nastêpuje 
+$\forall\linsp{\mathsf{L}}\cln \linsp{\mathsf{L}}(a_n) \infty \linsp{\mathsf{L}}(x)$
+
+Zbie¿no¶ci silne i s³abe w przestrzeni Banacha \linsp{U}:
+\begin{align*}
+\{u_n\}&\subset\linsp{U}\\
+\bar{u}\in\linsp{U}
+\end{align*}
+Je¿eli $ \|u_n-\bar{u}\| \to 0, n \to \infty$ to $\{u_n\|$ jest silnie zbie¿ny i $\bar{u}$ jest jego
+siln± granic±.
+
+$\tilde{u}\in\linsp{U}\quad\forall f\in\linsp{U^\prime}\cln\rangle f,\tilde{u}\rangle$ to $\{u_n\}$ jest
+s³abo zbie¿ny, a $\tilde{u}$ jest jego s³ab± granic±.
+
+Æwiczenie do domu: Udowodnij, ¿e $\{u_n\}$ jest silnie zbie¿ny do $\bar{u} \Rightarrow \{u_n\}$ jest
+s³abo zbie¿ny do $\tilde{u}=\bar{u}$.
+% ==================================================================================
+% ==================================================================================
+% ==================================================================================
+\printindex
+\end{document}
+
