@@ -1,0 +1,70 @@
+(defpackage "UTILITIES"
+            (:use "COMMON-LISP")
+            (:nicknames "UTILS")
+            (:export "ONLY-IF" "WHILE" "LEAP-YEAR?" "UNPOLISH" "TOKENS" "PREF-SUF" "KMP" "MAPPEND"
+                     "XOR" "BV->INT" "INT->BV"))
+(in-package utilities)
+
+(defmacro only-if (con &body body) `(if ,con (progn ,@body)))
+(defmacro while (con &body body) `(do () ((not ,con)) ,@body))
+(defun leap-year? (y)
+  "Stwierdza, czy rok Y by≥ przestÍpny"
+  (and (zerop (mod y 4))
+       (or (zerop (mod y 400))
+           (not (zerop (mod y 100))))))
+(defun unpolish (mystr)
+  "Zamienia polskie znaki w stringu MYSTR na miÍdzynarodowe odpowiedniki. Przyk≥adowo: ZaøÛ≥Ê gÍúlπ jaüÒ -> Zazolc gesla jazn"
+  (dolist (chg '((#\ø #\z) (#\Û #\o) (#\≥ #\l) (#\Ê #\c) (#\Í #\e) (#\ú #\s) (#\π #\a) (#\ü #\z) (#\Ò #\n)
+           (#\Ø #\Z) (#\” #\O) (#\£ #\L) (#\∆ #\C) (#\  #\E) (#\å #\S) (#\• #\A) (#\è #\Z) (#\— #\N)))
+    (setf mystr (substitute (second chg) (first chg) mystr)))
+  mystr)
+(defun tokens (str test &key (start 0))
+  "Dzieli string STR na tokeny wg funkcji TEST"
+  (let ((p1 (position-if test str :start start)))
+    (if p1 (let ((p2 (position-if #'(lambda (c) (not (funcall test c))) str :start p1)))
+              (cons (subseq str p1 p2) (if p2 (tokens str test :start p2) nil)))
+            nil)))
+(defun pref-suf (str &optional (len nil))
+  "Wyznaczanie tablicy najd≥uøszych prefikso-sufiksÛw STR"
+  (if (null len) (setf len (length str)))
+  (do* ((j -1)
+        (p (make-array len :initial-element -1))
+        (i 1 (+ i 1)))
+       ((<= len i) p)
+       (while (and (>= j 0) (not (char= (char str i) (char str (+ j 1)))))
+         (setf j (svref p j)))
+       (if (equalp (char str i) (char str (+ j 1)))
+         (setf j (+ j 1)))
+       (setf (svref p i) j)))
+(defun kmp (str wz)
+  "Wyszukuje WZ w STR algorytmem Knutha-Morrisa-Pratta"
+  (do* ((i 0 (+ i 1))
+        (j 0)
+        (strlen (length str))
+        (wzlen (length wz))
+        (p (pref-suf wz wzlen))
+        (res nil))
+      ((<= strlen i) (nreverse res))
+      (while (and (>= j 0) (not (char= (char str i) (char wz (+ j 1)))))
+        (setf j (svref p j)))
+      (if (char= (char str i) (char wz (+ j 1)))
+        (setf j (+ j 1)))
+      (only-if (equalp (+ j 1) wzlen)
+          (push (- i j) res)
+          (setf j (svref p j)))))
+(defmacro mappend (fn lst)
+  "Stosuje FN do kaødego elementu LST a wynik dopisuje do wspÛlnej listy"
+  `(apply #'append (mapcar ,fn ,lst)))
+(defun xor (a b)
+  "Aø dziw, øe CL nie posiada operatora rÛønicy symetrycznej... Oh well..."
+  (if a (not b) b))
+(defun bv->int (bv)
+  "Konwersja bit-vectora na liczbÍ"
+  (reduce #'(lambda (x y) (+ (* x 2) y)) bv))
+(defun int->bv (i)
+  "Konwersja liczby na bit-vectora"
+  (let* ((len (integer-length i)) (res (make-array len :element-type '(mod 2))))
+    (loop for it from (1- len) downto 0
+          when (logbitp it i)
+          do (setf (bit res it) 1))
+    (nreverse res)))
