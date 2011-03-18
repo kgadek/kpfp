@@ -15,6 +15,10 @@
 .\#*
 # C/C++ *.o files
 *.o
+# Common Lisp files
+*.fasl
+# Python files
+*.pyc
 # MASM
 *.exe
 *.obj
