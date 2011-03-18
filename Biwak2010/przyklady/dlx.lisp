@@ -1,0 +1,12 @@
+(defstruct (column (:conc-name col-))
+	(left nil)
+	(right nil)
+	(size 0)
+	(name nil))
+(defstruct node
+	(left nil)
+	(right nil)
+	(top nil)
+	(bottom nil)
+	(column nil))
+(defparameter head (make-column))

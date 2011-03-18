@@ -1,0 +1,5 @@
+(defmacro 3-way-if (ex A B C)
+  `(let ((__potencjalnyblad__ ,ex))
+     (cond ((null __potencjalnyblad__) ,A)
+	   ((= __potencjalnyblad__ 0) ,B)
+	   (t ,C))))
