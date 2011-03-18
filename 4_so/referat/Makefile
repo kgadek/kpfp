@@ -1,6 +1,6 @@
 OWNER       = GadekKonrad
 PROJECT     = ref02
-SRC         = ex_says.c ex_comb.c
+SRC         = ex_says.c ex_comb.c ex_inf.c
 PSRC        = $(SRC) Makefile pytania.txt index.html style.css materialy
 
 CC          = gcc
