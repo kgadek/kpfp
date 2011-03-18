@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GDB. Poszukiwacze zaginionego seg-faulta.</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body {
+	background-color: #305393;
+}
+-->
+</style></head>
+
+<body>
+<div id="wrapper">
+	<div id="pageTitle">
+		GDB. Poszukiwacze zaginionego seg-faulta.
+	</div>
+	
+	
+	<h2>Wprowadzenie</h2>
+	
+	<p>Debugger -program komputerowy służący do dynamicznej analizy innych programów, w celu odnalezienia i identyfikacji zawartych w nich błędów, zwanych z angielskiego bugami (robakami). Proces nadzorowania wykonania programu za pomocą debuggera określa się mianem debugowania.
+
+	Umożliwia:
+	<ul><li>Wskazywanie miejsca wystąpienia błędu</li>
+		<li>Deasemblerację fragmentów programu</li>
+		<li>Wstrzymywanie pracy programów</li>
+		<li>"Animację" czyli wymuszanie pracy krokowej</li>
+		<li>Wyświetlanie stanu programów</li></ul>
+		
+	GDB (GNU Debugger) ma następujące, dodatkowe własności:
+	<ul><li>Umożliwia zmianę wartości zmiennych i wywoływanie funkcji niezależnie od debugowanego programu</li>
+		<li>Pozwala na dodatkowe oskryptowanie sesji w Pythonie</li>
+		<li>Umożliwia "reverse debugging" czyli pracę krokową do tyłu</li>
+		<li>Zdalne debugowanie programu</li></ul>
+	</p>
+
+	<p>By skompilować program z dodatkowymi informacjami dla debuggera, należy do opcji <code>gcc</code>/<code>g++</code> dodać parametr <code>-g</code>. Dodatkowe informacje dla debuggera <code>gdb</code> można dodać poprzez użycie przełącznika <code>-ggdb</code>.
+	</p>
+	
+	
+	
+	<h2>Podstawowe polecenia</h2>
+	
+	<table class="polecenia">
+		<thead>
+			<tr>
+				<th>Polecenie</th>
+				<th>Opis</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>help</code></td>
+				<td>Wyświetlenie pomocy programu</td>
+			</tr>
+			<tr class="underlined">
+				<td><code>info <i>breakpoints</i> / <i>watchpoints</i> / <i>break</i> / <i>break numer_punktu_przerwania</i> /
+					<i>registers</i> / <i>threads</i> / <i>set</i></code></td>
+				<td>Wyświetlenie listy punktów przerwań (<code>breakpoints</code> i <code>watchpoints</code>) / numerów punktów przerwań /
+				informacji o danym punkcie przerwania / o wykorzystywanych rejestrach / wątkach / listy parametrów GDB.
+				</td>
+			</tr>
+			<tr>
+				<td><code>run [<i>argumenty_do_programu</i>]</code></td>
+				<td>Rozpoczęcie debugowania.</td>
+			</tr>
+			<tr>
+				<td><code>attach <i>PID</i></code></td>
+				<td rowspan="2">Podepnij się do uruchomionego procesu.</td>
+			</tr>
+			<tr>
+				<td><code>at</code></td>
+			</tr>
+			<tr>
+				<td><code>detach</code></td>
+				<td>Odepnij się od aktualnie przyłączonego procesu.</td>
+			</tr>
+			<tr>
+				<td><code>kill</code></td>
+				<td>Zakończenie wykonywania programu.</td>
+			</tr>
+			<tr class="underlined">
+				<td><code>quit</code></td>
+				<td>Wyjście z GDB.</td>
+			</tr>
+			<tr>
+				<td><code>break <i>nazwa_funkcji</i></code></td>
+				<td rowspan="6">Ustawienie punktu przerwania w określonym momencie, ew. przy spełnieniu dodatkowych warunków.</td>
+			</tr>
+			<tr>
+				<td><code>break [<i>nazwa_pliku:</i>]<i>numer_wiersza</i></code></td>
+			</tr>
+			<tr>
+				<td><code>break <i>+offset</i></code></td>
+			</tr>
+			<tr>
+				<td><code>break <i>-offset</i></code></td>
+			</tr>
+			<tr>
+				<td><code>break <i>*adres_instrukcji</i></code></td>
+			</tr>
+			<tr>
+				<td><code>break <i>numer_wiersza</i> if <i>warunek_logiczny</i></code></td>
+			</tr>
+			<tr>
+				<td><code>tbreak</code></td>
+				<td>"Tymczasowy break". Opcje jak dla <code>break.</code></td>
+			</tr>
+			<tr>
+				<td><code>watch <i>wyrażenie</i></code></td>
+				<td>Wstrzymaj działanie programy gdy wartość wyrażenia zmieni wartość.</td>
+			</tr>
+			<tr>
+				<td><code>disable <i>numery_punktów_przerwań</i></code></td>
+				<td rowspan="2">Deaktywacja/Aktywacja danych punktów przerwań (można podać zakres).</td>
+			</tr>
+			<tr>
+				<td><code>enable <i>numery_punktów_przerwań</i></code></td>
+			</tr>
+			<tr>
+				<td><code>clear</code>
+				<td rowspan="3">Usunięcie odpowiednich punktów przerwań.</td>
+			</tr>
+			<tr>
+				<td><code>clear <i>funkcja</i></code></td>
+			</tr>
+			<tr>
+				<td><code>clear <i>numer_wiersza</i></code></td>
+			</tr>
+			<tr>
+				<td><code>delete</code></td>
+				<td rowspan="2">Usunięcie wszystkich / wybranych punktów przerwań.</td>
+			</tr>
+			<tr class="underlined">
+				<td><code>delete <i>numery_punktów_przerwań</i></code></td>
+			</tr>
+			<tr>
+				<td><code>step [<i>liczba_kroków</i>]</code></td>
+				<td rowspan="2">Pojedynczy krok działania programu. W razie wywołania funkcji, przechodzi do jej środka.</td>
+			</tr>
+			<tr>
+				<td><code>s</code></td>
+			</tr>
+			<tr>
+				<td><code>next [<i>liczba_kroków</i>]</code></td>
+				<td rowspan="2">J/w, ale nie wchodzi do wnętrza funkcji.</td>
+			</tr>
+			<tr>
+				<td><code>n</code></td>
+			</tr>
+			<tr>
+				<td><code>stepi</code></td>
+				<td rowspan="4">Wykonaj następną instrukcję asemblerową.</td>
+			</tr>
+			<tr>
+				<td><code>si</code></td>
+			</tr>
+			<tr>
+				<td><code>nexti</code></td>
+			</tr>
+			<tr class="underlined">
+				<td><code>ni</code></td>
+			</tr>
+			<tr>
+				<td><code>finish</code></td>
+				<td>Kontynuuj aż do końca funkcji.</td>
+			</tr>
+			<tr>
+				<td><code>continue</code> / <code>c</code></td>
+				<td>Kontynuuj działanie programu.</td>
+			</tr>
+			<tr class="underlined">
+				<td><code>until [<i>nazwa_pliku:</i>]<i>numer_wiersza</i> / <i>nazwa_funkcji</i> / <i>adres_funkcji</i></code></td>
+				<td>Wykonuj aż do osiągnięcia danego wiersza lub wywołania danej funkcji.</td>
+			</tr>
+			
+			<tr>
+				<td><code>where</code></td>
+				<td>Wyświetlenie informacji o tym, gdzie się obecnie znajdujemy.</td>
+			</tr>
+			<tr>
+				<td><code>backtrace</code></td>
+				<td rowspan="2">Wyświetlenie stosu wywołań funkcji.</td>
+			</tr>
+			<tr>
+				<td><code>bt</code></td>
+			</tr>
+			<tr>
+				<td><code>backtrace full</code></td>
+				<td>Wyświetlenie wartości zmiennych lokalnych.</td>
+			</tr>
+			<tr>
+				<td><code>frame <i>numer_ramki_stosu</i></code></td>
+				<td rowspan="2">Wybranie ramki.</td>
+			</tr>
+			<tr>
+				<td><code>f <i>numer_ramki_stosu</i></code></td>
+			</tr>
+			<tr>
+				<td><code>info args</code></td>
+				<td rowspan="3">Wyświetlenie informacji o argumentach / zmiennych lokalnych / obsługach wyjątków w wybranej ramce.</td>
+			</tr>
+			<tr>
+				<td><code>info locals</code></td>
+			</tr>
+			<tr>
+				<td><code>info catch</code></td>
+			</tr>
+			<tr>
+				<td><code>edit</code></td>
+				<td>Wywołanie zewnętrznego edytora do edycji pliku źródłowego.</td>
+			</tr>
+			<tr>
+				<td><code>list</code></td>
+				<td rowspan="5">Wyświetlenie fragmentu kodu źródłowego</td>
+			</tr>
+			<tr>
+				<td><code>l</code></td>
+			</tr>
+			<tr>
+				<td><code>list <i>numer_wiersza</i></code></td>
+			</tr>
+			<tr>
+				<td><code>list <i>nazwa_funkcji</i></code></td>
+			</tr>
+			<tr class="underlined">
+				<td><code>list <i>wiersz_start</i>, <i>wiersz_koniec</i></code></td>
+			</tr>
+			<tr>
+				<td><code>print <i>nazwa_zmiennej</i></code></td>
+				<td rowspan="2">Wyświetlenie wartości przechowywanej w zmiennej.</td>
+			</tr>
+			<tr>
+				<td><code>p [<i>nazwa_pliku</i>::]<i>nazwa_zmiennej</i></code></td>
+			</tr>
+			<tr>
+				<td><code>print *<i>nazwa_tablicy</i>@<i>ilość_elementów</i></code></td>
+				<td>Wyświetlenie pierwszych N elementów tablicy.</td>
+			</tr>
+			<tr>
+				<td><code>p/x <i>nazwa_zmiennej</i></code></td>
+				<td rowspan="8">Wyświetlenie zmiennej jako int (hex) / signed int / unsigned int /
+				int (oct) / int (bin) / char / float / adres (hex)
+				</td>
+			</tr>
+			<tr>
+				<td><code>p/d <i>nazwa_zmiennej</i></code></td>
+			</tr>
+			<tr>
+				<td><code>p/u <i>nazwa_zmiennej</i></code></td>
+			</tr>
+			<tr>
+				<td><code>p/o <i>nazwa_zmiennej</i></code></td>
+			</tr>
+			<tr>
+				<td><code>p/t <i>nazwa_zmiennej</i></code></td>
+			</tr>
+			<tr>
+				<td><code>p/c <i>nazwa_zmiennej</i></code></td>
+			</tr>
+			<tr>
+				<td><code>p/f <i>nazwa_zmiennej</i></code></td>
+			</tr>
+			<tr>
+				<td><code>p/a <i>nazwa_zmiennej</i></code></td>
+			</tr>
+			<tr>
+				<td><code>examine <i>adres</i></code></td>
+				<td rowspan="2">Podobnie jak print, ale przyjmuje adres a nie nazwę zmiennej.</td>
+			</tr>
+			<tr>
+				<td><code>x</code></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	<h2>Bibliografia</h2>
+	<ol>
+		<li>GDB Command Cheat Sheet - <a href="http://www.yolinux.com/TUTORIALS/GDB-Commands.html">www.yolinux.com/TUTORIALS/GDB-Commands.html</a></li>
+		<li>GDB User Manual - <a href="http://sourceware.org/gdb/current/onlinedocs/gdb/">sourceware.org/gdb/current/onlinedocs/gdb/</a></li>
+		<li>Playing with ptrace, Linux Journal - <a href="http://www.linuxjournal.com/article/6100">www.linuxjournal.com/article/6100</a> (część 1) oraz <a href="http://www.linuxjournal.com/article/6210">www.linuxjournal.com/article/6210</a> (część 2)</li>
+	</ol>
+</div>
+
+</body>
+</html>

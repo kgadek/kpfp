@@ -1,0 +1,42 @@
+::Usuwanie punktów przerwañ::Które z poni¿szych poleceñ spowoduje/spowoduj± usuniêcie wszystkich punktów przerwañ (breakpoints)?{
+	~%60%delete
+	~%-50%remove all breakpoints
+	~%40%d
+	~%-50%reset breakpoints
+}
+
+::Nastêpna instrukcja::Wywo³anie której/których polecenia/poleceñ zawsze spowoduje wykonanie dok³adnie jednej instrukcji asemblera debugowanego programu?{
+	~%-50%at
+	~%60%stepi
+	~%-20%next
+	~%-100%run
+	~%40%si 1
+}
+
+::Zarz±dzanie punktami przerwañ::Wybierz spo¶ród poni¿szych instrukcji te, które pozwalaj± zarz±dzaæ (np. dodawaæ/usuwaæ/de-/aktywowaæ/wy¶wietlaæ) punkty przerwañ (breakpoints). Przyjmij, ¿e ARG to odpowiedni dla danego polecenia argument. {
+	~%-100%attach ARG
+	~%-50%help breakpoint
+	~%35%disable ARG
+	~%30%b ARG
+	~%-75%run ARG
+	~%35%info breakpoints
+}
+
+::O GDB::Wybierz spo¶ród poni¿szych te zdania, które poprawnie opisuj± GDB.{
+	~%-30%GDB mo¿e uzyskiwaæ kontrolê nad procesem dziêki "brudnym sztuczkom": hakowanie j±dra systemu, podmiana bibliotek, etc.
+	~%-100%Skrót GDB pochodzi od Genuine Disassembler
+	~%30%By zwiêkszyæ ilo¶æ informacji dla debuggera GDB, w czasie kompilacji programem <code>gcc</code> / <code>g++</code> nale¿y zamiast <code>-g</code> u¿yæ parametru <code>-ggdb</code>
+	~%35%Skrót GDB pochodzi od GNU Debugger
+	~%-50%GDB ma wbudowane graficzne ¶rodowisko do debugowania, wystarczy uruchomiæ go poprzez polecenie: <code>gdb ./nazwa_programu --with-graphical-interface</code>
+	~%35%GDB pozwala wy¶wietlaæ zawarto¶æ tablic utworzonych w badanym programie.
+}
+
+::Kontrola wykonywania programu::Wybierz spo¶ród poni¿szych te instrukcje, które pozwalaj± na bezpo¶redni± kontrolê dzia³ania programu (np. uruchomienie/wstrzymanie programu lub przy- i odpiêcie GDB od procesu).{
+	~%-40%break main
+	~%35%run
+	~%-100%backtrace
+	~%35%kill
+	~%30%detach
+	~%-100%disable 0
+}
+

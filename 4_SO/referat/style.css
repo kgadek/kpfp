@@ -1,0 +1,53 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-image: url(materialy/tlo_tkanina1.gif);
+	font-family: "tahoma", "verdana", sans-serif;
+	font-size: 12px;
+}
+#wrapper {
+	background-color: #c6d2e1;
+	margin: 50px 50px 50px 50px;
+	padding: 40px 40px 40px 40px;
+	border-radius: 15px;
+	left: 10em;
+	text-size: 75%;
+}
+
+h2 {
+	padding: 20px 0px 10px 10px;
+	font-size: 19px;
+}
+p {
+	font-size: 12px;
+}
+#pageTitle {
+	background-color: #505050;
+	color: #ffffff;
+	padding: 10px 10px 10px 10px;
+	border-radius: 5px;
+	font-size: 23px;
+	
+}
+table.polecenia {
+	border-width: 0px;
+	border-collapse: collapse;
+}
+th, td {
+	border-style: dashed;
+	border-width: 1px;
+	
+}
+th {
+	color: 	#ffffff;
+	background-color: #505050;
+	font-size: 13px;
+}
+td {
+	background-color: #ffffff;
+	padding: 2px 10px 2px 5px;
+}
+tr.underlined, th.underlined {
+	border-bottom: 2px solid black;
+}
