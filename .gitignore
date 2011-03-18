@@ -1,0 +1,37 @@
+# Archiwa ======================================================================
+*.7z
+*.zip
+*.tar.gz
+*.tar.bz2
+*.tar
+
+# Pliki tymczasowe =============================================================
+# vim
+*.swp
+# emacs
+*~
+\#*
+.\#*
+# C/C++ *.o files
+*.o
+
+# Ustawienia IDE ===============================================================
+# Eclipse JDT
+.settings
+.metadata
+Servers
+bin
+target
+# SpringSource Tool Suite
+.springBeans
+# Netbeans
+build
+dist
+private
+
+# Rails3 
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+
