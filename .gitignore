@@ -24,7 +24,9 @@
 *.obj
 
 # Ustawienia IDE ===========================================================
-# Eclipse JDT
+# Eclipse
+.classpath
+.project
 .settings
 .metadata
 Servers

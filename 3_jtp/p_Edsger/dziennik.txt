@@ -1,0 +1,5 @@
+[13 lutego]
+Przekonwertowałem pliki do UTF8 przy pomocy polecenia: 
+find rozklady.mpk.krakow.pl -iname '[0-9][0-9][0-9][0-9]*[0-9][0-9][0-9].htm' -exec iconv -f ISO88592 -t UTF8 \{} --verbose -o \{}.html \;
+wywołanego z katalogu głównego
+
