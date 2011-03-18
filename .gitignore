@@ -32,6 +32,12 @@
 Servers
 bin
 target
+*.jar
+*.u1conflict
+*.class
+*.MF
+*.mf
+
 # SpringSource Tool Suite
 .springBeans
 # Netbeans
