@@ -1,0 +1,152 @@
+Warunki wykonania programów ____________________________________________________
+
+Komputer:
+ - Intel Atom 1.6GHz (x86, Hyper-Threading)
+ - 1 GB RAM
+
+$ uname -a
+Linux eeedora 2.6.35.11-83.fc14.i686.PAE #1 SMP Mon Feb 7 06:57:55 UTC 2011 i686 i686 i386 GNU/Linux
+
+$ g++ --version
+g++ (GCC) 4.5.1 20100924 (Red Hat 4.5.1-4)
+Copyright (C) 2010 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+
+
+
+Wyniki -- polecenie i wyjście __________________________________________________
+
+$ make clean && make -j 3 && make -j 1tests
+rm -f *.o *~ *swp zad1A zad1B zad1C zad1D zad1A_opt zad1B_opt zad1C_opt zad1D_opt zad1A_opt1 zad1B_opt1 zad1C_opt1 zad1D_opt1
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic  zad1A.cpp -o zad1A
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic  zad1B.cpp -o zad1B
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic  zad1C.cpp -o zad1C
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic  zad1D.cpp -o zad1D
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic -O3  zad1A.cpp -o zad1A_opt
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic -O2  zad1B.cpp -o zad1B_opt
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic -O1 -foptimize-sibling-calls  zad1C.cpp -o zad1C_opt
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic -O1 -fomit-frame-pointer -fregmove -fira-loop-pressure -fipa-struct-reorg -fwhole-program  zad1D.cpp -o zad1D_opt
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic -O1  zad1A.cpp -o zad1A_opt1
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic -O1  zad1B.cpp -o zad1B_opt1
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic -O1  zad1C.cpp -o zad1C_opt1
+g++ -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point -Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic -O1  zad1D.cpp -o zad1D_opt1
+////////////////////////////////////[ zad1A ]///////////////////////////////////
+Niezoptymalizowane______________________________________________________________
+real 2.58
+user 2.56
+sys 0.02
+Zoptymalizowane -O1_____________________________________________________________
+real 1.96
+user 1.93
+sys 0.01
+Zoptymalizowane dodatkowo_______________________________________________________
+real 1.84
+user 1.82
+sys 0.01
+////////////////////////////////////[ zad1B ]///////////////////////////////////
+Niezoptymalizowane______________________________________________________________
+real 66.18
+user 66.11
+sys 0.03
+Zoptymalizowane -O1_____________________________________________________________
+real 71.25
+user 71.21
+sys 0.01
+Zoptymalizowane dodatkowo_______________________________________________________
+real 41.50
+user 41.45
+sys 0.03
+////////////////////////////////////[ zad1C ]///////////////////////////////////
+Niezoptymalizowane______________________________________________________________
+real 1.96
+user 1.95
+sys 0.00
+Zoptymalizowane -O1_____________________________________________________________
+real 1.74
+user 1.74
+sys 0.00
+Zoptymalizowane dodatkowo_______________________________________________________
+real 0.56
+user 0.56
+sys 0.00
+////////////////////////////////////[ zad1D ]///////////////////////////////////
+Niezoptymalizowane______________________________________________________________
+real 2.51
+user 2.07
+sys 0.44
+Zoptymalizowane -O1_____________________________________________________________
+real 2.37
+user 1.97
+sys 0.40
+Zoptymalizowane dodatkowo_______________________________________________________
+real 2.19
+user 1.75
+sys 0.43
+
+
+
+
+
+Wyniki -- program zad1A ________________________________________________________
+
+Wynik bez optymalizacji: 2.56 sek
+Wynik z flagą -O1: 1.93 sek
+Wynik z dodatkową flagą: 1.82 sek
+
+Flaga -O3 kompilatora pozwoliła zredukować czas sortowania miliona liczb
+pseudolosowych o ok. 0.1 sek. Ciekawostką jest, że wyniki programu
+skompilowanego z opcją -O2 są gorsze od skompilowanego z opcją -O1 (średnio
+2 sek).
+
+Warto także dodać, że flaga -O3 nie spowodowała dramatycznego wzrostu rozmiaru
+kodu wynikowego -- wszystkie skompilowane wersje mieściły się w dwóch blokach
+dyskowych (po 4 KiB).
+
+
+
+
+
+Wyniki -- program zad1B ________________________________________________________
+
+Wynik bez optymalizacji: 66.11 sek
+Wynik z flagą -O1: 71.21 sek
+Wynik z dodatkową flagą: 41.45 sek
+
+Okazuje się, że flaga -O2 radzi sobie ,,dwukrotnie lepiej'', niż flaga -O1,
+która zwiększyła czas działania programu o 3 sekundy.
+
+Warto wspomnieć, że flaga -O3 wygenerowała program, który działał 12.18 sekundy,
+co jest wynikiem prawie 6x lepszym niż wynik flagi -O1!
+
+
+
+
+Wyniki -- program zad1C ________________________________________________________
+
+Wynik bez optymalizacji: 1.95 sek
+Wynik z flagą -O1: 1.74 sek.
+Wynik z dodatkową flagą: 0.56 sek
+
+Zauważalny jest wyraźny skok wydajnościowy. Flaga, która to wszystko powoduje --
+-foptimize-sibling-calls -- wpływa na przyspieszenie działania funkcji
+rekurencyjnych (m.in. recursive tail-call optimization).
+
+
+
+
+
+Wyniki -- program zad1D ________________________________________________________
+
+Wynik bez optymalizacji: 2.07 sek
+Wynik z flagą -O1: 1.97 sek
+Wynik z dodatkową flagą: 1.75 sek
+
+Tym razem wykorzystałem dość mocno zoptymalizowany algorytm operujący na
+drzewach AVL. Mimo wszystko udało się uzyskać 0.3 sekundy w czasie dodawania
+do drzewa 10,000,000 razy jednej liczby. Gdy zmienić dodawaną liczbę na
+generowaną przez funkcję rand(), różnice się zacierają (czas wykonania programu
+wzrasta do ok. 31.5 sekund).
+

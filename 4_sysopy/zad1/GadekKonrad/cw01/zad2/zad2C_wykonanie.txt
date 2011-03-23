@@ -1,0 +1,70 @@
+$ ##### Konsola 1 #####
+
+$ ./zad2C
+F(1) = 1
+F(2) = 2
+F(3) = 3
+F(4) = 5
+F(5) = 8
+F(6) = 13
+F(7) = 21
+(...)
+
+
+
+
+$ ##### Konsola 2 #####
+
+$ ps aux | grep zad2C
+konrad    3005  0.1  0.3  12676  3864 pts/0    S+   16:57   0:00 vim zad2C.cpp
+konrad    3182  0.0  0.0   3108   548 pts/1    S+   17:00   0:00 ./zad2C
+konrad    3212  0.0  0.0   4432   744 pts/2    S+   17:01   0:00 grep --color=auto zad2C
+
+$ gdb
+
+(gdb) at 3182
+Attaching to process 3182
+(...)
+
+(gdb) where
+#0  0x00b67424 in __kernel_vsyscall ()
+#1  0x00c57060 in __nanosleep_nocancel () from /lib/libc.so.6
+#2  0x00c56ea4 in sleep () from /lib/libc.so.6
+#3  0x0804849e in main () at zad2C.cpp:13
+
+(gdb) b 13
+Breakpoint 1 at 0x8048492: file zad2C.cpp, line 13.
+
+(gdb) c
+Continuing.
+Breakpoint 1, main () at zad2C.cpp:13
+13			sleep(1);
+
+(gdb) print b = 0
+$1 = 0
+
+(gdb) c
+Continuing.
+Program exited normally.
+
+(gdb) q
+
+
+
+
+
+$ ##### Konsola 1 #####
+
+(...)
+F(67) = 1073992269
+F(68) = -188547518
+F(69) = 885444751
+F(70) = 696897233
+F(71) = 1582341984
+F(72) = -2015728079
+F(73) = -433386095
+F(74) = 1845853122
+
+$ echo $?
+0
+

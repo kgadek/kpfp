@@ -7,16 +7,19 @@
 
 # Pliki tymczasowe =========================================================
 *.bkp
+*.log
 # vim
 *.swp
 # emacs
 *~
 \#*
 .\#*
-# C/C++ *.o files
+# C/C++
 *.o
+core.*
 # Common Lisp files
 *.fasl
+*.lx32fsl
 # Python files
 *.pyc
 # MASM

@@ -1,0 +1,65 @@
+$ ulimit -c unlimited
+
+$ ulimit -a
+-t: cpu time (seconds)         unlimited
+-f: file size (blocks)         unlimited
+-d: data seg size (kbytes)     unlimited
+-s: stack size (kbytes)        8192
+-c: core file size (blocks)    unlimited
+-m: resident set size (kbytes) unlimited
+-u: processes                  1024
+-n: file descriptors           1024
+-l: locked-in-memory size (kb) 64
+-v: address space (kb)         unlimited
+-x: file locks                 unlimited
+-i: pending signals            7836
+-q: bytes in POSIX msg queues  819200
+-e: max nice                   0
+-r: max rt priority            0
+
+$ ./zad2B 3 4 2 1
+tab: 0, 3, 4, 2, 1
+tab: 0, 1, 2, 3, 4
+*** glibc detected *** ./zad2B: free(): invalid next size (fast): 0x08250008 ***
+======= Backtrace: =========
+/lib/libc.so.6(+0x6efb6)[0x411fb6]
+./zad2B[0x80485bb]
+/lib/libc.so.6(__libc_start_main+0xe6)[0x3b9e36]
+./zad2B[0x8048401]
+======= Memory map: ========
+00254000-00255000 r-xp 00000000 00:00 0          [vdso]
+00320000-0033d000 r-xp 00000000 fd:00 397219     /lib/ld-2.13.so
+(...)
+
+$ ls core.*
+core.4763
+
+$ gdb ./zad2B core.4763
+
+(gdb) bt
+#0  0x00d39424 in __kernel_vsyscall ()
+#1  0x003ce2f1 in raise () from /lib/libc.so.6
+#2  0x003cfd5e in abort () from /lib/libc.so.6
+#3  0x0040a51d in __libc_message () from /lib/libc.so.6
+#4  0x00411fb6 in _int_free () from /lib/libc.so.6
+#5  0x080485bb in main (argc=5, argv=0xbff2b364) at zad2B.cpp:27
+
+(gdb) f 5
+#5  0x080485bb in main (argc=5, argv=0xbff2b364) at zad2B.cpp:27
+27	    free(t);
+
+(gdb) p *t@5
+$2 = {0, 1, 2, 3, 4}
+
+(gdb) p argc
+5
+
+(gdb) q
+
+# Błąd dealokacji pamięci wynika z tego, że program
+# źle zaalokował pamięć, a następnie pisał po tym
+# obszarze. Funkcja free() nie mogła zwolnić 
+# takiego obszaru pamięci i kernel wysłał sygnał
+# SIGABRT(6) do programu, co zakończyło jego
+# działanie.
+

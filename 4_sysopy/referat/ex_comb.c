@@ -18,12 +18,12 @@ void combsort(int*,int);
 
 int main(int argc, char *argv[]) {
     int *t,i;
-    t = (int*)malloc(argc);
-    for(i=0;i<argc;++i)
-        t[i] = atoi(argv[i]);
-    printTab(t,argc);
-    combsort(t,argc);
-    printTab(t,argc);
+    t = (int*)malloc(argc); /* błąd */
+    for(i=0;i<argc;++i) /* błąd */
+        t[i] = atoi(argv[i]); /* błąd */
+    printTab(t,argc); /* błąd */
+    combsort(t,argc); /* błąd */
+    printTab(t,argc); /* błąd */
     free(t);
     return 0;
 }

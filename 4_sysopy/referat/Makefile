@@ -14,7 +14,7 @@ PKGNAME     = $(OWNER)-$(PROJECT).tar.gz
 all: $(SRC:%.c=%)
 
 clean:
-	rm -rf *.o *~ *swp $(SRC:%.c=%) $(PKGROOT) $(PKGNAME)
+	rm -rf *.o *~ *swp $(SRC:%.c=%) $(PKGROOT) $(PKGNAME) core.*
 
 pkg: clean
 	rm -rf $(OWNER)

@@ -1,0 +1,111 @@
+$ gdb ./zad2A
+
+(gdb) b 14
+Breakpoint 1 at 0x804846e: file zad2A.cpp, line 14.
+
+(gdb) r
+Starting program: /home/konrad/prog/kpfp/4_sysopy/zad1/GadekKonrad/cw01/zad2/zad2A 
+Breakpoint 1, main () at zad2A.cpp:14
+14		printf("%ld\n", a(4,1));
+
+(gdb) s
+a (m=4, n=1) at zad2A.cpp:5
+5		if(m && n)
+
+(gdb) bt
+#0  a (m=4, n=1) at zad2A.cpp:5
+#1  0x08048482 in main () at zad2A.cpp:14
+
+(gdb) info frame
+Stack level 0, frame at 0xbffff660:
+ eip = 0x804840a in a (zad2A.cpp:5); saved eip 0x8048482
+ called by frame at 0xbffff680
+ source language c++.
+ Arglist at 0xbffff658, args: m=4, n=1
+ Locals at 0xbffff658, Previous frame's sp is 0xbffff660
+ Saved registers:
+  ebp at 0xbffff658, eip at 0xbffff65c
+
+(gdb) info locals
+No locals.
+
+
+(gdb) s
+6			return a(m-1, a(m,n-1));
+
+(gdb) s
+a (m=4, n=0) at zad2A.cpp:5
+5		if(m && n)
+
+(gdb) bt
+#0  a (m=4, n=0) at zad2A.cpp:5
+#1  0x0804842b in a (m=4, n=1) at zad2A.cpp:6
+#2  0x08048482 in main () at zad2A.cpp:14
+
+### 10 razy wykonano instrukcję:
+(gdb) s 
+
+(gdb) bt
+#0  a (m=2, n=0) at zad2A.cpp:5
+#1  0x0804842b in a (m=2, n=1) at zad2A.cpp:6
+#2  0x0804845b in a (m=3, n=0) at zad2A.cpp:8
+#3  0x0804842b in a (m=3, n=1) at zad2A.cpp:6
+#4  0x0804845b in a (m=4, n=0) at zad2A.cpp:8
+#5  0x0804842b in a (m=4, n=1) at zad2A.cpp:6
+#6  0x08048482 in main () at zad2A.cpp:14
+
+(gdb) info registers
+eax            0x2	2
+ecx            0xcfcd3a6e	-808633746
+edx            0x1	1
+ebx            0x2dfff4	3014644
+esp            0xbffff5a0	0xbffff5a0
+ebp            0xbffff5b8	0xbffff5b8
+esi            0x0	0
+edi            0x0	0
+eip            0x804840a	0x804840a <a(int, int)+6>
+eflags         0x200286	[ PF SF IF ID ]
+cs             0x73	115
+ss             0x7b	123
+ds             0x7b	123
+es             0x7b	123
+fs             0x0	0
+gs             0x33	51
+
+(gdb) where
+#0  a (m=2, n=0) at zad2A.cpp:5
+#1  0x0804842b in a (m=2, n=1) at zad2A.cpp:6
+#2  0x0804845b in a (m=3, n=0) at zad2A.cpp:8
+#3  0x0804842b in a (m=3, n=1) at zad2A.cpp:6
+#4  0x0804845b in a (m=4, n=0) at zad2A.cpp:8
+#5  0x0804842b in a (m=4, n=1) at zad2A.cpp:6
+#6  0x08048482 in main () at zad2A.cpp:14
+
+(gdb) print m=0
+$1 = 0
+
+(gdb) s
+7		else if(m)
+
+(gdb) s
+10			return n+1;
+
+(gdb) s
+11	}
+
+(gdb) s
+a (m=1, n=1) at zad2A.cpp:5
+5		if(m && n)
+
+(gdb) d 1
+
+(gdb) info breakpoints
+No breakpoints or watchpoints.
+
+(gdb) c
+Continuing.
+4093
+Program exited normally.
+
+(gdb) q
+
