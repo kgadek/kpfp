@@ -12,7 +12,7 @@ import java.util.logging.*;
 public class LeroyClient {
 	
 	static byte[] serverIp = {(byte) 127, (byte) 0, (byte) 0, (byte) 1};
-	static int serverPort = 8888;
+	static int serverPort = 6666;
 	static String myName;
 	
 	Socket echoSocket = null;

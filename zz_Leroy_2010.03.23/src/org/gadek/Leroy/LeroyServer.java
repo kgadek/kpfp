@@ -12,7 +12,7 @@ public class LeroyServer implements Runnable {
 	private String nick;
 	private Socket clientSocket;
 	private static Map<Thread, LeroyServer> threadMap = Collections.synchronizedMap(new HashMap<Thread, LeroyServer>());
-	private static int serverPort = 8888;
+	private static int serverPort = 6666;
 	private PrintWriter out;
 	private BufferedReader in;
 	private static ServerSocket serverSocket;
