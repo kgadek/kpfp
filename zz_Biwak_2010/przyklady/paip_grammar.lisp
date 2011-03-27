@@ -60,4 +60,4 @@
     (przyslowek -> zgrabnie bardzo)
     (przyimek -> przez)
     (czasownik -> przeskoczyl polubil)))
-     
+(setf *grammar* *aut-ex1-grammar*)     

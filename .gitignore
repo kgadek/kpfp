@@ -10,6 +10,7 @@
 *.log
 # vim
 *.swp
+*.swo
 # emacs
 *~
 \#*
@@ -17,6 +18,8 @@
 # C/C++
 *.o
 core.*
+*.a
+*.so
 # Common Lisp files
 *.fasl
 *.lx32fsl
