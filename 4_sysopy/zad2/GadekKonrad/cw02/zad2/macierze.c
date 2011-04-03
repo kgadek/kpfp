@@ -24,7 +24,7 @@ struct lista* createMacierzPool() {
 
 void deleteMacierzPool(struct macierzPool **pl) {
 	if(!pl || !(*pl) || !((*pl)->l))
-		return 0;
+		return;
 	deleteList(&((*pl)->l));
 	(*pl) = 0;
 }
