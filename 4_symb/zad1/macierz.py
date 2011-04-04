@@ -28,11 +28,11 @@ class matrix:
     class matrixException(Exception):
         """ Nadklasa wszystkich wyjątków """
         pass
-    class matrixNotAMatrixException(matrix.matrixException):
+    class matrixNotAMatrixException(matrixException):
         """ Klasa reprezentująca wyjątek, gdy dane wejściowe nie reprezentują porawnej macierzy """
         def __init__(self,value): self.value = value
         def __str__(self): return repr(self.value)
-    class matrixBadDimension(matrix.matrixException):
+    class matrixBadDimension(matrixException):
         """ Klasa reprezentująca wyjątek, gdy wymiary macierzy nie pozwalają na wykonanie pewnej operacji """
         def __init__(self,value): self.value = value
         def __str__(self): return repr(self.value)
