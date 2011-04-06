@@ -8,6 +8,8 @@
 # Pliki tymczasowe =========================================================
 *.bkp
 *.log
+*.in
+*.out
 # vim
 *.swp
 *.swo
@@ -33,6 +35,7 @@ core.*
 # Eclipse
 .classpath
 .project
+.cproject
 .settings
 .metadata
 Servers

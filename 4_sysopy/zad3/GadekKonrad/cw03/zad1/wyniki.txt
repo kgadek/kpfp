@@ -1,0 +1,17 @@
+W pliku skrypt.sh zamieściłem program wykonujący testy wydajności.
+
+Uzyskane wyniki______________________________________________________
+	średni czas generowania + sortowania
+	S-rozmiar, N-liczba
+	wersja systemowa/libc
+S=4 N=1k		0,035 / 0,025
+S=512 N=1k		0,156 / 0,031
+S=4096 N=1k		1,029 / 0,079
+S=8192 N=1k		2,031 / 0,117
+
+Wnioski______________________________________________________________
+Testy pokazują, że funkcje biblioteczne są dużo wydajniejsze, niż
+odpowiadające im funkcje systemowe. Wynikać to może z faktu, iż
+funkcje biblioteczne mogą korzystać z własnego bufora i tak
+naprawdę tylko raz zapisywać dane na dysk, a wszystkie wcześniejsze
+operacje wykonywać w dużo szybszej pamięci RAM. 
