@@ -61,9 +61,13 @@ class matrix:
         self.origin = origin
         self.rows = self.matrix and len(self.matrix)
         self.cols = self.matrix and len(self.matrix[0])
+        self.block = True
     def __repr__(self):
         """ Konwerter klasy do string """
         return self.matrix and '\n'.join(["|%s|" % s for s in [' '.join(["%-6.3f" % e for e in w]) for w in self.matrix]]) or "<pusta macierz>"
+    def __setattr__(self, name, value):
+        if not ('block' in vars(self) and self.block):
+            self.name = value
     def __getitem__(self, key):
         """ Funkcja dostępu do klasy.
         
