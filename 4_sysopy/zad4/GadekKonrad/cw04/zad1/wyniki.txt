@@ -1,0 +1,27 @@
+Wyniki uzyskałem przy pomocy polecenia
+
+for ((i=0; $i<10; ++i)); do
+    /usr/bin/time -f "%E" ./forkbomb 100000 3 > /dev/null 2&>>clonev100k.tmp;
+done
+
+zmieniając za każdym razem jedynie parametry programu jak i plik wynikowy.
+Plik wynikowy wstępnie przetworzyłem wyrażeniami regularnymi by uzyskać
+w osobnych liniach czasy w ms.
+
+W tabeli poniżej podano czas działania i ilość wywołań funkcji na sekundę.
+
+funkcja         |   25,000  |   50,000  |   100,000 |   200,000 |
+----------------+-----------+-----------+-----------+-----------+
+fork:           |    8,012 s|   15,741 s|   31,786 s|   103,878s|
+                |    3120c/s|    3176c/s|    3146c/s|    1925c/s|
+vfork:          |    1,522 s|    3,017 s|    6,042 s|   12,061 s|
+                |   16425c/s|   16572c/s|   16550c/s|   16582c/s|
+clone - fork:   |    7,917 s|   15,700 s|   31,555 s|   103,220s|
+                |    3157c/s|    3184c/s|    3169c/s|    1937c/s|
+clone - vfork:  |    1,517 s|    3,012 s|    6,040 s|   12,080 s|
+                |   16479c/s|   16600c/s|   16556c/s|   16582c/s|
+
+Daje się zauważyć ciekawe zjawisko - wyniki wydają się stabilne, lecz
+wyłącznie dla największych danych fork i clone odpowiadający forkowi
+nagle tracą ok. 40% szybkości. Wydaje się, że jest to wina platformy
+testowej (netbook, procesor 1.6GHz a przede wszystkim tylko 1GB RAM).
