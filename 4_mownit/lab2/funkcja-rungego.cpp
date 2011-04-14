@@ -48,3 +48,4 @@ int main(int argc, char *argv[])
 		gsl_interp_accel_free(acc);
 	}
 }
+
