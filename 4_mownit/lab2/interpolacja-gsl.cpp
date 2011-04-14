@@ -11,7 +11,13 @@ int main(int argc, char *argv[])
 	ofstream plikout(argv[2]);
 	double *tabx;
 	double *taby;
-	double **tabout;
+
+	if (argc != 3) {
+		printf("Błędne wywołanie programu!\n"\
+					"\t%s liczba-punktow plik-wynikowy\n",
+					argv[0]);
+		return 1;
+	}
 	if (plik != NULL) {
 		plik >> n;
 		tabx = new double[n];

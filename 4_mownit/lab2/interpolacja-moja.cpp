@@ -13,10 +13,7 @@ class intLagrange {
 	double *mianownik;
 	int n;
  public:
-	intLagrange(int x) {
-		mianownik = new double[x];
-		 n = x;
-	}
+	intLagrange(int x) : mianownik(new double[x]), n(x) {}
 	void obliczMianownik(double **tab) {
 		int i, j;
 		for (i = 0; i < n; i++) {
@@ -60,10 +57,8 @@ class intNewton {
 	double **ilorazRoznicowy;
 	int n;
  public:
-	intNewton(int x) {
-		n = x;
-		ilorazRoznicowy = new double *[x];
-	} double rekobliczIloraz(double **tab, int i, int k) {
+	intNewton(int x) : ilorazRoznicowy(new double* [x]), n(x) {}
+	double rekobliczIloraz(double **tab, int i, int k) {
 		if (i == k)
 			return tab[k][1];
 		else {
@@ -115,8 +110,7 @@ class intNewton {
 
 int main(int argc, char *argv[])
 {
-	double x, y;
-	int n, i, ile;
+	int n, i;
 	double **tab, **tabout;
 
 	if (argc != 4) {

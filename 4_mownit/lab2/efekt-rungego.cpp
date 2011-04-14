@@ -1,26 +1,36 @@
-#include<fstream>
-#include<gsl/gsl_interp.h>
-#include<gsl/gsl_spline.h>
+#include <fstream>
+#include <gsl/gsl_interp.h>
+#include <gsl/gsl_spline.h>
 
 #define ILE_PKT_FUNKCJI 40
 #define ILE_PKT 1000
 using namespace std;
 
-int main(int argc, char *argv[])
-{
-	ofstream plikout(argv[1]);
+int main(int argc, char *argv[]) {
 	double *tabx;
 	double *taby;
+	double krok;
+	double x;
+	int i;
+	ofstream plikout(argv[1]);
+
+	if(argc != 3) {
+		printf("Błędne wywołanie programu!\n"\
+					"\t%s plik-wynikowy P/S\n",
+					argv[0]);
+		return 1;
+	}
+
 	tabx = new double[40];
 	taby = new double[40];
-	double krok = 2.0 / (ILE_PKT_FUNKCJI);
-	double x;
-	int i = 0;
-	for (x = -1.0; x <= 1.0; x += krok) {
+	krok = 2.0 / (ILE_PKT_FUNKCJI);
+
+	for (x=-1.0, i=0; x <= 1.0; x += krok) {
 		tabx[i] = x;
 		taby[i] = 1.0 / (1.0 + 25 * x * x);
 		i++;
 	}
+
 	krok = (tabx[ILE_PKT_FUNKCJI - 1] - tabx[0]) / (ILE_PKT - 1);
 	if (argv[2][0] == 'P') {
 		gsl_interp_accel *acc = gsl_interp_accel_alloc();
