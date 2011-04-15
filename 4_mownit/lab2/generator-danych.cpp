@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 	tab[0][1] = (rand() * 2.0) / RAND_MAX * 1.0;
 
 	for (i = 1; i < tabsize; i++) {
-		step = (rand() * 1.0 + 1.0) / (RAND_MAX + 2.0);
+		step = (rand() * 1.0 + 1.0) / (RAND_MAX + 2.0) + 0.01;
 		tab[i] = (double *)malloc(2 * sizeof(double));
 		tab[i][0] = tab[i - 1][0] + step;
 		tab[i][1] = ((rand() % 20) - 3.0) / 3.2;

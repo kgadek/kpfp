@@ -12,9 +12,9 @@ int main(int argc, char *argv[])
 	double *tabx;
 	double *taby;
 
-	if (argc != 3) {
+	if (argc != 4) {
 		printf("Błędne wywołanie programu!\n"\
-					"\t%s liczba-punktow plik-wynikowy\n",
+					"\t%s plik-wejsciowy plik-wynikowy P/S\n",
 					argv[0]);
 		return 1;
 	}

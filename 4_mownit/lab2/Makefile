@@ -2,7 +2,7 @@ CXX 		= g++
 CXXFLAGS	= -W -Wall -Wshadow -Weffc++ -Wformat -Wsequence-point\
 		   		-Wunused -Wuninitialized -Wfloat-equal -ansi -pedantic
 LDFLAGS		= -O2 -lm -I/usr/tools/include -L/usr/tools/lib\
-				-lgslcblas -lgsl
+				-lgslcblas -lgsl -ggdb
 SRC			= efekt-rungego.cpp generator-danych.cpp interpolacja-gsl.cpp interpolacja-moja.cpp
 PSRC		= $(SRC) Makefile
 PKGNAME 	= GadekKonrad-mownit2.7z
