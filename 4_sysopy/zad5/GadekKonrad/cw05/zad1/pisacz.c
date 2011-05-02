@@ -9,19 +9,8 @@ char *napis; /*napis*/
 char *inverted; /*odwrócony napis*/
 unsigned int l; /*długość napisu*/
 
-
-void invert(int sigid) {
-	char *tmp;
-	tmp = napis;
-	napis = inverted;
-	inverted = tmp;
-}
-void byebye(int sigid) {
-	printf("Odebrano sygnał SIGINT... Żegnaj okrutny świecie!\n");
-	free(napis);
-	free(inverted);
-	exit(0);
-}
+void invert(int);
+void byebye(int);
 
 
 int main(int argc, char **argv) {
@@ -37,13 +26,14 @@ int main(int argc, char **argv) {
 	}
 
 
-	for(i=1,l=0;i<(unsigned int)argc;++i)
+	for(i=1,l=0;i<(unsigned int)argc;++i) /*wyliczenie długości napisu*/
 		l += strlen(argv[i]);
-	l += (unsigned int)argc -1; /*dodatkowo spacje między wyrazami*/
+	l += (unsigned int)argc -1; /*dodatkowo dolicz spacje między wyrazami*/
 
-	if(!(napis = (char*)malloc(l * sizeof(char))) || !(inverted = (char*)malloc(l * sizeof(char)))) {
+	if(   !(napis = (char*)malloc(l * sizeof(char))) ||
+	   !(inverted = (char*)malloc(l * sizeof(char)))) {
 		fprintf(stderr, "Błąd alokacji pamięci!\n");
-		free(napis);
+		free(napis); /*co najwyżej zaalokowano napis*/
 		exit(2);
 	}
 
@@ -53,9 +43,9 @@ int main(int argc, char **argv) {
 		strcat(napis, argv[i]);
 	}
 
-	for(i=0;i<l-1;++i)
+	for(i=0;i<l-1;++i) /*kopiuj wszystko oprócz znaku '\0' */
 		inverted[i] = napis[l-i-2];
-	inverted[l-1] = 0;
+	inverted[l-1] = 0; /*dodaj znak '\0'*/
 
 	signal(SIGINT,byebye);
 	aInv.sa_handler = invert;
@@ -68,4 +58,19 @@ int main(int argc, char **argv) {
 	free(inverted);
 
 	return 0;
+}
+
+
+void invert(int sigid) { /*tak naprawdę zamiana wskaźników *napis i *inverted */
+	char *tmp = (char*)sigid; /*anty-warning*/
+	tmp = napis;
+	napis = inverted;
+	inverted = tmp;
+}
+
+void byebye(int sigid) { /*zakończenie programu*/
+	printf("Odebrano sygnał SIGINT... Żegnaj okrutny świecie!\n");
+	free(napis);
+	free(inverted);
+	exit(sigid-SIGINT);
 }
