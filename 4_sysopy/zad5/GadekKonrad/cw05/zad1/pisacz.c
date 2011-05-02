@@ -1,3 +1,12 @@
+/*Zadanie 1
+
+Napisz program wypisujący na standardowe wyjście zadany wiersz tekstu. Po odebraniu sygnału
+SIGTSTP program zaczyna wypisywać zadany tekst wspak. Po ponownym wysłaniu SIGTSTP program
+powraca do normalnego wypisywania tekstu. Program musi umożliwiać wielokrotne odwracanie
+kolejności wypisywania (sygnałem SIGTSTP). Program musi również obsługiwać sygnał SIGINT. Po
+jego odebraniu program wypisuje komunikat "Odebrano sygnał SIGINT" i kończy działanie. W kodzie
+programu, do przechwycenia sygnałów użyj zarówno funkcji signal jak i sigaction.*/
+
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,9 +56,9 @@ int main(int argc, char **argv) {
 		inverted[i] = napis[l-i-2];
 	inverted[l-1] = 0; /*dodaj znak '\0'*/
 
-	signal(SIGINT,byebye);
+	signal(SIGINT,byebye); /*dla uproszczenia zakładamy, że to się zawsze udaje*/
 	aInv.sa_handler = invert;
-	sigaction(SIGTSTP, &aInv, 0);
+	sigaction(SIGTSTP, &aInv, 0); /*...i to też*/
 
 	while(1)
 		printf("%s\n",napis);
