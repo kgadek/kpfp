@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-void send(int f, pid_t p,int v) {
+void send(int f,pid_t p,int v) {
 	union sigval vu;
 	if(f==1)
 		kill(p,SIGUSR1);

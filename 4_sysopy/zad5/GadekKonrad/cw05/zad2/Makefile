@@ -6,7 +6,7 @@ CFLAGS		= -O2 -ansi -pedantic -W -Wall -Wextra -Wshadow -Wformat -Winit-self\
 				-Wno-long-long
 LDFLAGS		= -lm
 
-SRC			= sender.c reciver.c
+SRC			= sender.c receiver.c
 .PHONY: 	clean all
 
 all: $(SRC:%.c=%)
