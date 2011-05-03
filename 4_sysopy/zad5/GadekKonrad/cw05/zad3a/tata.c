@@ -18,6 +18,8 @@ int main(int argc, char **argv) {
 	pid_t pid;
 	uint n;
 	char *p; /*do wykrywania blędów konwersji*/
+	union sigval sv;
+
 
 	if(argc == 3) {
 		pid = (pid_t)strtol(argv[1], &p, 10);
@@ -33,9 +35,13 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 
+	sv.sival_int = 0;
 	while(n--)
-		kill(pid, SIGUSR1);
-	kill(pid,SIGUSR2);
+		sigqueue(pid,SIGUSR1,sv);	/*ISO C forbids casting to union type*/
+									/*więc (union sigval)0 nie przechodzi*/
+		/*kill(pid, SIGUSR1);*/
+	sigqueue(pid,SIGUSR2,sv);
+	/*kill(pid,SIGUSR2);*/
 
 	return 0;
 }
