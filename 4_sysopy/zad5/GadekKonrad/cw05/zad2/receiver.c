@@ -14,6 +14,7 @@ przesyłania z sygnałem dodatkowej wartości, receiver również wypisuje ją n
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <time.h>
 
 
 void handler(int,siginfo_t *,void *);
@@ -33,38 +34,38 @@ int main() {
 }
 
 void handler(int sigid,siginfo_t *si,void *cont) {
-	printf("rcv");
-	printf("\t+-[ SIGNAL RECEIVED: %d ]----------------------|\n",sigid);
-	printf("\t|           | si_signo  | %20d |\n",si->si_signo);
-	printf("\t|           | si_errno  | %20d |\n",si->si_errno);
+	printf("+-[ SIG RCVD: %d cont: %12d ]----------+\n",sigid,(int)cont);
+	printf("|           | si_signo  | %20d |\n",si->si_signo);
+	printf("|           | si_errno  | %20d |\n",si->si_errno);
 	switch(si->si_code) {
-		case SI_USER:		printf("\t|           | si_code   |     SI_USER    %5d |\n",si->si_code);
+		case SI_USER:		printf("|           | si_code   |    SI_USER     %5d |\n",si->si_code);
 				break;
-		case SI_KERNEL:		printf("\t|           | si_code   |     SI_KERNEL  %5d |\n",si->si_code);
+		case SI_KERNEL:		printf("|           | si_code   |    SI_KERNEL   %5d |\n",si->si_code);
 				break;
-		case SI_QUEUE:		printf("\t|           | si_code   |     SI_QUEUE   %5d |\n",si->si_code);
+		case SI_QUEUE:		printf("|           | si_code   |    SI_QUEUE    %5d |\n",si->si_code);
 				break;
-		case SI_TIMER:		printf("\t|           | si_code   |     SI_TIMER   %5d |\n",si->si_code);
+		case SI_TIMER:		printf("|           | si_code   |    SI_TIMER    %5d |\n",si->si_code);
 				break;
-		case SI_MESGQ:		printf("\t|           | si_code   |     SI_MESGQ   %5d |\n",si->si_code);
+		case SI_MESGQ:		printf("|           | si_code   |    SI_MESGQ    %5d |\n",si->si_code);
 				break;
-		case SI_ASYNCIO:	printf("\t|           | si_code   |     SI_ASYNCIO %5d |\n",si->si_code);
+		case SI_ASYNCIO:	printf("|           | si_code   |    SI_ASYNCIO  %5d |\n",si->si_code);
 				break;
-		case SI_SIGIO:		printf("\t|           | si_code   |     SI_SIGIO   %5d |\n",si->si_code);
+		case SI_SIGIO:		printf("|           | si_code   |    SI_SIGIO    %5d |\n",si->si_code);
 				break;
-		default: 			printf("\t|           | si_code   |     SI_ ???    %5d |\n",si->si_code);
+		default: 			printf("|           | si_code   |    SI_ ???     %5d |\n",si->si_code);
 	}
-	printf("\t|           | si_pid    | %20d |\n",si->si_pid);
-	printf("\t|           | si_uid    | %20d |\n",si->si_uid);
-	printf("\t|           | si_status | %20d |\n",si->si_status);
-	printf("\t|           | si_utime  | %20d |\n",si->si_utime);
-	printf("\t| siginfo_t | si_stime  | %20d |\n",si->si_stime);
-	printf("\t|           | si_value  | %20d |\n",si->si_value);
-	printf("\t|           | si_int    | %20d |\n",si->si_int);
-	printf("\t|           | si_ptr    | %20d |\n",si->si_ptr);
-	printf("\t|           | si_addr   | %20d |\n",si->si_addr);
-	printf("\t|           | si_band   | %20d |\n",si->si_band);
-	printf("\t|           | si_fd     | %20d |\n",si->si_fd);
-	printf("\t+-----------+-----------+----------------------|\n\n");
-
+	printf("|           | si_pid    | %20d |\n",si->si_pid);
+	printf("|           | si_uid    | %20d |\n",si->si_uid);
+	printf("|           | si_status | %20d |\n",si->si_status);
+	printf("|           | si_utime  | %5ld:%03ld %10d |\n",
+			si->si_utime/CLOCKS_PER_SEC, si->si_utime*1000/CLOCKS_PER_SEC%1000, (int)si->si_utime);
+	printf("| siginfo_t | si_stime  | %5ld:%03ld %10d |\n",
+			si->si_stime/CLOCKS_PER_SEC, si->si_stime*1000/CLOCKS_PER_SEC%1000, (int)si->si_stime);
+	printf("|           | si_value  |    int:%-4d ptr:%-4d |\n",si->si_value.sival_int,(int)si->si_value.sival_ptr);
+	printf("|           | si_int    | %20d |\n",si->si_int);
+	printf("|           | si_ptr    | %20d |\n",(int)si->si_ptr);
+	printf("|           | si_addr   | %20d |\n",(int)si->si_addr);
+	printf("|           | si_band   | %20ld |\n",si->si_band);
+	printf("|           | si_fd     | %20d |\n",si->si_fd);
+	printf("+-----------+-----------+----------------------+\n\n");
 }
