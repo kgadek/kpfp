@@ -4,7 +4,12 @@ a) Napisz dwa programy - program wysyłający sygnały SIGUSR1 (przodek) i progr
 odebranych sygnałów (potomek). Ilość sygnałów SIGUSR1 wysyłanych przez pierwszy program powinna być
 określana w parametrze wywołania tego programu. Po transmisji sygnałów SIGUSR1 proces pierwszy powinien
 wysłać sygnał SIGUSR2, który powinien zakończyć wykonanie procesu drugiego, poprzedzone wypisaniem
-komunikatu na temat ilości odebranych sygnałów SIGUSR1. */
+komunikatu na temat ilości odebranych sygnałów SIGUSR1.
+
+b) Do programów w zestawie a) dodaj potwierdzenie odbioru sygnału. W tym celu, niech proces drugi
+wysyła do procesu pierwszego sygnał SIGUSR1 informujący o odbiorze sygnału. Proces pierwszy powinien
+wysłać kolejny sygnał dopiero po uzyskaniu tego potwierdzenia. Zapewnij rozwiązanie, w którym ilość
+sygnałów odebranych jest zgodna z ilością sygnałów wysłanych i w którym nie dochodzi do zakleszczenia. */
 
 #define _GNU_SOURCE
 #include <stdio.h>
