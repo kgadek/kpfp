@@ -11,20 +11,25 @@ komunikatu na temat ilości odebranych sygnałów SIGUSR1. */
 #include <stdlib.h>
 #include <signal.h>
 #include <sys/types.h>
+#include <unistd.h>
 
 typedef unsigned int uint;
-int waiter; /*stan kelnera czekającego na potw. zamówienia*/
+int waiter; 					/*stan kelnera czekającego na potw. zamówienia*/
 
 void ack(int);
 
 int main(int argc, char **argv) {
-	pid_t pid;
-	uint n;
-	char *p; /*do wykrywania blędów konwersji*/
-	union sigval sv;
-	struct sigaction sigAck;
+	pid_t pid;					/*pid dzieciaka*/
+	uint n;						/*ile sygnałów do wysłania*/
+	char *p;					/*do wykrywania blędów konwersji string->liczba*/
+	union sigval sv;			/*dodatkowe informacje przesyłane wraz z sigqueue*/
+	struct sigaction sigAck;	/*do rejestracji potwierdzacza*/
+	sigset_t maskUsr1;			/*maskowanie SIGUSR1*/
+	sigset_t maskOld;			/*domyślna maska*/
 
-	printf("start\n");
+	sigemptyset(&maskUsr1);
+	sigaddset(&maskUsr1, SIGUSR1);
+
 	if(argc == 3) {
 		pid = (pid_t)strtol(argv[1], &p, 10);
 		if(p!=argv[1])
@@ -39,28 +44,26 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 
-	printf(">>>");
-	sigfillset(&sigAck.sa_mask);
-	sigAck.sa_handler = ack; /*rejestracja potwierdzacza zamówień*/
+	sigfillset(&sigAck.sa_mask);						/*rejestracja potwierdzacza zamówień*/
+	sigAck.sa_handler = ack;
 	sigaction(SIGUSR1, &sigAck, NULL);
 
-	printf("pre-while\n");
-	sv.sival_int = 0;
+	sv.sival_int = 0;					/*,,A wiecie że dali mi... zero napiwku? Skąpce!''*/
+	sigprocmask(SIG_BLOCK, &maskUsr1, &maskOld);		/*blokujemy SIGUSR1*/
 	while(n--) {
-		printf(".");
 		waiter = 1;
-		sigqueue(pid,SIGUSR1,sv); /*,,E! Czekolada na gorąco dla stolika 4.''*/
-					/*ISO C forbids casting to union type*/
-					/*więc (union sigval)0 nie przechodzi*/
-		while(waiter);		/*CPU-burner czyli ,,poczekam aż zrobicie tą czekoladę''*/
+		sigqueue(pid,SIGUSR1,sv); 		/*,,E! Czekolada na gorąco dla stolika 4.''*/
+														/*ISO C forbids casting to union type*/
+														/*więc (union sigval)0 nie przechodzi*/
+		while(waiter) 					/*,,...to może poczekam aż zrobicie tą czekoladę''*/
+			sigsuspend(&maskOld);						/*SIGUSR1 odblokowane tylko wewnątrz*/
 	}
-	sigqueue(pid,SIGUSR2,sv);	/*hasło ,,Przerwa!'' nie wymaga potwierdzenia*/
-	/*kill(pid,SIGUSR2);*/
+	sigprocmask(SIG_UNBLOCK, &maskUsr1, NULL);			/*odblokowujemy SIGUSR1*/
+	sigqueue(pid,SIGUSR2,sv);			/*hasło ,,Przerwa!'' nie wymaga potwierdzenia*/
 
 	return 0;
 }
 
 void ack(int sigid) {
-	printf(",");
-	waiter = 0;
+	waiter = 0;							/*,,Ok, to teraz następny klient. Może on da napiwek?''*/
 }

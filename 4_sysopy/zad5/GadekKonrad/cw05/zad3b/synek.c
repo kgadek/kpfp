@@ -39,7 +39,6 @@ int main() {
 void handler1(int sigid,siginfo_t *si,void *cont) {
 	union sigval sv;
 	sv.sival_int = ++cnt;
-	/*++cnt;*/
 	sigqueue(si->si_pid, sigid, sv);
 }
 
