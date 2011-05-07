@@ -4,6 +4,7 @@ CFLAGS		= -O2 -ansi -pedantic -W -Wall -Wextra -Wshadow -Wformat -Winit-self\
 				-Wstack-protector -Wunsafe-loop-optimizations -Wlogical-op -Wjump-misses-init -Wmissing-include-dirs\
 				-Wconversion -Wmissing-prototypes -Wmissing-declarations\
 				-Wno-long-long
+
 LDFLAGS		= -lm -L/usr/tools/lib -lgslcblas -lgsl
 
 SRC			= linsolve.c
@@ -12,4 +13,4 @@ SRC			= linsolve.c
 all: $(SRC:%.c=%)
 
 clean:
-	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(SRC:%.c=%) *.out
+	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(SRC:%.c=%) *.out *.pyc

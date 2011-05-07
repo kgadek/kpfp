@@ -36,6 +36,7 @@ core.*
 # Eclipse
 .classpath
 .project
+.pydevproject
 .cproject
 .settings
 .metadata
