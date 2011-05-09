@@ -7,10 +7,11 @@ CFLAGS		= -O2 -ansi -pedantic -W -Wall -Wextra -Wshadow -Wformat -Winit-self\
 
 LDFLAGS		= -lm -L/usr/tools/lib -lgslcblas -lgsl
 
-SRC			= rootf.c rootfdf.c
+SRC			= roots.c
 .PHONY: 	clean all
 
-all: $(SRC:%.c=%) funs.o
+all: $(SRC:%.c=%)
+
 
 clean:
 	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(SRC:%.c=%) *.out
