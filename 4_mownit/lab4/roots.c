@@ -26,10 +26,10 @@ int main(/*int argc, char **argv*/) {
 	uint maxit = 100;						/*maksymalna ilość iteracji*/
 	const gsl_root_fsolver_type *T;			/*typ solvera (bracketing)*/
 	gsl_root_fsolver *s;					/*solver*/
-	double x_lo = 0.0;						/*bracket-low*/
+	double x_lo = -1.0;						/*bracket-low*/
 	double x_hi = 10.0;						/*bracket-high*/
 	int status;								/*status solvera*/
-	double r;								/*...wg stanu mojej wiedzy pierwiastek jest w R*/
+	double r = 5;							/*...wg stanu mojej wiedzy pierwiastek jest w R*/
 	double r_exp = 0;						/* (...a pierwiastek jest w R_exp ale ciii...) */
 
 	gsl_function f_kwadratowa_f;
@@ -64,7 +64,7 @@ int main(/*int argc, char **argv*/) {
 	gsl_root_fsolver_set(s, &f_kwadratowa_f, x_lo, x_hi);
 
 	printf("[bracketing: %s]\n", gsl_root_fsolver_name (s));
-	printf ("%5s [%9s, %9s] %9s %10s %9s\n",
+	printf ("%5s [%11s, %11s] %11s %11s %11s\n",
 			"iter", "lower", "upper", "root", "err", "err(est)");
 
 	do {
@@ -73,10 +73,10 @@ int main(/*int argc, char **argv*/) {
 		r = gsl_root_fsolver_root(s);
 		x_lo = gsl_root_fsolver_x_lower(s);
 		x_hi = gsl_root_fsolver_x_upper(s);
-		status = gsl_root_test_interval(x_lo, x_hi, 0, 0.001);
+		status = gsl_root_test_interval(x_lo, x_hi, 0.001, 0.001);
 		if(status == GSL_SUCCESS)
 			printf("ROOTS! BLOODY ROOTS!\n");
-		printf("%5d [%.7f, %.7f] %.7f %+.7f %.7f\n",
+		printf("%5d [%11.7f, %11.7f] %11.7f %11.7f %11.7f\n",
 				it, x_lo, x_hi, r, r-r_exp, x_hi-x_lo);
 	} while(status == GSL_CONTINUE && it < maxit);
 
