@@ -5,42 +5,24 @@
 		   and i in ans-lst
 		   when (not (eql i '+))
 		   if (eql prev '+)
-		   collect (list i)
+		     collect (list i)
 		   else
-		   collect i))
+		     collect i))
 	*questions*))
 (defmacro defquestion (q &rest rest)
   `(add-question ,q ',rest))
+(defun unique (lst)
+  (loop for i in lst
+     when (not (position i res))
+     collect i into res
+     finally (return res)))
 
-(defun onthelist? (el lst)
-  (if (null lst)
-      nil
-      (or (eql el (car lst))
-	  (onthelist? el (cdr lst)))))
-
+(load "questions.lisp")
 ;;; Kilka przykładowych pytań
-(defquestion "Jak się masz?"
-	     + "Dobrze"
-	     "Tak sobie"
-	     "Źleee")
-(defquestion "Jak masz na imię?"
-             "Igor"
-             "Maks"
-             "Radek"
-             "Niebieski"
-             + "Konrad")
-(defquestion "\sqrt 2 jest równe:"
-            "1"
-            "2"
-	    "3")
-(defquestion "4 jest równe:"
-    + "2^2"
-    + "4"
-    + "8/2"
-    + "\sqrt 16")
 
 (defun przepytaj ()
   (loop for z in *questions* do
+
        (let ((q (car z)) ; pytanie
 	     (a (cdr z)) ; zbiór odpowiedzi
 	     (pop nil)) ; zbiór poprawnych odpowiedzi (lista liter)
@@ -57,11 +39,29 @@
 				 (if (listp odpowiedz-n) ; odpowiedzi poprawne są listą jednoelementową...
 				     (car odpowiedz-n) ; ...więc czasem trzeba je wyłuskać...
 				     odpowiedz-n)))) ; ...a czasem nie
+	 (setf pop (nreverse pop)) ; odpowiedzi są wrzucone wspak -- poprawiamy
 	 (if (null pop)
 	     (format t "Niepoprawne pytanie -- brak poprawnych odpowiedzi!~%~%~%")
-	     (loop for z across (string (read))
-		if (onthelist? z pop) do
-		  (format t "~A -- poprawne~%" z)
-		else do
-		  (format t "~A -- NIEpoprawne!!~%" z)))
-	 (format t "Poprawne: ~A~%~%~%~%" pop))))
+	     (let ((inp (unique
+			 (loop for i across (string (read)) ; wczytaj odpowiedź
+			    collect i))))
+	       (let ((zapomniane (set-difference pop ; wynik odpowiedzi
+						 inp))
+		     (zle (set-difference inp
+					  pop)))
+		 (when zapomniane
+		   (format t "## Brakujące odpowiedzi: ~{~A~^, ~}~%" zapomniane))
+		 (when zle
+		   (format t "## Niepoprawne odpowiedzi: ~{~A~^, ~}~%" zle))
+		 (when (not (or zle
+				zapomniane))
+		   (format t "## OK! :)~%")))
+	       (format t "Poprawne: ~{~A~^, ~}~%~%~%~%" pop)))
+	 (format t "Kontynuować? [yn]~%")
+	 (if (eql (loop for ans = (read)
+		     while ans
+		     if (or (eql ans 'y)
+			    (eql ans 'n))
+		     return ans)
+		  'n)
+	     (return nil)))))
