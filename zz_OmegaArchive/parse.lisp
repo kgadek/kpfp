@@ -89,7 +89,7 @@
 (defun get-contact-out-file (contact server)
   (format nil "html//~A_at_~A.history" (string-downcase contact) (string-downcase server)))
 (defun get-contact-display-name (contact server)
-  (format nil "~A (~A):" contact server))
+  (format nil "~A (~A)" contact server))
 (defun get-contact-html-title (contact server)
   (format nil "Rozmowy z ~A@~A" contact server))
 
