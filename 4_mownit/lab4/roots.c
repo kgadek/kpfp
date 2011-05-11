@@ -44,6 +44,10 @@ int main(/*int argc, char **argv*/) {
 
 																	/*szukanie pierwiastka*/
 	roots_f(&f_kwadratowa_f, gsl_root_fsolver_brent, 5, -1.0, 10.0, 0, 100);
+	printf("\n\n");
+	roots_f(&f_kwadratowa_f, gsl_root_fsolver_bisection, 5, -1.0, 10.0, 0, 100);
+	printf("\n\n");
+	roots_f(&f_kwadratowa_f, gsl_root_fsolver_falsepos, 5, -1.0, 10.0, 0, 100);
 
 	free(f_kwadratowa_pInst.a);										/*końcówka*/
 	f_kwadratowa_pInst.a = 0;
