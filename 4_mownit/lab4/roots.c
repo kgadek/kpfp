@@ -20,24 +20,25 @@ double f_wielomianowa_df(double,void*);					/*wartość pochodnej funkcji*/
 void f_wielomianowa_fdf(double,void*,double*,double*);	/*obie wartości naraz*/
 
 void roots_f(gsl_function*, const gsl_root_fsolver_type*, double, double, double, double, uint);
-
+void roots_fdf(gsl_function_fdf*, const gsl_root_fdfsolver_type*,double, double, uint);
 
 
 int main(/*int argc, char **argv*/) {
-	gsl_function f_kwadratowa_f;
+	gsl_function f_kwadratowa_f;									/*deklaracja: funkcja kwadratowa*/
 	gsl_function_fdf f_kwadratowa_fdf;
 	struct f_wielomianowa_params f_kwadratowa_pInst;
+
 	double *pdtmp;
 
-	f_kwadratowa_pInst.n = 2;										/*funkcja kwadratowa*/
+	f_kwadratowa_pInst.n = 2;										/*instancja: funkcja kwadratowa*/
 	pdtmp = (double*)malloc((f_kwadratowa_pInst.n+1)*sizeof(double));
 	pdtmp[2]=1.0;					/*x^2+2x*/
 	pdtmp[1]=2.0;
 	pdtmp[0]=0.0;
 	f_kwadratowa_pInst.a = pdtmp;
-	f_kwadratowa_f.function = f_wielomianowa_def;					/*funkcja kwadratowa (bracketing)*/
+	f_kwadratowa_f.function = f_wielomianowa_def;					/*definicja: funkcja kwadratowa (bracketing)*/
 	f_kwadratowa_f.params = &f_kwadratowa_pInst;
-	f_kwadratowa_fdf.f = f_wielomianowa_def;						/*funkcja kwadratowa (polishing)*/
+	f_kwadratowa_fdf.f = f_wielomianowa_def;						/*definicja: funkcja kwadratowa (polishing)*/
 	f_kwadratowa_fdf.df = f_wielomianowa_df;
 	f_kwadratowa_fdf.fdf = f_wielomianowa_fdf;
 	f_kwadratowa_fdf.params = &f_kwadratowa_pInst;
@@ -48,6 +49,13 @@ int main(/*int argc, char **argv*/) {
 	roots_f(&f_kwadratowa_f, gsl_root_fsolver_bisection, 5, -1.0, 10.0, 0, 100);
 	printf("\n\n");
 	roots_f(&f_kwadratowa_f, gsl_root_fsolver_falsepos, 5, -1.0, 10.0, 0, 100);
+	printf("\n\n");
+
+	roots_fdf(&f_kwadratowa_fdf, gsl_root_fdfsolver_newton, 20.0, 0.0, 100);
+	printf("\n\n");
+	roots_fdf(&f_kwadratowa_fdf, gsl_root_fdfsolver_steffenson, 20.0, 0.0, 100);
+	printf("\n\n");
+	roots_fdf(&f_kwadratowa_fdf, gsl_root_fdfsolver_secant, 20.0, 0.0, 100);
 
 	free(f_kwadratowa_pInst.a);										/*końcówka*/
 	f_kwadratowa_pInst.a = 0;
@@ -86,7 +94,7 @@ void roots_f(gsl_function *fun, const gsl_root_fsolver_type *T,
 	gsl_root_fsolver_set(s, fun, x_lo, x_hi);
 
 	printf("[bracketing: %s]\n", gsl_root_fsolver_name (s));
-	printf ("%5s [%11s, %11s] %11s %11s %11s\n",
+	printf("%5s [%11s, %11s] %11s %11s %11s\n",
 			"iter", "lower", "upper", "root", "err", "err(est)");
     do{
         ++it;
@@ -103,4 +111,30 @@ void roots_f(gsl_function *fun, const gsl_root_fsolver_type *T,
     } while(status == GSL_CONTINUE && it < maxit);
 
     gsl_root_fsolver_free(s);
+}
+
+void roots_fdf(gsl_function_fdf *fun, const gsl_root_fdfsolver_type *T,
+		double x, double r_exp, uint maxit) {
+	uint it = 0;
+	int status;
+	gsl_root_fdfsolver *s;
+	double x0;
+
+	s = gsl_root_fdfsolver_alloc(T);
+	gsl_root_fdfsolver_set(s, fun, x);
+
+	printf("[polishing: %s]\n", gsl_root_fdfsolver_name(s));
+	printf("%5s %10s %10s %10s\n",
+			"iter", "root", "err", "err(est)");
+
+	do {
+		++it;
+		status = gsl_root_fdfsolver_iterate(s);
+		x0 = x;
+		x = gsl_root_test_delta(x, x0, 0, 1e-3);
+		if(status == GSL_SUCCESS)
+			printf("ROOTS! BLOODY ROOTS!\n");
+		printf("%5d %10.7f %+10.7f %10.7f\n",
+				it, x, x - r_exp, x - x0);
+	} while(status == GSL_CONTINUE && it < maxit);
 }
