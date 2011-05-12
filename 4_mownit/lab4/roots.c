@@ -6,27 +6,55 @@
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_roots.h>
+#include "f_wielomianowa.h"
+#include "f_sinxmione.h"
 
 typedef unsigned int uint;
 
 
-
-struct f_wielomianowa_params {				/* ((...(a[n] x + a[n-1]) x + a[n-2]) x + ...) + a[0] */
-	uint n;												/*stopień wielomianu*/
-	double *a;											/*współczynniki (tablica n+1 liczb)*/
-};
-double f_wielomianowa_def(double,void*);				/*wartość funkcji*/
-double f_wielomianowa_df(double,void*);					/*wartość pochodnej funkcji*/
-void f_wielomianowa_fdf(double,void*,double*,double*);	/*obie wartości naraz*/
-
 void roots_f(gsl_function*, const gsl_root_fsolver_type*, double, double, double, double, uint);
 void roots_fdf(gsl_function_fdf*, const gsl_root_fdfsolver_type*,double, double, uint);
 
+const char *lyrics[] = {
+		"Roots bloody roots",
+		"Roots bloody roots",
+		"Roots bloody roots",
+		"Roots bloody",
+		"",
+		"I believe in our fate",
+		"We don't need to fake",
+		"It's all we wanna be ",
+		"Watch me freak",
+		"",
+		"I say we're growing every day",
+		"Getting stronger in every way",
+		"I'll take you to a place where",
+		"            we shall find our",
+		"Roots bloody roots",
+		"Roots bloody roots",
+		"Roots bloody roots",
+		"Roots bloody roots",
+		"Rain bring me the strength to",
+		"           get to another day",
+		"And all I want to see ",
+		"Set us free",
+		"Why can't you see?",
+		"Can't you feel this is real?",
+		"",
+		"I pray we don't need to change",
+		"          our ways to be saved",
+		"That all we wanna be ",
+		"Watch us freak"};
+uint lyrics_s = sizeof(lyrics)/sizeof(const char*);
+
 
 int main(/*int argc, char **argv*/) {
-	gsl_function f_kwadratowa_f;									/*deklaracja: funkcja kwadratowa*/
+	gsl_function f_kwadratowa_f;
 	gsl_function_fdf f_kwadratowa_fdf;
 	struct f_wielomianowa_params f_kwadratowa_pInst;
+
+	gsl_function f_sinxmione_f;
+	gsl_function_fdf f_sinxmione_fdf;
 
 	double *pdtmp;
 
@@ -35,15 +63,18 @@ int main(/*int argc, char **argv*/) {
 	pdtmp[2]=1.0;					/*x^2+2x*/
 	pdtmp[1]=2.0;
 	pdtmp[0]=0.0;
-	f_kwadratowa_pInst.a = pdtmp;
-	f_kwadratowa_f.function = f_wielomianowa_def;					/*definicja: funkcja kwadratowa (bracketing)*/
-	f_kwadratowa_f.params = &f_kwadratowa_pInst;
-	f_kwadratowa_fdf.f = f_wielomianowa_def;						/*definicja: funkcja kwadratowa (polishing)*/
-	f_kwadratowa_fdf.df = f_wielomianowa_df;
-	f_kwadratowa_fdf.fdf = f_wielomianowa_fdf;
-	f_kwadratowa_fdf.params = &f_kwadratowa_pInst;
+	f_kwadratowa_pInst.a = pdtmp;									/*definicja: funkcja kwadratowa (bracketing)*/
+	f_kwadratowa_fdf.f = f_kwadratowa_f.function = &f_wielomianowa_def;
+	f_kwadratowa_f.params = f_kwadratowa_fdf.params = &f_kwadratowa_pInst;
+	f_kwadratowa_fdf.df = &f_wielomianowa_df;						/*definicja: funkcja kwadratowa (polishing)*/
+	f_kwadratowa_fdf.fdf = &f_wielomianowa_f_df;
+	f_sinxmione_f.function = f_sinxmione_fdf.f = &f_sinxmione_def;	/*definicja: funkcja 1/sin(x)-1 (bracketing)*/
+	f_sinxmione_f.params = f_sinxmione_fdf.params = NULL;
+	f_sinxmione_fdf.df = &f_sinxmione_df;							/*definicja: funkcja 1/sin(x)-1 (polishing)*/
+	f_sinxmione_fdf.fdf = & f_sinxmione_f_df;
 
-																	/*szukanie pierwiastka*/
+																	/*szukanie pierwiastków*/
+	printf("==========[ x^2 + 2x = 0 ]==========================================\n");
 	roots_f(&f_kwadratowa_f, gsl_root_fsolver_brent, 5, -1.0, 10.0, 0, 100);
 	printf("\n\n");
 	roots_f(&f_kwadratowa_f, gsl_root_fsolver_bisection, 5, -1.0, 10.0, 0, 100);
@@ -54,36 +85,28 @@ int main(/*int argc, char **argv*/) {
 	roots_fdf(&f_kwadratowa_fdf, gsl_root_fdfsolver_newton, 20.0, 0.0, 100);
 	printf("\n\n");
 	roots_fdf(&f_kwadratowa_fdf, gsl_root_fdfsolver_steffenson, 20.0, 0.0, 100);
+	printf("\n\n\n\n");
+	/*roots_fdf(&f_kwadratowa_fdf, gsl_root_fdfsolver_secant, 20.0, 0.0, 100);*/	/*psuje się*/
+
+	printf("==========[ 1/sin(x) - 1 = 0 ]======================================\n");
+	/*roots_f(&f_sinxmione_f, gsl_root_fsolver_brent, 1, 0.1, 3.13, 1.570796326794896619231321691, 100);
 	printf("\n\n");
-	roots_fdf(&f_kwadratowa_fdf, gsl_root_fdfsolver_secant, 20.0, 0.0, 100);
+	roots_f(&f_sinxmione_f, gsl_root_fsolver_bisection, 1, 0.1, 3.13, 1.570796326794896619231321691, 100);
+	printf("\n\n");
+	roots_f(&f_sinxmione_f, gsl_root_fsolver_falsepos, 1, 0.1, 3.13, 1.570796326794896619231321691, 100);
+	printf("\n\n");*/
+
+	roots_fdf(&f_sinxmione_fdf, gsl_root_fdfsolver_newton, 3.13, 1.570796326794896619231321691, 100);
+	printf("\n\n");
+	roots_fdf(&f_sinxmione_fdf, gsl_root_fdfsolver_steffenson, 3.13, 1.570796326794896619231321691, 100);
+	printf("\n\n");
+	roots_fdf(&f_sinxmione_fdf, gsl_root_fdfsolver_secant, 3.13, 1.570796326794896619231321691, 100);
 
 	free(f_kwadratowa_pInst.a);										/*końcówka*/
 	f_kwadratowa_pInst.a = 0;
 	return 0;
 }
 
-
-double f_wielomianowa_def(double x,void *params) {
-	uint i;
-	double res = 0.0;
-	struct f_wielomianowa_params *p = (struct f_wielomianowa_params*)params;
-	for(i=p->n; i>0; --i)
-		res = res*x + p->a[i];
-	res = res*x + p->a[0];
-	return res;
-}
-double f_wielomianowa_df(double x,void *params) {
-	uint i;
-	double res = 0.0;
-	struct f_wielomianowa_params *p = (struct f_wielomianowa_params*)params;
-	for(i=p->n; i>0; --i)
-		res = res*x + p->a[i]*(double)i;
-	return res;
-}
-void f_wielomianowa_fdf(double x,void *params,double *f,double *df) {
-	*f = f_wielomianowa_def(x,params);		/*nie ma chyba prostej metody na przyspieszenie obliczeń*/
-	*df = f_wielomianowa_df(x,params);
-}
 void roots_f(gsl_function *fun, const gsl_root_fsolver_type *T,
 		double r, double x_lo, double x_hi, double r_exp, uint maxit) {
 	uint it = 0;							/*iteracja*/
@@ -102,7 +125,7 @@ void roots_f(gsl_function *fun, const gsl_root_fsolver_type *T,
         r = gsl_root_fsolver_root(s);
         x_lo = gsl_root_fsolver_x_lower(s);
         x_hi = gsl_root_fsolver_x_upper(s);
-        status = gsl_root_test_interval(x_lo, x_hi, 0.001, 0.001);
+        status = gsl_root_test_interval(x_lo, x_hi, 0.00001, 0.00001);
         if(status == GSL_SUCCESS)
             printf("ROOTS! BLOODY ROOTS!\n");
 
@@ -124,17 +147,21 @@ void roots_fdf(gsl_function_fdf *fun, const gsl_root_fdfsolver_type *T,
 	gsl_root_fdfsolver_set(s, fun, x);
 
 	printf("[polishing: %s]\n", gsl_root_fdfsolver_name(s));
-	printf("%5s %10s %10s %10s\n",
+	printf("%5s %12s %10s %10s\n",
 			"iter", "root", "err", "err(est)");
 
 	do {
 		++it;
 		status = gsl_root_fdfsolver_iterate(s);
 		x0 = x;
-		x = gsl_root_test_delta(x, x0, 0, 1e-3);
+		x = gsl_root_fdfsolver_root(s);
+		status = gsl_root_test_delta(x, x0, 0, 1e-6);
 		if(status == GSL_SUCCESS)
 			printf("ROOTS! BLOODY ROOTS!\n");
-		printf("%5d %10.7f %+10.7f %10.7f\n",
+		printf("%5d %12.7f %+10.7f %10.7f",
 				it, x, x - r_exp, x - x0);
+		if(status != GSL_SUCCESS && it - 1 < lyrics_s)
+			printf("\t%s",lyrics[it-1]);
+		printf("\n");
 	} while(status == GSL_CONTINUE && it < maxit);
 }

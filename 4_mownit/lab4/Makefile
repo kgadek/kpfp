@@ -7,10 +7,12 @@ CFLAGS		= -O2 -ansi -pedantic -W -Wall -Wextra -Wshadow -Wformat -Winit-self\
 
 LDFLAGS		= -lm -L/usr/tools/lib -lgslcblas -lgsl
 
-SRC			= roots.c
+SRC			= roots.c 
 .PHONY: 	clean all
 
 all: $(SRC:%.c=%)
+
+roots: f_wielomianowa.o f_sinxmione.o
 
 
 clean:
