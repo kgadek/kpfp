@@ -130,7 +130,7 @@ int czytelnik(int pin) {
 					line);
 	} while(1);
 	if(n == -1 && errno == EAGAIN)
-		printf("czytelnik:\tpisarz nic mi nie wysłał! już po deadline!\n");
+		printf("czytelnik:\tpisarz nic mi nie wysłał! już po deadline! czyżby nie żył?\n");
 	else if(n==-1)
 		printf("czytelnik:\trura zamilkła na wieki?... że niby... lol?\n");
 	return 0;
