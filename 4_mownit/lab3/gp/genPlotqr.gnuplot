@@ -1,6 +1,6 @@
-qr(x)=a*x*x+b*x+c
+qr(x)=a*x*x*x+b*x*x+c*x+d
 
-fit qr(x) 'gpData.in' using 1:11 via a,b,c
+fit qr(x) 'gpData.in' using 1:11 via a,b,c,d
 
 set xlabel "Rozmiar danych"
 set ylabel "Czas"

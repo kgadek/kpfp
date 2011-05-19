@@ -1,6 +1,6 @@
-hous(x)=a*x*x+b*x+c
+hous(x)=a*x*x*x+b*x*x+c*x+d
 
-fit hous(x) 'gpData.in' using 1:2 via a,b,c
+fit hous(x) 'gpData.in' using 1:2 via a,b,c,d
 
 set xlabel "Rozmiar danych"
 set ylabel "Czas"

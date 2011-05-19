@@ -1,6 +1,6 @@
-lu(x)=a*x*x+b*x+c
+lu(x)=a*x*x*x+b*x*x+c*x+d
 
-fit lu(x) 'gpData.in' using 1:14 via a,b,c
+fit lu(x) 'gpData.in' using 1:14 via a,b,c,d
 
 set xlabel "Rozmiar danych"
 set ylabel "Czas"

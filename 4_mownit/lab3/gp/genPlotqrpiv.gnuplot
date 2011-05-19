@@ -1,6 +1,6 @@
-qrpiv(x)=a*x*x+b*x+c
+qrpiv(x)=a*x*x*x+b*x*x+c*x+d
 
-fit qrpiv(x) 'gpData.in' using 1:8 via a,b,c
+fit qrpiv(x) 'gpData.in' using 1:8 via a,b,c,d
 
 set xlabel "Rozmiar danych"
 set ylabel "Czas"
