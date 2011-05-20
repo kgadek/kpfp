@@ -1,0 +1,26 @@
+Po otwarciu programu na 5. różnych terminalach poleceniami
+
+
+	T1 $ ./piper < 51.pipe > 12.pipe
+	T2 $ ./piper < 12.pipe > 23.pipe
+	...
+	T5 $ ./piper < 45.pipe > 51.pipe
+
+
+nic się nie dzieje, nie zostaje nawet wypisany pid procesu z
+linii 22-23 ani komunikat o tym zdarzeniu z linii 24.
+
+
+22:	write(STDOUT_FILENO, mypid, strlen(mypid));
+23:	write(STDOUT_FILENO, "\n", 1);
+24:	write(STDERR_FILENO, "wypisalem\n",sizeof("wypisalem\n"));
+
+
+Gdy otworzymy 6. teminal i wykonamy polecenie
+
+
+	T6 $ echo > 51.pipe
+
+
+to na terminalach 1-4 zamknięte zostały instancje programu piper.
+
