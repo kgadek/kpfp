@@ -22,3 +22,7 @@ void showSrvMsg(svMsg *msg, const char *header) {
 	printf("\tlastRead = %d\n",(int)msg->lastRead);
 	printf("\tlastSend = %d\n",(int)msg->lastSend);
 }
+
+void hr() {
+	printf("--------------------------------------------------------------------------------\n");
+}

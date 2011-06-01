@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
 
 	for(;;) { /*klientujemy*/
 		printf("Ile mesydżów wysłać? : ");
-		scanf(" %d ",&msgCnt);
+		scanf(" %d",&msgCnt);
 		if(msgCnt < 0) {
 			printf("\nBłąd -- podano ujemną liczbę!\n");
 			continue;
@@ -59,7 +59,8 @@ int main(int argc, char **argv) {
 			tmp = msgrcv(myQueue,&hisMsg,sizeof(svMsg),0,0);
 			if(tmp == -1)
 				myerror("Błąd msgrcv!",7);
-			showSrvMsg(&hisMsg, "Odpowiedź serwera");
+			showSrvMsg(&hisMsg, "Odpowiedź serwera:");
+			hr();
 		}
 	}
 

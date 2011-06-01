@@ -46,5 +46,6 @@ typedef struct {
 
 void showClMsg(clMsg*, const char*);
 void showSrvMsg(svMsg*, const char*);
+void hr(void);
 
 #endif /* COMMON_H_ */

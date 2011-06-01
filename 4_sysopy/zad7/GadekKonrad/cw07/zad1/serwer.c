@@ -47,11 +47,11 @@ int main(int argc, char **argv) {
 		if(tmp == (ssize_t)-1)
 			myerror("Błąd msgrcv!",6);
 		showClMsg(&inc,"Otrzymałem od klienta nast. wiadomość");
-		tmp = rand() % maxSleepTime;
 		printf("Zbieram statystyki...\n");
 		tmp = msgctl(myQueue, IPC_STAT, &queueStats);
 		if(tmp == -1)
 			myerror("Błąd msgctl (IPC_STAT)!",7);
+		tmp = rand() % maxSleepTime;
 		printf("Usypiam na %d sek... Dobranoc!\n",tmp);
 		sleep((uint)tmp);
 		out.type = 1;
@@ -68,6 +68,7 @@ int main(int argc, char **argv) {
 		tmp = msgsnd(inc.myQueueNum, &out, sizeof(svMsg),0);
 		if(tmp == -1)
 			myerror("Błąd msgsnd!",8);
+		hr();
 	}
 
 	return 0;
