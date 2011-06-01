@@ -44,4 +44,7 @@ typedef struct {
 	time_t lastSend;
 } svMsg;
 
+void showClMsg(clMsg*, const char*);
+void showSrvMsg(svMsg*, const char*);
+
 #endif /* COMMON_H_ */

@@ -3,8 +3,6 @@
 
 void myatexit(void);
 char getRandomChar(void);
-void showMyMsg(clMsg*);
-void showSrvMsg(svMsg*);
 
 int myQueue;
 
@@ -54,14 +52,14 @@ int main(int argc, char **argv) {
 			myMsg.iWantToSay[j+1] = 0;
 			for(; j >= 0; --j)
 				myMsg.iWantToSay[j] = getRandomChar();
-			showMyMsg(&myMsg);
+			showClMsg(&myMsg,0);
 			tmp = msgsnd(servQueue,&myMsg,sizeof(myMsg),0);
 			if(tmp == -1)
 				myerror("Błąd msgsnd!",6);
 			tmp = msgrcv(myQueue,&hisMsg,sizeof(svMsg),0,0);
 			if(tmp == -1)
 				myerror("Błąd msgrcv!",7);
-			showSrvMsg(&hisMsg);
+			showSrvMsg(&hisMsg, "Odpowiedź serwera");
 		}
 	}
 
@@ -81,23 +79,4 @@ char getRandomChar() {
 	return res;
 }
 
-void showMyMsg(clMsg *my) {
-	printf("Moja wiadomość:\n");
-	printf("\ttype = %ld\n",my->type);
-	printf("\tmyQueueNum = %d\n",my->myQueueNum);
-	printf("\tmyNameIs = %s\n",my->myNameIs);
-	printf("\tiWantToSay = %s\n",my->iWantToSay);
-}
-void showSrvMsg(svMsg *his) {
-	printf("Odpowiedź od serwera:\n");
-	printf("\ttype = %ld\n",his->type);
-	printf("\thisNameIs = %s\n",his->hisNameIs);
-	printf("\theSaid = %s\n",his->heSaid);
-	printf("\tmsgInQueue = %d\n",(int)his->msgInQueue);
-	printf("\tbytesInQueue = %ld\n",his->bytesInQueue);
-	printf("\tmaxBytesInQueue = %ld\n",his->maxBytesInQueue);
-	printf("\tpidReader = %d\n",his->pidReader);
-	printf("\tpidSender = %d\n",his->pidSender);
-	printf("\tlastRead = %d\n",(int)his->lastRead);
-	printf("\tlastSend = %d\n",(int)his->lastSend);
-}
+

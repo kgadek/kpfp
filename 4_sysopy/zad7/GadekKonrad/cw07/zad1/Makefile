@@ -9,7 +9,10 @@ LDFLAGS		= -lm
 SRC			= serwer.c klient.c
 .PHONY: 	clean all
 
-all: $(SRC:%.c=%)
+all: $(SRC:%.c=%) 
+
+serwer: common.o
+klient: common.o
 
 clean:
 	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(SRC:%.c=%) *.out
