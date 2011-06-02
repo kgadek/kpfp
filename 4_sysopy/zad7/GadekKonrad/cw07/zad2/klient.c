@@ -2,7 +2,6 @@
 #include "common.h"
 
 void myatexit(void);
-void makeMeQuit(int);
 void sigSigSigSigSigSig(int);
 
 mqd_t KS_h = -1;
@@ -78,11 +77,6 @@ void myatexit(void) {
 		tmp = mq_close(KS_h);
 	if(tmp == -1)
 		fprintf(stderr,"Błąd zamknięcia kolejki KS! errno=%d\n",errno);
-}
-
-void makeMeQuit(int sigId) {
-	printf("\nSygnał %d prosi o zamknięcie... Nie dam się prosić...\n",sigId);
-	exit(0);
 }
 
 void sigSigSigSigSigSig(int sigId) {

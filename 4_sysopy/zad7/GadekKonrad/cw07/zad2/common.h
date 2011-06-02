@@ -13,8 +13,8 @@
 
 #define CLNAMELEN 20
 #define CLMSGLEN 300
-#define KSNAME "KolejkaNaKasprowySzczyt"
-#define KKNAME "KolejkaNaKasprowyKotlet"
+#define KSNAME "/KolejkaNaKasprowySzczyt"
+#define KKNAME "/KolejkaNaKasprowyKotlet"
 
 #define myerror(str,myerrno) {\
 			fprintf(stderr,"Err #%03d (errno=%d):\n\t%s\n",myerrno,errno,str);\
@@ -45,5 +45,6 @@ void showClMsg(clMsg*, const char*);
 void showSrvMsg(svMsg*, const char*);
 void hr(void);
 char getRandomChar(void);
+void makeMeQuit(int);
 
 #endif /* COMMON_H_ */

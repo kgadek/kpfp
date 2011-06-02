@@ -2,78 +2,116 @@
 #include "common.h"
 
 void myatexit(void);
+void sigSigSigSigSigSig(int);
 
-int myQueue;
-enum queueType {UNKNOWN = 1, FIFO = 0, PRIORITY = -1000};
+uint LS = 0;
+uint msgCnt = 0;
+mqd_t KS_h = -1;
+mqd_t KK_h = -1;
 
-int main(int argc, char **argv) {
-	key_t servKey;
+int main() {
 	int tmp;
-	clMsg inc;
-	svMsg out;
-	struct msqid_ds queueStats;
+	struct sigevent njuMesydz;
+	struct mq_attr queueAttrib;
 
 	srand((uint)time(0));
-	if(argc != 3)
-		myerror("Nieprawidłowa ilość argumentów! ([f/p] maxSleepTime)",1);
 
-	maxSleepTime = atoi(argv[2]);
-	if(maxSleepTime < 0)
-		myerror("Podano ujemną wartość oczekiwania!",2);
-	++maxSleepTime;
-	if(!strcmp(argv[1],"p"))
-		myQueueType = PRIORITY;
-	else if(!strcmp(argv[1],"f"))
-		myQueueType = FIFO;
-	if(myQueueType == UNKNOWN)
-		myerror("Podano nieprawidłową nazwę typu kolejki [f/p] - fifo/priority!",3);
-
-	servKey = ftok("serwer",71);
-	if(servKey == -1)
-		myerror("Błąd ftok!",4);
-	myQueue = msgget(servKey,IPC_CREAT | 0755);
-	if(servKey == -1)
-		myerror("Błąd msgget!",5);
+	tmp = (int)signal(SIGINT, makeMeQuit);
+	if(tmp == (int)SIG_ERR)
+		myerror("Błąd signal (SIGINT)!",1);
 	tmp = atexit(myatexit);
 	if(tmp != 0) {
 		myatexit();
 		myerror("Błąd atexit!",5);
 	}
 
+	queueAttrib.mq_maxmsg = 20;
+	queueAttrib.mq_msgsize = sizeof(clMsg);
+	KS_h = mq_open(KSNAME,O_RDONLY | O_CREAT | O_EXCL | O_NONBLOCK, 0755, &queueAttrib);
+	if(KS_h == (mqd_t)-1)
+		myerror("Błąd mq_open (KS)!",1);
+	queueAttrib.mq_msgsize = sizeof(svMsg);
+	KK_h = mq_open(KKNAME,O_WRONLY | O_CREAT | O_EXCL | O_NONBLOCK, 0755, &queueAttrib);
+	if(KK_h == (mqd_t)-1) {
+		tmp = mq_close(KS_h);
+		if(tmp == -1)
+			fprintf(stderr,"Błąd zamknięcia kolejki KS! errno=%d\n",errno);
+		myerror("Błąd mq_open (KK)!",3);
+	}
+
+	njuMesydz.sigev_notify = SIGEV_SIGNAL;
+	njuMesydz.sigev_signo = SIGUSR1;
+	tmp = (int)signal(SIGUSR1, sigSigSigSigSigSig);
+	if(tmp == (int)SIG_ERR)
+		myerror("Błąd signal (SIGUSR1)!",4);
+	tmp = mq_notify(KS_h, &njuMesydz);
+	if(tmp == -1)
+		myerror("Błąd mq_notify()!",2);
+
 	for(;;) { /* serwerujemy */
-		tmp = msgrcv(myQueue, &inc, sizeof(clMsg), myQueueType, 0);
-		if(tmp == (ssize_t)-1)
-			myerror("Błąd msgrcv!",6);
-		showClMsg(&inc,"Otrzymałem od klienta nast. wiadomość");
-		printf("Zbieram statystyki...\n");
-		tmp = msgctl(myQueue, IPC_STAT, &queueStats);
-		if(tmp == -1)
-			myerror("Błąd msgctl (IPC_STAT)!",7);
-		tmp = rand() % maxSleepTime;
-		printf("Usypiam na %d sek... Dobranoc!\n",tmp);
-		sleep((uint)tmp);
-		out.type = 1;
-		strncpy(out.hisNameIs, inc.myNameIs, CLNAMELEN);
-		strncpy(out.heSaid, inc.iWantToSay, CLMSGLEN);
-		out.msgInQueue = queueStats.msg_qnum;
-		out.bytesInQueue = queueStats.__msg_cbytes;
-		out.maxBytesInQueue = queueStats.msg_qbytes;
-		out.pidReader = queueStats.msg_lrpid;
-		out.pidSender = queueStats.msg_lspid;
-		out.lastRead = queueStats.msg_rtime;
-		out.lastSend = queueStats.msg_stime;
-		showSrvMsg(&out,0);
-		tmp = msgsnd(inc.myQueueNum, &out, sizeof(svMsg),0);
-		if(tmp == -1)
-			myerror("Błąd msgsnd!",8);
-		hr();
+		sleep(1);
+		++LS;
+		printf("LS = %d msgCnt=%d\n",LS,msgCnt);
 	}
 
 	return 0;
 }
 
 void myatexit(void) {
-	int res = msgctl(myQueue,IPC_RMID,0);
-	if(res == -1)
-		printf("Błąd wyjścia -- nie mogę usunąć kolejki #%03d -- errno=%d\n",myQueue,errno);
+	int tmp;
+	tmp = mq_close(KK_h);
+	if(tmp == -1)
+		fprintf(stderr, "Błąd mq_close(KK_h)!... errno=%d\n",errno);
+	tmp = mq_unlink(KKNAME);
+	if(tmp == -1)
+		fprintf(stderr, "Błąd mq_unlink(KKNAME)!... errno=%d\n",errno);
+	tmp = mq_close(KS_h);
+	if(tmp == -1)
+		fprintf(stderr, "Błąd mq_close(KS_h)!... errno=%d\n",errno);
+	tmp = mq_unlink(KSNAME);
+	if(tmp == -1)
+		fprintf(stderr, "Błąd mq_unlink(KSNAME)!... errno=%d\n",errno);
+
+}
+
+void sigSigSigSigSigSig(int sigId) {
+	int tmp;
+	int size;
+	clMsg inc;
+	svMsg out;
+	struct sigevent njuMesydz;
+
+	while(1){
+		size = mq_receive(KS_h, (char*)&inc, sizeof(clMsg), 0);
+		if(size == -1) {
+			if(errno == EAGAIN) { /*pusta kolejka*/
+				break;
+			}
+			myerror("Błąd mq_receive!",7);
+		}
+		showClMsg(&inc,0);
+
+		out.type = 666;
+		out.LS = LS;
+		out.msgSent = msgCnt;
+		strncpy(out.hisNameIs, inc.myNameIs, CLNAMELEN);
+		strncpy(out.heSaid, inc.iWantToSay, CLMSGLEN);
+		showSrvMsg(&out,"A ja na to jak na lato:");
+
+		tmp = mq_send(KK_h, (char*)&out, sizeof(svMsg),0);
+		if(tmp == -1)
+			myerror("Błąd mq_send!",10);
+		++msgCnt;
+	}
+
+	njuMesydz.sigev_notify = SIGEV_SIGNAL;
+	njuMesydz.sigev_signo = SIGUSR1;
+	tmp = mq_notify(KS_h, &njuMesydz);
+	if(tmp == -1)
+		myerror("Błąd mq_notify()!",8)
+	tmp = (int)signal(SIGUSR1, sigSigSigSigSigSig);
+	if(tmp == (int)SIG_ERR)
+		myerror("Błąd signal (SIGUSR1)!",9);
+
+	kill(inc.myCard, SIGUSR1);
 }

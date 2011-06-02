@@ -28,3 +28,8 @@ char getRandomChar() {
 		res = (char)(res + 6); /* pomijam znaki z poza a-zA-Z */
 	return res;
 }
+
+void makeMeQuit(int sigId) {
+	printf("\nSygnał %d prosi o zamknięcie... Nie dam się prosić...\n",sigId);
+	exit(0);
+}

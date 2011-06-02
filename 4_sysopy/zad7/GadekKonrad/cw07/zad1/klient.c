@@ -48,6 +48,7 @@ int main(int argc, char **argv) {
 			myMsg.type = rand() % 20;
 			myMsg.myQueueNum = myQueue;
 			strncpy(myMsg.myNameIs,myName,CLNAMELEN);
+			myMsg.myNameIs[CLNAMELEN-1] = 0;
 			j = rand()%CLMSGLEN;
 			myMsg.iWantToSay[j+1] = 0;
 			for(; j >= 0; --j)
