@@ -1,3 +1,4 @@
+(declaim (optimize (speed 3) (debug 0) (safety 0) (compilation-speed 0)))
 (defun sv-binsearch (K vect size)
   (declare (fixnum K)
 	   (simple-vector vect)
