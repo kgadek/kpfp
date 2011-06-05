@@ -1,38 +1,33 @@
 (declaim (optimize (speed 3) (debug 0) (safety 0) (compilation-speed 0)))
+
 (defun sv-binsearch (K vect size)
   (declare (fixnum K)
-	   (type (simple-vector 32) vect)
+	   (type (simple-array fixnum (32)) vect)
 	   (fixnum size))
-  (declare (optimize (compilation-speed 0)
-		     (debug 0)
-		     (safety 0)
-		     (space 0)
-		     (speed 3)))
-  (let ((a 0))
-    (declare (fixnum a))
-    (decf size)
-    (loop
-       while (>= size a)
-       for i = (floor (the fixnum (+ a size))
-		      2)
-       for val of-type fixnum = (svref vect i)
-       do
-	 (if (>= K val)
-	     (if (= K val)
-		 (return-from sv-binsearch i)
-		 (setf a (the fixnum (1+ i))))
-	     (setf size (the fixnum (1- i)))))
-    -1))
+  (decf size)
+  (loop
+     with a of-type fixnum = 0
+     while (>= size a)
+     for i of-type fixnum = (floor (the fixnum (+ a size))
+				   2)
+     for val of-type fixnum = (aref vect i)
+     do
+       (if (>= K val)
+	   (if (= K val)
+	       (return-from sv-binsearch i)
+	       (setf a (the fixnum (1+ i))))
+	   (setf size (the fixnum (1- i)))))
+  -1)
 
 (defun testit()
-  (let ((A (make-array 32 :initial-contents (loop for i below 32 collect i))))
+  (let ((A (make-array 32 :element-type 'fixnum :initial-contents (loop for i below 32 collect i))))
     (time (loop
-	     with max = 10000
-	     with r = nil
-	     for i below max
-	     for j = (random max)
+	     with max of-type fixnum = 10000
+	     with r of-type fixnum = nil
+	     for i of-type fixnum below max
+	     for j of-type fixnum = (random max)
 	     do
 	       (loop
-		  for k below max
+		  for k of-type fixnum below max
 		  do
-		    (setf r (sv-binsearch j A 32)))))))
+		    (setf r (the fixnum (sv-binsearch j A 32))))))))
