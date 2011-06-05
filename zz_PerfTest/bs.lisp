@@ -1,7 +1,7 @@
 (declaim (optimize (speed 3) (debug 0) (safety 0) (compilation-speed 0)))
 (defun sv-binsearch (K vect size)
   (declare (fixnum K)
-	   (simple-vector vect)
+	   (type (simple-vector 32) vect)
 	   (fixnum size))
   (declare (optimize (compilation-speed 0)
 		     (debug 0)
@@ -15,7 +15,7 @@
        while (>= size a)
        for i = (floor (the fixnum (+ a size))
 		      2)
-       for val = (svref vect i)
+       for val of-type fixnum = (svref vect i)
        do
 	 (if (>= K val)
 	     (if (= K val)
