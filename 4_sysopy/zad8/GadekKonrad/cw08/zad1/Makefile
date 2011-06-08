@@ -9,7 +9,9 @@ LDFLAGS		= -lm
 SRC			= prod.c kons.c
 .PHONY: 	clean all
 
-all: $(SRC:%.c=%) 
+all: $(SRC:%.c=%)
+
+prod kons: common.o
 
 clean:
 	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(SRC:%.c=%) *.out
