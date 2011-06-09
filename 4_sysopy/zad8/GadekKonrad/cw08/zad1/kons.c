@@ -6,17 +6,17 @@ int *imem = NULL;
 int memCreated = 0;
 int memId = -1;
 int semId = -1;
-int* prodCurrCnt;
+int* konsCurrCnt;
 int rimuwEshaemAwterEgzit = 0;
 int rimuwEseemAwterEgzit = 0;
-FILE *fp;
+FILE *fp = NULL;
 
 void myatexit(void);
 void mysighandler(int);
 
 int main(int argc, char *argv[]) {
 	int i;
-	int j;
+	/*int j;*/
 	int tmp;
 	struct task *shmTasks;
 	struct sembuf semUnblock[2];
@@ -46,18 +46,24 @@ int main(int argc, char *argv[]) {
 
 	memId = shmget(memKey, (size_t)shmSize, IPC_CREAT | IPC_EXCL | 0755); /*try create*/
 	if(memId == -1) {
-		if(errno != EEXIST)
+		if(errno != EEXIST) {
 			myerror("Błąd shmget(3p)!",1);
-		memId = shmget(memKey, prodCnt, 0); /*try get*/
-		if(memId == -1)
+		}
+		memId = shmget(memKey, prodAndKonsCnt, 0); /*try get*/
+		if(memId == -1) {
 			myerror("Błąd shmget(3p)",2);
-		((int*)mem)[0] = ((int*)mem)[1] = 0; /*jeśli utworzyliśmy -- wyzerujmy licznik klientów i producentów*/
+		}
+	} else {
 		rimuwEshaemAwterEgzit = 1;
 	}
 
 	mem = shmat(memId, 0, 0);
-	if(mem == (void*)-1)
+	if(mem == (void*)-1) {
 		myerror("Błąd shmat(3p)!",3);
+	} else if(rimuwEshaemAwterEgzit) {
+		((int*)mem)[0] = 0; /*jeśli utworzyliśmy -- wyzerujmy licznik klientów i producentów*/
+		((int*)mem)[1] = 0;
+	}
 
 	if(semKey == -1)
 		semKey = ftok(".",812);
@@ -69,21 +75,21 @@ int main(int argc, char *argv[]) {
 		semId = semget(semKey, semCnt, 0);
 		if(semId == -1)
 			myerror("Błąd semget(3p)!",5);
-		rimuwEseemAwterEgzit = 1;
 	} else {
+		rimuwEseemAwterEgzit = 1;
 		for(i=0;i<2;++i)
 			if(semctl(semId, i, SETVAL, i) == -1) /*blokuj sem0 (konsumentów), odblokuj sem1 (licznik)*/
 				myerror("Błąd semctl(3p)!",6);
-		if(semctl(semId, 2, SETVAL, prodCnt) == -1) /*odblokuj sem2 (producentów)*/
+		if(semctl(semId, 2, SETVAL, prodAndKonsCnt) == -1) /*odblokuj sem2 (producentów)*/
 			myerror("Błąd semctl(3p)!",7);
 	}
 
 	imem = (int*)mem;
 	shmTasks = (struct task*)((int*)mem+2*sizeof(int));
-	prodCurrCnt = imem;
+	konsCurrCnt = imem+1;
 
-	semBlock[0].sem_num = semaforAtom; /*blokowanie konsumentów (teraz producenci) + gwarancja atomiczności*/
-	semBlock[1].sem_num = semaforKonsument;
+	semBlock[0].sem_num = semaforKonsument; /*blokowanie konsumentów (teraz producenci) + gwarancja atomiczności*/
+	semBlock[1].sem_num = semaforAtom;
 	semBlock[0].sem_op = semBlock[1].sem_op = -1;
 
 	semUnblock[0].sem_num = semaforProducent; /*odblokowywanie producentów (bo teraz oni rządzą) + zdjęcie gwarancji atomiczności*/
@@ -95,21 +101,25 @@ int main(int argc, char *argv[]) {
 
 	for(;;) { /*konsumentujemy*/
 
-
+#if DEBUGMODE
 		printf("\n------------------------------\n");
-		printf("Czytam zadanie na dziś...");
+#endif
 
 		tmp = semop(semId, semBlock, 2); /*blokujemy producentów + atomiczność*/
 		if(tmp == -1)
 			myerror("Błąd semop(3p)!",8);
 
-		imem[1] = (imem[1]+1)%prodCnt;
+#if DEBUGMODE
 		printf(" [<-%d] ",imem[1]);
+#endif
 		newTask = shmTasks[imem[1]];
+#if DEBUGMODE
 		printf("[OK]\n");
 		printTaskDetails(&newTask);
+#endif
+		imem[1] = (imem[1]+1)%prodAndKonsCnt;
 
-		tmp = semop(semId, semBlock+1, 2); /*odblokowujemy producentów + rozatomiczność*/
+		tmp = semop(semId, semUnblock, 2); /*odblokowujemy producentów + rozatomiczność*/
 		if(tmp == -1)
 			myerror("Błąd semop(3p)!",9);
 	}
@@ -118,7 +128,12 @@ int main(int argc, char *argv[]) {
 }
 
 void myatexit(void) {
-	printf("Kłitam");
+	printf("Kłitam // egzituję!\n");
+
+	if(fp != NULL) {
+		fclose(fp);
+		fp = NULL;
+	}
 	if(mem != (void*)-1) {
 		if(shmdt(mem) == -1)
 			fprintf(stderr, "Błąd shmdt(3p)! myerror=%d errno=%d\n",10,errno);

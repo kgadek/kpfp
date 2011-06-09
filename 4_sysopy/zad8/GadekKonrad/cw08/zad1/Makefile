@@ -4,7 +4,7 @@ CFLAGS		= -ansi -pedantic -W -Wall -Wextra -Wshadow -Wformat -Winit-self\
 				-Wstack-protector -Wunsafe-loop-optimizations -Wlogical-op -Wjump-misses-init -Wmissing-include-dirs\
 				-Wconversion -Wmissing-prototypes -Wmissing-declarations\
 				-Wno-long-long
-LDFLAGS		= -lm
+LDFLAGS		= -lm -ggdb
 
 SRC			= prod.c kons.c
 .PHONY: 	clean all

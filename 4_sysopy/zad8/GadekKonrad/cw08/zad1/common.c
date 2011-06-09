@@ -1,7 +1,7 @@
 #include "common.h"
 
-extern key_t memKey = -1;
-extern key_t semKey = -1;
+key_t memKey = -1;
+key_t semKey = -1;
 
 void printTaskDetails(struct task *t) {
 	int i;

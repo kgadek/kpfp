@@ -14,6 +14,7 @@
 #include <sys/wait.h>
 #include <time.h>
 
+#define DEBUGMODE 1
 #define myerror(str,myerrno) {\
 			fprintf(stderr,"Err #%03d (errno=%d):\n\t%s\n",myerrno,errno,str);\
 			exit(myerrno);\
@@ -22,7 +23,7 @@
 typedef unsigned int uint;
 
 /*ilość producentów*/
-#define prodCnt 5
+#define prodAndKonsCnt 5
 /*ilość semaforów*/
 #define semCnt 3
 /*rozmiar macierzy*/
@@ -36,7 +37,7 @@ struct task {
 	int a[matrixSize][matrixSize];
 	int b[matrixSize][matrixSize];
 };
-#define shmSize (prodCnt*sizeof(struct task) + 2*sizeof(int))
+#define shmSize (2*sizeof(int) + prodAndKonsCnt*sizeof(struct task))
 
 
 extern key_t memKey;

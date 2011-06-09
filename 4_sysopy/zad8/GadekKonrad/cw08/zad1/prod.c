@@ -14,7 +14,7 @@ void myatexit(void);
 void mysighandler(int);
 
 int main() {
-	int i;
+	int i; /*liczniki*/
 	int j;
 	int tmp;
 	struct task *shmTasks;
@@ -27,31 +27,30 @@ int main() {
 	 * 2 -- blokada producentów*/
 
 	srand((uint)time(0));
-
 	if(memKey == -1)
 		memKey = ftok(".",811);
 	tmp = atexit(myatexit);
-	if(SIG_ERR != signal(SIGKILL, mysighandler))
-		myerror("Błąd signal(3p)!",13);
-	if(SIG_ERR != signal(SIGTERM, mysighandler))
-		myerror("Błąd signal(3p)!",14);
-	if(SIG_ERR != signal(SIGHUP, mysighandler))
-		myerror("Błąd signal(3p)!",15);
 
 	memId = shmget(memKey, (size_t)shmSize, IPC_CREAT | IPC_EXCL | 0755); /*try create*/
 	if(memId == -1) {
-		if(errno != EEXIST)
+		if(errno != EEXIST) {
 			myerror("Błąd shmget(3p)!",1);
-		memId = shmget(memKey, prodCnt, 0); /*try get*/
-		if(memId == -1)
+		}
+		memId = shmget(memKey, prodAndKonsCnt, 0); /*try get*/
+		if(memId == -1) {
 			myerror("Błąd shmget(3p)",2);
-		((int*)mem)[0] = 0; /*jeśli utworzyliśmy -- wyzerujmy licznik producentów*/
+		}
+	} else {
 		rimuwEshaemAwterEgzit = 1;
 	}
 
 	mem = shmat(memId, 0, 0);
-	if(mem == (void*)-1)
+	if(mem == (void*)-1) {
 		myerror("Błąd shmat(3p)!",3);
+	} else if(rimuwEshaemAwterEgzit) {
+		((int*)mem)[0] = 0; /*jeśli utworzyliśmy -- wyzerujmy licznik klientów i producentów*/
+		((int*)mem)[1] = 0;
+	}
 
 	if(semKey == -1)
 		semKey = ftok(".",812);
@@ -63,15 +62,14 @@ int main() {
 		semId = semget(semKey, semCnt, 0);
 		if(semId == -1)
 			myerror("Błąd semget(3p)!",5);
-		rimuwEseemAwterEgzit = 1;
 	} else {
+		rimuwEseemAwterEgzit = 1;
 		for(i=0;i<2;++i)
 			if(semctl(semId, i, SETVAL, i) == -1) /*blokuj sem0 (konsumentów), odblokuj sem1 (licznik)*/
 				myerror("Błąd semctl(3p)!",6);
-		if(semctl(semId, 2, SETVAL, prodCnt) == -1) /*odblokuj sem2 (producentów)*/
+		if(semctl(semId, 2, SETVAL, prodAndKonsCnt) == -1) /*odblokuj sem2 (producentów)*/
 			myerror("Błąd semctl(3p)!",7);
 	}
-
 
 	imem = (int*)mem;
 	shmTasks = (struct task*)((int*)mem+2*sizeof(int));
@@ -99,41 +97,43 @@ int main() {
 			}
 		}
 
+#if DEBUGMODE
 		printf("\n------------------------------\nUmieszczam task:\n\top=%d\n\ta= (",newTask.op);
-		for(i=0; i<matrixSize; ++i) {
-			printf("(");
-			for(j=0; j<matrixSize-1; ++j)
-				printf("%d, ",newTask.a[i][j]);
-			printf("%d)", newTask.a[i][matrixSize-1]);
-		}
-		printf(")\n\tb= (");
-		for(i=0; i<matrixSize; ++i) {
-			printf("(");
-			for(j=0; j<matrixSize-1; ++j)
-				printf("%d, ",newTask.b[i][j]);
-			printf("%d)", newTask.b[i][matrixSize-1]);
-		}
-		printf("\t\nStatus dodawania... ");
+		printTaskDetails(&newTask);
+		printf("\n\tDodawanie... ");
+#endif
 
 		tmp = semop(semId, semBlock, 2); /*blokujemy producentów + atomiczność*/
 		if(tmp == -1)
 			myerror("Błąd semop(3p)!",8);
+#if DEBUGMODE
+		printf(" [xx]");
+#endif
 
-		imem[0] = (imem[0]+1)%prodCnt;
-		printf(" [%d] ",imem[0]);
+#if DEBUGMODE
+		printf(" [%d]",imem[0]);
+#endif
 		shmTasks[imem[0]] = newTask;
-		printf("[OK]\n");
+#if DEBUGMODE
+		printf(" [OK]");
+#endif
 
-		tmp = semop(semId, semBlock+1, 2); /*odblokowujemy producentów + rozatomiczność*/
+		tmp = semop(semId, semUnblock, 2); /*odblokowujemy producentów + rozatomiczność*/
+		imem[0] = (imem[0]+1)%prodAndKonsCnt;
 		if(tmp == -1)
 			myerror("Błąd semop(3p)!",9);
+#if DEBUGMODE
+		printf(" [++]\n");
+#else
+		printf("Umieściłem zadanie w pamięci\n");
+#endif
 	}
 
-	return 0;
+	return 0; /*never called*/
 }
 
 void myatexit(void) {
-	printf("Kłitam");
+	printf("Kłitam // egzituję\n");
 	if(mem != (void*)-1) {
 		if(shmdt(mem) == -1)
 			fprintf(stderr, "Błąd shmdt(3p)! myerror=%d errno=%d\n",10,errno);
