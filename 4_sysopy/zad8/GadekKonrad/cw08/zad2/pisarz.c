@@ -10,7 +10,6 @@ int rimuwEseemCzytAwterEgzit = 0;
 sem_t *semCzyt;
 sem_t *semPis;
 
-
 void myatexit(void);
 void mysighandler(int);
 void openSem(sem_t **,const char *,int,int *);
@@ -21,6 +20,9 @@ int main() {
 
 	srand((uint)time(0));
 	tmp = atexit(myatexit);
+	tmp = (int)signal(SIGINT, mysighandler);
+	if(tmp == (int)SIG_ERR)
+		myerror("Błąd signal(3)!",10);
 
 	memId = shm_open(SHMNAME, O_RDWR | O_CREAT | O_EXCL, 0755); /*try create*/
 	if(memId == -1) {
@@ -71,8 +73,6 @@ int main() {
 		tmp = sem_post(semPis);
 		if(tmp == -1)
 			myerror("Błąd sem_post(3p)",9);
-
-		sleep(1); /*uff,bieganie jest męczące*/
 
 	}
 

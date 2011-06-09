@@ -13,7 +13,7 @@ all: $(SRC:%.c=%)
 
 pisarz czytelnik: common.o
 
-clean: ipcclean
+clean: 
 	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(SRC:%.c=%) *.out
 
 ipcclean:

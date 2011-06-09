@@ -2,10 +2,8 @@
 #include "common.h"
 
 int rimuwEshaemAwterEgzit = 0;
-int rimuwEseemPisAwterEgzit = 0;
 int rimuwEseemCzytAwterEgzit = 0;
 sem_t *semCzyt;
-sem_t *semPis;
 int memId;
 int *mem;
 enum operacja {maksimum, minimum, srednia};
@@ -62,7 +60,6 @@ int main(int argc, char *argv[]) {
 
 	openSem(&semCzyt, CZYTSEMNAME, CZYTCNT, &rimuwEseemCzytAwterEgzit);
 
-
 	for(;;) { /*czytelnikujemy*/
 
 		tmp = sem_wait(semCzyt);
@@ -71,6 +68,9 @@ int main(int argc, char *argv[]) {
 
 		operacje[operacja]();
 
+		tmp = sem_post(semCzyt);
+		if(tmp == -1)
+			myerror("Błąd sem_post(3p)",10);
 	}
 
 	return 0;

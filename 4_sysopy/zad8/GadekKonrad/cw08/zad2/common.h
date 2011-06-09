@@ -24,19 +24,12 @@
 			fprintf(stderr,"Err #%03d (errno=%d):\n\t%s\n",myerrno,errno,str);\
 			exit(myerrno);\
 		}
-#define SHMNAME "/Zad82Shm"
-#define PISSEMNAME "/Zad82SemPis"
-#define CZYTSEMNAME "/Zad82SemCzyt"
-#define CZYTCNT 10
+#define SHMNAME "/4SOZZZ82Shm"
+#define PISSEMNAME "/4SOZZZ82SemPis"
+#define CZYTSEMNAME "/4SOZZZ82SemCzyt"
+#define CZYTCNT 4
 
 typedef unsigned int uint;
-
-enum Semafor { semaforKonsument = 0, semaforAtom, semaforProducent };
-enum OperType { operacjaSuma = 1, operacjaRoznica, operacjaIloczyn };
-
-
-extern key_t memKey;
-extern key_t semKey;
 
 void openSem(sem_t **,const char *,int,int *P);
 
