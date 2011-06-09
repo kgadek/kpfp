@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
-from array import array
 from timeit import Timer
-from random import random
+import random
 
 def binsearch(K, vect, size):
 	a = 0
@@ -17,12 +16,11 @@ def binsearch(K, vect, size):
 			size = i - 1
 	return -1
 
-
-A = array('i', range(32))
+A = range(32)
 
 def onetest():
 	max = 1000
-	j = (int)(32*random())
+	j = (int)(32*random.random())
 	for k in range(max):
 		r = binsearch(j, A, 32)
 
