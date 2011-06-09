@@ -44,6 +44,7 @@ extern key_t memKey;
 extern key_t semKey;
 
 void printTaskDetails(struct task*);
+void printArray(FILE *, int[matrixSize][matrixSize]);
 
 
 #endif /* COMMON_H_ */

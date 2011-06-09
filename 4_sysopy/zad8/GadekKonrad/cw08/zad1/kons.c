@@ -13,6 +13,9 @@ FILE *fp = NULL;
 
 void myatexit(void);
 void mysighandler(int);
+void doSuma(int[matrixSize][matrixSize], int[matrixSize][matrixSize], int[matrixSize][matrixSize]);
+void doRoznica(int[matrixSize][matrixSize], int[matrixSize][matrixSize], int[matrixSize][matrixSize]);
+void doIloczyn(int[matrixSize][matrixSize], int[matrixSize][matrixSize], int[matrixSize][matrixSize]);
 
 int main(int argc, char *argv[]) {
 	int i;
@@ -22,6 +25,8 @@ int main(int argc, char *argv[]) {
 	struct sembuf semUnblock[2];
 	struct sembuf semBlock[2];
 	struct task newTask;
+	int res[matrixSize][matrixSize];
+	void (*operacja[4])(int[matrixSize][matrixSize],int[matrixSize][matrixSize],int[matrixSize][matrixSize]) = {doSuma, doSuma, doRoznica, doIloczyn};
 	/* semafory:
 	 * 0 -- blokada konsumentów
 	 * 1 -- blokada gwarantująca atomiczność operacji na wspólnej pamięci
@@ -119,6 +124,15 @@ int main(int argc, char *argv[]) {
 #endif
 		imem[1] = (imem[1]+1)%prodAndKonsCnt;
 
+		operacja[newTask.op](newTask.a, newTask.b, res);
+		fprintf(fp,"A=\n");
+		printArray(fp,newTask.a);
+		fprintf(fp,"B=\n");
+		printArray(fp,newTask.b);
+		fprintf(fp,"RES=\n");
+		printArray(fp,res);
+		printf("Policzono %s\n", newTask.op==operacjaSuma?"sumę":(newTask.op==operacjaIloczyn?"iloczyn":"różnicę"));
+
 		tmp = semop(semId, semUnblock, 2); /*odblokowujemy producentów + rozatomiczność*/
 		if(tmp == -1)
 			myerror("Błąd semop(3p)!",9);
@@ -148,4 +162,26 @@ void myatexit(void) {
 void mysighandler(int sigid) {
 	printf("\n\n--------------------\n\nZabijasz mnie %d? Ale %d?!...\n",sigid, sigid);
 	exit(0);
+}
+
+void doSuma(int a[matrixSize][matrixSize], int b[matrixSize][matrixSize], int c[matrixSize][matrixSize]) {
+	int i, j;
+	for(i=0; i<matrixSize; ++i)
+		for(j=0; j<matrixSize; ++j)
+			c[i][j] = a[i][j] + b[i][j];
+}
+void doRoznica(int a[matrixSize][matrixSize], int b[matrixSize][matrixSize], int c[matrixSize][matrixSize]) {
+	int i, j;
+	for(i=0; i<matrixSize; ++i)
+		for(j=0; j<matrixSize; ++j)
+			c[i][j] = a[i][j] - b[i][j];
+}
+void doIloczyn(int a[matrixSize][matrixSize], int b[matrixSize][matrixSize], int c[matrixSize][matrixSize]) {
+	int i,j,k;
+	for(i=0; i<matrixSize; ++i)
+		for(j=0; j<matrixSize; ++j) {
+			c[i][j] = 0;
+			for(k=0; k<matrixSize; ++k)
+				c[i][j] += a[i][k]+b[k][j];
+		}
 }

@@ -25,3 +25,15 @@ void printTaskDetails(struct task *t) {
 	}
 	printf("\n");
 }
+
+void printArray(FILE *out, int a[matrixSize][matrixSize]) {
+	int i, j;
+	fprintf(out,"(");
+	for(i=0;i<matrixSize;++i) {
+		fprintf(out,"(");
+		for(j=0;j<matrixSize-1;++j)
+			fprintf(out,"%d ",a[i][j]);
+		fprintf(out, "%d)",a[i][matrixSize-1]);
+	}
+	fprintf(out,")\n");
+}

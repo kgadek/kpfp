@@ -7,11 +7,15 @@ CFLAGS		= -ansi -pedantic -W -Wall -Wextra -Wshadow -Wformat -Winit-self\
 LDFLAGS		= -lm -ggdb
 
 SRC			= prod.c kons.c
-.PHONY: 	clean all
+.PHONY: 	clean all ipcclean
 
 all: $(SRC:%.c=%)
 
 prod kons: common.o
 
-clean:
+clean: ipcclean
 	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(SRC:%.c=%) *.out
+
+ipcclean:
+	ipcs | grep 2588 | awk '{print -m  ;}' | xargs ipcrm 2&>/dev/null
+	ipcs | egrep '755[ 	]*3' | awk '{print -s  ;}' | xargs ipcrm 2&>/dev/null
