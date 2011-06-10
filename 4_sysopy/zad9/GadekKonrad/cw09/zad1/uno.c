@@ -90,8 +90,6 @@ int main(int argc, char* argv[]){
 			myerror("Błąd pthread_join(3p)!",8);
 	}
 #endif
-	pthread_attr_destroy(&thrdzAttrs);
-  	free(thrdz);
 	return 0;
 }
 
