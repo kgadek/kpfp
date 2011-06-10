@@ -8,6 +8,7 @@ PKGNAME 	= $(NAME)-cw$(EXERCISE).tar.gz
 pkg: clean
 	find $(NAME) -type f -iname '.*project' > $(EXCLUDEFILE)
 	find $(NAME) -type f -iname '.gitignore' >> $(EXCLUDEFILE)
+	find $(NAME) -type d -iname '*_ext_*' >> $(EXCLUDEFILE)
 	tar -czvhf $(PKGNAME) -X $(EXCLUDEFILE) $(NAME)
 	rm -f $(EXCLUDEFILE)
 
