@@ -29,7 +29,7 @@ char *str;
 pthread_t* thrdz;
 pthread_attr_t thrdzAttrs;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_mutex_t mutex2 = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t kanselejszynMooteks = PTHREAD_MUTEX_INITIALIZER;
 
 struct thrdInfo{
 	char* buf;
@@ -153,7 +153,7 @@ void* searchForThatNeedle(void* args){
 			if(((uint)(j-i) == strlen(str))) {
 				printf("I IZ %d, CAN HAZ STRZ HERZ: %d\n", (int)pthread_self(), readBegin + i);
 #ifndef wersjaTrzecia	
-				if(pthread_mutex_trylock(&mutex2) != EBUSY){
+				if(pthread_mutex_trylock(&kanselejszynMooteks) != EBUSY){
 					for(k=0; k<thrdzCnt; k++){
 						if((k != myThreadyData.idx)&& (thrdz[k] != 0)){
 							pthread_cancel(thrdz[k]);
@@ -204,7 +204,7 @@ void* searchForThatNeedle(void* args){
                 if(ok && ((uint)dl == strlen(str))){
                 	printf("I IZ %d, CAN HAZ STRZ HERZ: %d\n", (int)pthread_self(), readBegin + i);
 #ifndef wersjaTrzecia	
-					if(pthread_mutex_trylock(&mutex2) != EBUSY) {
+					if(pthread_mutex_trylock(&kanselejszynMooteks) != EBUSY) {
 						for(k=0; k<thrdzCnt; k++){
 							if((k != myThreadyData.idx) && thrdz[k]){
 								pthread_cancel(thrdz[k]);
