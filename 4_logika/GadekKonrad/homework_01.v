@@ -1,3 +1,6 @@
+﻿(*
+Zadanie domowe 1: purystow jezykowych przepraszam za to, ze tu tyle angielszczyzny, ale, niestety, polskie rzeczowniki maja zbyt wiele przypadkow na to, aby sklad tekstu nie zamienil sie w potworki...
+ *)
 
 Module TraditionalLogic.
 
@@ -200,11 +203,7 @@ Lemma AllNonAnimalsAreNonCats : holds (All (non animals) are (non cats)).
 (* Zadanie 1: Uzupelnij ponizszy dowod. 10 punktow *)
 						 
 Proof.
-apply ContrE1.
-unfold contrapose.
-rewrite NonNon.
-rewrite NonNon.
-apply AllCatsAreAnimals.
+admit.
 Qed.
 
 Ltac eliminateContraposition1 :=
@@ -377,19 +376,7 @@ holds (No babies are persons_who_can_manage_a_crocodile).
 (* Zadanie 2: Uzupelnij ponizszy dowod. 10 punktow *)
   
 Proof.
-intro.
-destruct H.
-destruct H0.
-eliminateObversion.
-apply Barbara with (middle := non logical_persons).
-split.
-apply Barbara with (middle := despised_persons).
-split.
-eliminateObversion.
-rewrite NonNon.
-eliminateConversion2.
-apply H1.
-apply H.
+admit.
 Qed.
 
 Parameter boys_under_12 : Term.
@@ -406,27 +393,10 @@ Lemma All_Boys_Who_learn_Greek_are_red_haired :
    ->
    holds (All boys_who_learn_Greek are red_haired_boys).
 
-(* Zadanie 3: Uzupelnij
- ponizszy dowod. 10 punktow *)
+(* Zadanie 3: Uzupelnij ponizszy dowod. 10 punktow *)
      
 Proof.
-intro.
-destruct H.
-destruct H0.
-destruct H1.
-apply Barbara with (middle := industrious_boys).
-split.
-apply H0.
-apply Barbara with (middle := non boys_under_12).
-split.
-eliminateObversion.
-apply Barbara with (middle := boys_admitted_as_boarders).
-split.
-eliminateObversion.
-rewrite NonNon.
-eliminateConversion2.
-eliminateObversion.
-eliminateConversion2.
+admit.
 Qed.
 
 Parameter interesting_poems : Term.
@@ -448,29 +418,7 @@ Lemma Your_Poems_Are_Not_Interesting :
 (* Zadanie 4: Uzupelnij ponizszy dowod. 10 punktow *)
      
 Proof.
-intros.
-destruct H.
-destruct H0.
-destruct H1.
-destruct H2.
-apply Barbara with (middle := poems_on_the_subject_of_soap_bubbles).
-split.
-apply Barbara with (middle:= modern_poems).
-split.
-apply Barbara with (middle := affected_poems).
-split.
-apply Barbara with (middle := non poems_that_are_popular_among_people_of_real_taste).
-split.
-eliminateObversion.
-rewrite NonNon.
-eliminateConversion2.
-eliminateObversion.
-rewrite NonNon.
-apply H2.
-eliminateObversion.
-eliminateObversion.
-eliminateConversion2.
-apply H1.
+admit.
 Qed.
 
 Parameter animals_in_this_house : Term.
@@ -501,60 +449,6 @@ holds (All kangaroos are things_that_I_avoid).
 (* Zadanie 5: Uzupelnij ponizszy dowod. 10 punktow *)
   
 Proof.
-intro.
-destruct H.
-destruct H0.
-destruct H1.
-destruct H2.
-destruct H3.
-destruct H4.
-destruct H5.
-destruct H6.
-destruct H7.
-apply Barbara with (middle := animals_that_I_detest).
-split.
-apply H1.
-apply Barbara with (middle := non animals_that_take_to_me).
-split.
-apply H7.
-apply Barbara with (middle := non animals_in_this_house).
-split.
-eliminateObversion.
-rewrite NonNon.
-eliminateConversion2.
-apply Barbara with (middle := non cats).
-split.
-eliminateContraposition1.
-rewrite NonNon.
-rewrite NonNon.
-apply H.
-apply Barbara with (middle := non things_that_kill_mice).
-split.
-eliminateObversion.
-rewrite NonNon.
-eliminateConversion2.
-apply Barbara with (middle := non carnivorous_animals).
-split.
-eliminateObversion.
-rewrite NonNon.
-eliminateConversion2.
-apply Barbara with (middle := non things_that_prowl_at_night).
-split.
-eliminateObversion.
-rewrite NonNon.
-eliminateConversion2.
-apply Barbara with (middle := non animals_that_love_to_gaze_at_the_moon).
-split.
-eliminateContraposition1.
-rewrite NonNon.
-rewrite NonNon.
-apply H8.
-apply Barbara with (middle := non things_suitable_for_a_pet).
-split.
-eliminateContraposition1.
-rewrite NonNon.
-rewrite NonNon.
-apply H0.
-apply H5.
+admit.
 Qed.
 
