@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8
 
-from weakref import WeakValueDictionary
+import weakref
 
 class BigObj(object):
-    inst = WeakValueDictionary()
+    inst = weakref.WeakValueDictionary()
     def __new__(cls, id):
         if not cls.inst.has_key(id):
             a = object.__new__(cls)
@@ -28,4 +28,3 @@ if __name__ == '__main__':
     b.setHaslo(3)
     print "a=%s" % (a.getHaslo())
     print "b=%s" % (b.getHaslo())
-    
