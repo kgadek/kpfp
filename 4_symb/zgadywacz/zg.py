@@ -33,6 +33,38 @@ def isGeom(lst):
 def nextGeom(lst,r):
     """ Zwraca następny element lst -- ciągu geometrycznego o ilorazie r. """
     return lst[-1]*r
+def isFib(lst):
+    """ Stwierdza, czy lst jest ciągiem Fibonacciego (musi zaczynać się
+    od [1,1,2,3,5,...]). Zwraca parę -- dwa ostatnie wyrazy ciągu. """
+    if not lst: return False
+    if len(lst) <= 2:
+        if len(lst) == 1: return lst[0]==1 and 1 or False
+        return lst==[1,1] and [1,1] or False
+    d = lst[:2]
+    for i in lst[2:]:
+        if i != sum(d): return False
+        d = [d[1], i]
+    return d
+def nextFib(lst,d):
+    """ Zwraca następny element lst -- ciągu Fibonacciego o dwóch poprzednich
+    elementach d. """
+    return sum(d)
+def isMFib(lst):
+    """ Stwierdza, czy lst jest metaciągiem Fibonacciego (musi zaczynać się
+    od [1,2,2,4,8,32,...]). Zwraca parę -- dwa ostatnie wyrazy ciągu. """
+    if not lst: return False
+    if len(lst) <= 2:
+        if len(lst) == 1: return lst[0]==1 and 1 or False
+        return lst==[1,1] and [1,2] or False
+    d = lst[:2]
+    for i in lst[2:]:
+        if i != d[0]*d[1]: return False
+        d = [d[1], i]
+    return d
+def nextMFib(lst,d):
+    """ Zwraca następny element lst -- metaciągu Fibonacciego o dwóch poprzednich
+    elementach d. """
+    return d[0]*d[1]
 def diffSub(lst):
     """ Zwraca listę pochodnych ciągu lst. """
     res = []
@@ -51,9 +83,11 @@ def diffDiv(lst):
         p = x
     return res
 
-testers = (isArithm, isGeom)
-resulters = (nextArithm, nextGeom)
+testers = (isArithm, isGeom, isFib, isMFib)
+resulters = (nextArithm, nextGeom, nextFib, nextMFib)
+
 differs = (diffSub, diffDiv)
+dediffers = (nextArithm, nextGeom)
 
 def dfs(lst,lvl=7):
     """ Zgaduje następny element ciągu lst. """
@@ -63,7 +97,7 @@ def dfs(lst,lvl=7):
         if res: return resulters[i](lst,res)
     for i,d in enumerate(differs):
         res = dfs(d(lst), lvl-1)
-        if res: return resulters[i](lst,res)
+        if res: return dediffers[i](lst,res)
     return False
 
 if __name__ == '__main__':
