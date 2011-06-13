@@ -11,19 +11,19 @@ def multimap(fun, lst):
 def simplemap(fun, lst):
     return map(fun,lst)
 
-
+__verytopsecret = sum
+def __notsosecret(x,y):
+    #return reduce(__verytopsecret, x)
+    return apply(__verytopsecret, ([x,y],))
 def multireduce(fun, lst, zero=0):
-    def myreduce(blah):
-        print "JOJOJO"
-        return 2 #len(blah)==2 and fun(blah[0], blah[1]) or zero
     div = len(lst)/2
-    print "JO"
+    __verytopsecret = fun
     pool = multiprocessing.Pool(processes=2)
-    res1 = pool.apply_async(sum, [lst[:div]])
-    res2 = pool.apply_async(sum, [lst[div:]])
+    res1 = pool.apply_async(__notsosecret, (10, 20, ))
+    res2 = pool.apply_async(__notsosecret, (10, 20, ))
     res1.wait()
     res2.wait()
-    return fun(res1.get(), res2.get())
+    return __notsosecret(res1.get(), res2.get())
     
 
 if __name__ == '__main__':
