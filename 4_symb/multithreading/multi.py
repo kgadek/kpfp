@@ -5,21 +5,25 @@ import time
 def f(x):
     return x*x
 
-def multireduce(fun, lst, zero=0):
-    def inner(lst):
-        if lst:
-            if len(lst)==1: return lst[0]
-            if len(lst)==2: return fun(lst[0],lst[1])
-            div = len(lst)/2
-            return multimap(inner, [lst[div:], lst[:div]])
-        else: return zero
-    return inner(lst)
-
 def multimap(fun, lst):
     return multiprocessing.Pool(processes=2).map(fun, lst)
 
 def simplemap(fun, lst):
     return map(fun,lst)
+
+
+def multireduce(fun, lst, zero=0):
+    def myreduce(blah):
+        print "JOJOJO"
+        return 2 #len(blah)==2 and fun(blah[0], blah[1]) or zero
+    div = len(lst)/2
+    print "JO"
+    pool = multiprocessing.Pool(processes=2)
+    res1 = pool.apply_async(sum, [lst[:div]])
+    res2 = pool.apply_async(sum, [lst[div:]])
+    res1.wait()
+    res2.wait()
+    return fun(res1.get(), res2.get())
     
 
 if __name__ == '__main__':
@@ -31,4 +35,4 @@ if __name__ == '__main__':
     print t1-t0
     print t2-t1
     print r0==r1
-    #print "Res=%s" % reduce(lambda x,y: x+y, [1,2])
+    print "Res=%s" % multireduce(lambda x,y: x+y, range(5))
