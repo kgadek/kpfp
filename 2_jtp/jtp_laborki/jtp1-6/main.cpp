@@ -1,7 +1,7 @@
-#include <qt4/QtGui/QApplication>
-#include <qt4/QtGui/QHBoxLayout>
-#include <qt4/QtGui/QVBoxLayout>
-#include <qt4/QtGui/QGridLayout>
+#include <QtGui/QApplication>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QVBoxLayout>
+#include <QtGui/QGridLayout>
 #include "renderarea.h"
 
 int main(int argc, char **argv) {

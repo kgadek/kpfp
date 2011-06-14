@@ -1,7 +1,7 @@
 #include "renderarea.h"
 #include "polygon.h"
-#include <qt4/QtGui/QtGui>
-#include <qt4/QtCore/Qt>
+#include <QtGui/QtGui>
+#include <QtCore/Qt>
 
 RenderArea::RenderArea(QWidget *parent) : QWidget(parent) {
        image = QImage(16,16,QImage::Format_ARGB32);

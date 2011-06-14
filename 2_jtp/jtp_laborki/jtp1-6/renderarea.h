@@ -1,7 +1,7 @@
 #ifndef DRAW_H
 #define DRAW_H
 
-#include <qt4/QtGui/QtGui>
+#include <QtGui/QtGui>
 #include "polygon.h"
 
 /**
