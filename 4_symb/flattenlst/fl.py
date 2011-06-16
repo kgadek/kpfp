@@ -14,3 +14,5 @@ def flatten(lst):
         if listp(i): res.extend(flatten(i))
         else: res.append(i)
     return res
+
+flatten2 = lambda x: reduce(lambda x,y: x+y, [listp(i) and flatten2(i) or [i] for i in x], [])
