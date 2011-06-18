@@ -2,34 +2,12 @@
 #include <QtCore/Qt>
 #include "PlotArea.h"
 
-template<class T> T min(T arg1, T arg2) { return arg1<arg2?arg1:arg2; }
-template<class T> T max(T arg1, T arg2) { return arg1<arg2?arg2:arg1; }
-
 PlotArea::~PlotArea() {
-	if(x) {
-		delete [] x;
-		x = 0;
-	}
-	if(y) {
-		delete [] y;
-		y = 0;
-	}
 }
 
 PlotArea::PlotArea(QWidget *parent) : QWidget(parent) {
 	image = QImage(500,300,QImage::Format_ARGB32);
-	d = 0.008;
-	c = 0.07;
-	b = 0.1;
-	a = 0.1;
-	y0 = 1000;
-	x0 = 1;
-	n = 10000;
-	h = 0.1;
-
-	x = new double[n];
-	y = new double[n];
-	calculate();
+	universe.calculate();
 }
 
 
@@ -59,9 +37,9 @@ void PlotArea::paintEvent(QPaintEvent *) {
 		painterX.drawLine(0,(double)i/10.0*image.height(),image.width(),(double)i/10.0*image.height());
 	}
 
-	for(int i=1;i<n;++i) {
-		pathX.lineTo((double)i/n*image.width(), image.height() * (1 - x[i]/xmax));
-		pathY.lineTo((double)i/n*image.width(), image.height() * (1 - y[i]/xmax));
+	for(int i=1;i<universe.n;++i) {
+		pathX.lineTo((double)i/universe.n*image.width(), image.height() * (1 - universe.x[i]/universe.xmax));
+		pathY.lineTo((double)i/universe.n*image.width(), image.height() * (1 - universe.y[i]/universe.xmax));
 	}
 	pathX.lineTo(image.width(),image.height());
 	pathY.lineTo(image.width(),image.height());
@@ -78,28 +56,56 @@ QSize PlotArea::sizeHint() const {
 	return image.size();
 }
 
-void PlotArea::recalc(double a,double b,double c,double d,double x0,double y0,int n,double h) {
-	this->a = a;
-	this->b = b;
-	this->c = c;
-	this->d = d;
-	this->x0 = x0;
-	this->y0 = y0;
-	this->n = n;
-	this->h = h;
-	calculate();
+QSize PlotArea::minimumSize() const {
+	return image.size();
 }
 
-void PlotArea::calculate() {
-	xmax = x[0] = x0;
-	y[0] = y0;
+QSize PlotArea::maximumSize() const {
+	return image.size();
+}
 
-	for(int i=0; i+1<n; ++i) {
-		x[i+1] = max(0.0, x[i] + h * ( -a*x[i] + c*d*x[i]*y[i] ));
-		xmax = max(xmax, x[i+1]);
-		y[i+1] = max(0.0, y[i] + h * ( b*y[i] - d*x[i]*y[i] ));
-		xmax = max(xmax, y[i+1]);
-	}
+void PlotArea::recalc(double a,double b,double c,double d,double x0,double y0,int n,double h) {
+	this->universe.a = a;
+	this->universe.b = b;
+	this->universe.c = c;
+	this->universe.d = d;
+	this->universe.x0 = x0;
+	this->universe.y0 = y0;
+	this->universe.n = n;
+	this->universe.h = h;
+	this->universe.calculate();
+	update();
+}
 
+void PlotArea::setA(int val) {
+	this->universe.setA(val);
+	update();
+}
+void PlotArea::setB(int val) {
+	this->universe.setB(val);
+	update();
+}
+void PlotArea::setC(int val) {
+	this->universe.setC(val);
+	update();
+}
+void PlotArea::setD(int val) {
+	this->universe.setD(val);
+	update();
+}
+void PlotArea::setX0(int val) {
+	this->universe.setX0(val);
+	update();
+}
+void PlotArea::setY0(int val) {
+	this->universe.setY0(val);
+	update();
+}
+void PlotArea::setN(int val) {
+	this->universe.setN(val);
+	update();
+}
+void PlotArea::setH(int val) {
+	this->universe.setH(val);
 	update();
 }
