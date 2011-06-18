@@ -1,2 +1,3 @@
 Makefile
 lab5qt
+moc_*.cpp
