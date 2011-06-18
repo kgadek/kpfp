@@ -2,7 +2,7 @@
 #include <cstdlib>
 
 const double y0 = 1000; //początkowa ilość ofiar
-const double x0 = 10; //początkowa ilość drapieżników
+const double x0 = 1; //początkowa ilość drapieżników
 const int n = 10000; //ilość kroków czasowych
 const double h = 0.1; //krok czasowy
 
@@ -32,6 +32,7 @@ int main() {
 		y[i+1] = max(0.0, y[i] + h * ( b*y[i] - d*x[i]*y[i] ));
 	}
 
+	printf("#\tCzas\tDrapieznikow\tOfiar\n");
 	for(i=0;i<n;++i)
 		printf("%9d\t%8.3f\t%8.3f\n",i,x[i],y[i]);
 
