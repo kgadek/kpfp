@@ -12,6 +12,8 @@ public:
 	PlotArea(QWidget *parent = 0);
 	~PlotArea();
 	QSize sizeHint() const;
+public slots:
+	void recalc(double,double,double,double,double,double,int,double);
 protected:
 	void paintEvent(QPaintEvent *);
 private:
@@ -29,8 +31,8 @@ private:
 	double c; //efektywność, z jaką drapieżnik wykorzystuje energię pozyskaną ze zjedzenia ofiar (0, 1]
 	double d; //efektywność uśmiercania ofiar przez drapieżników
 
-
 	QImage image;
+	void calculate();
 };
 
 #endif /* PLOTAREA_H_ */

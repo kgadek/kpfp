@@ -29,15 +29,7 @@ PlotArea::PlotArea(QWidget *parent) : QWidget(parent) {
 
 	x = new double[n];
 	y = new double[n];
-	xmax = x[0] = x0;
-	y[0] = y0;
-
-	for(int i=0; i+1<n; ++i) {
-		x[i+1] = max(0.0, x[i] + h * ( -a*x[i] + c*d*x[i]*y[i] ));
-		xmax = max(xmax, x[i+1]);
-		y[i+1] = max(0.0, y[i] + h * ( b*y[i] - d*x[i]*y[i] ));
-		xmax = max(xmax, y[i+1]);
-	}
+	calculate();
 }
 
 
@@ -86,3 +78,28 @@ QSize PlotArea::sizeHint() const {
 	return image.size();
 }
 
+void PlotArea::recalc(double a,double b,double c,double d,double x0,double y0,int n,double h) {
+	this->a = a;
+	this->b = b;
+	this->c = c;
+	this->d = d;
+	this->x0 = x0;
+	this->y0 = y0;
+	this->n = n;
+	this->h = h;
+	calculate();
+}
+
+void PlotArea::calculate() {
+	xmax = x[0] = x0;
+	y[0] = y0;
+
+	for(int i=0; i+1<n; ++i) {
+		x[i+1] = max(0.0, x[i] + h * ( -a*x[i] + c*d*x[i]*y[i] ));
+		xmax = max(xmax, x[i+1]);
+		y[i+1] = max(0.0, y[i] + h * ( b*y[i] - d*x[i]*y[i] ));
+		xmax = max(xmax, y[i+1]);
+	}
+
+	update();
+}
