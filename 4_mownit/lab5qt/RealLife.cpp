@@ -31,31 +31,31 @@ RealLife::~RealLife() {
 }
 
 void RealLife::calculate() {
-	xmax = x[0] = x0;
-	y[0] = y0;
+	maxXY = x[0] = x0;
+	maxXY = max(maxXY, y[0] = y0);
 
 	for(int i=0; i+1<n; ++i) {
 		x[i+1] = max(0.0, x[i] + h * ( -a*x[i] + c*d*x[i]*y[i] ));
-		xmax = max(xmax, x[i+1]);
+		maxXY = max(maxXY, x[i+1]);
 		y[i+1] = max(0.0, y[i] + h * ( b*y[i] - d*x[i]*y[i] ));
-		xmax = max(xmax, y[i+1]);
+		maxXY = max(maxXY, y[i+1]);
 	}
 }
 
-void RealLife::setA(int val) {
-	this->a = (double)val/1000.0;
+void RealLife::setA(double val) {
+	this->a = val;
 	calculate();
 }
-void RealLife::setB(int val) {
-	this->b = (double)val/1000.0;
+void RealLife::setB(double val) {
+	this->b = val;
 	calculate();
 }
-void RealLife::setC(int val) {
-	this->c = (double)val/1000.0;
+void RealLife::setC(double val) {
+	this->c = val;
 	calculate();
 }
-void RealLife::setD(int val) {
-	this->d = (double)val/1000.0;
+void RealLife::setD(double val) {
+	this->d = val;
 	calculate();
 }
 void RealLife::setX0(int val) {
@@ -68,9 +68,25 @@ void RealLife::setY0(int val) {
 }
 void RealLife::setN(int val) {
 	this->n = val;
+	delete [] x;
+	x = new double[n];
+	delete [] y;
+	y = new double[n];
 	calculate();
 }
-void RealLife::setH(int val) {
-	this->h = (double)val/1000.0;
+void RealLife::setH(double val) {
+	this->h = val;
 	calculate();
+}
+double RealLife::getX(int i) {
+	return this->x[i];
+}
+double RealLife::getY(int i) {
+	return this->y[i];
+}
+int RealLife::getN() {
+	return n;
+}
+double RealLife::getMaxXY() {
+	return this->maxXY;
 }

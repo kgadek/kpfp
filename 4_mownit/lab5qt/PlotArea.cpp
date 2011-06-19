@@ -10,7 +10,6 @@ PlotArea::PlotArea(QWidget *parent) : QWidget(parent) {
 	universe.calculate();
 }
 
-
 void PlotArea::paintEvent(QPaintEvent *) {
 	QPainter painterX(this);
 	QPainter painterY(this);
@@ -37,9 +36,9 @@ void PlotArea::paintEvent(QPaintEvent *) {
 		painterX.drawLine(0,(double)i/10.0*image.height(),image.width(),(double)i/10.0*image.height());
 	}
 
-	for(int i=1;i<universe.n;++i) {
-		pathX.lineTo((double)i/universe.n*image.width(), image.height() * (1 - universe.x[i]/universe.xmax));
-		pathY.lineTo((double)i/universe.n*image.width(), image.height() * (1 - universe.y[i]/universe.xmax));
+	for(int i=1;i<universe.getN();++i) {
+		pathX.lineTo((double)i/universe.getN()*image.width(), image.height() * (1 - universe.getX(i)/universe.getMaxXY()));
+		pathY.lineTo((double)i/universe.getN()*image.width(), image.height() * (1 - universe.getY(i)/universe.getMaxXY()));
 	}
 	pathX.lineTo(image.width(),image.height());
 	pathY.lineTo(image.width(),image.height());
@@ -64,33 +63,20 @@ QSize PlotArea::maximumSize() const {
 	return image.size();
 }
 
-void PlotArea::recalc(double a,double b,double c,double d,double x0,double y0,int n,double h) {
-	this->universe.a = a;
-	this->universe.b = b;
-	this->universe.c = c;
-	this->universe.d = d;
-	this->universe.x0 = x0;
-	this->universe.y0 = y0;
-	this->universe.n = n;
-	this->universe.h = h;
-	this->universe.calculate();
-	update();
-}
-
 void PlotArea::setA(int val) {
-	this->universe.setA(val);
+	this->universe.setA((double)val/sliderAmax);
 	update();
 }
 void PlotArea::setB(int val) {
-	this->universe.setB(val);
+	this->universe.setB((double)val/sliderBmax);
 	update();
 }
 void PlotArea::setC(int val) {
-	this->universe.setC(val);
+	this->universe.setC((double)val/sliderCmax);
 	update();
 }
 void PlotArea::setD(int val) {
-	this->universe.setD(val);
+	this->universe.setD((double)val/sliderDmax);
 	update();
 }
 void PlotArea::setX0(int val) {
@@ -106,6 +92,6 @@ void PlotArea::setN(int val) {
 	update();
 }
 void PlotArea::setH(int val) {
-	this->universe.setH(val);
+	this->universe.setH((double)val/sliderHmax);
 	update();
 }

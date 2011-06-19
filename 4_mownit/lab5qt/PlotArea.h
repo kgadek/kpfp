@@ -4,6 +4,12 @@
 #include <QtGui/QtGui>
 #include "RealLife.h"
 
+const double sliderAmax = 10000;
+const double sliderBmax = 10000;
+const double sliderCmax = 10000;
+const double sliderDmax = 10000;
+const double sliderHmax = 10000;
+
 class PlotArea : public QWidget {
 	Q_OBJECT
 public:
@@ -13,7 +19,6 @@ public:
 	QSize maximumSize() const;
 	QSize minimumSize() const;
 public slots:
-	void recalc(double,double,double,double,double,double,int,double);
 	void setA(int);
 	void setB(int);
 	void setC(int);
