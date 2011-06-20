@@ -32,11 +32,11 @@ class Exp:
     def __repr__(self):
         return '%s%s' % (self.sign < 0 and '-' or '', self.expr)
     def __mul__(self,other):
+        print 'Mul z exp'
         return Mul([self,other])
     def __add__(self,other):
+        print 'Add z exp'
         return Sum([self,other])
-    def __pow__(self,other):
-        raise NotImplemented
     
 class Sum(Exp):
     def __init__(self,expr = 1.0,sign=1):
@@ -44,9 +44,25 @@ class Sum(Exp):
     def __repr__(self):
         return '+'.join(map(lambda x: str(x), self.expr))
     def __sum__(self,other):
-        tmp = list(self.expr)
-        tmp.append(other)
-        return Sum(tmp, self.sign * other.sign)
+        print 'Sum z sum'
+        print 'Dodaję %s' % other.__class__.__name__
+        if other.__class__.__name__ in ['Sum', 'Exp']:
+            print "Dodaję %s i %s" % self, other
+            tmp = list(self.expr)
+            tmp.extend(other.expr)
+        else:
+            tmp = list(self.expr)
+            tmp.append(other)
+            return Sum(tmp, self.sign * other.sign)
+    def __mul__(self,other):
+        """ Uproszczenie wyrażenia: (a+b+c)(d+e) --> ad + bd + cd + ae + be + ce.
+        Wiemy, że (a+b+c+...) * XYZ gdzie XYZ jest (potomkiem?) Exp. """
+        print 'Mul z sum'
+        tmp = []
+        for i in self:
+            for j in other:
+                tmp.append(Mul([i,j]))
+        return Sum(tmp)
 
 class Mul(Exp):
     def __init__(self,expr = 1.0,sign=1):
@@ -54,15 +70,24 @@ class Mul(Exp):
     def __repr__(self):
         return '*'.join(map(lambda x: str(x), self.expr))
     def __mul__(self,other):
-        tmp = list(self.expr)
-        tmp.append(other)
-        return Mul(tmp, self.sign * other.sign)
+        print 'Mul z mul'
+        if isinstance(other,Mul):
+            tmp = list(self.expr)
+            tmp.extend(other.expr)
+        else:
+            tmp = list(self.expr)
+            tmp.append(other)
+            return Mul(tmp, self.sign * other.sign)
+    def __add__(self,other):
+        print 'Sum z mul'
+        return Sum([self,other])
 
 a = Exp('2')
 b = Exp('3')
 c = Exp('4')
-bc = b*c
-abc = abc
+d = Exp('5')
+e = Exp('6')
+
 
 #a = Exp('a')
 #b = Exp(['b'])
