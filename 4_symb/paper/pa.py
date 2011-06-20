@@ -3,9 +3,13 @@
 
 import math
 
-conjugation = {} # słownik odmian
-artnums = {} # numery artykułów
-wordstats = {} # statystyki słów, np 'cow' --> {idArt1:count1, idArt4:count4, idArt15:count15}
+papfile = 'pap.txt'
+odmfile = 'odm.txt'
+punctuations = ('.', ',', ':', ';', '!', '?', '-', '(', ')', '{', '}', '[', ']', '"', "'")
+
+conjugation = {} # słownik odmian : odmiana-->bezokolicznik
+artnums = {} # numery artykułów : artykuł --> ilość słów
+wordstats = {} # statystyki słów : 'cow' --> {idArt1:count1, idArt4:count4, idArt15:count15}
 
 def loadConj(filename = 'odm.txt'):
     """ Ładuje słownik odmian językowych z pliku do globalnego
@@ -20,18 +24,18 @@ def loadConj(filename = 'odm.txt'):
     finally:
         file.close()
 
-
 def unpunctuate(word):
     """ Usuwa wszelkie znaki interpunkcyjne ze słowa. """
-    endings = []
     changed = True
     while changed and word:
         changed = False
-        for i in ['.', ',', ':', ';', '!', '?', '-']:
+        for i in punctuations:
             if word.endswith(i):
                 changed = True
-                endings.append(i)
                 word = word[:-len(i)]
+            if word.startswith(i):
+                changed = True
+                word = word[len(i):]
     return word
 
 def unconjugate(word):
@@ -44,16 +48,21 @@ def unconjugate_withpunct(word):
     """ Zwraca bezokolicznik słowa (o ile istnieje w bazie)
     zachowując znaki interpunkcyjne. """
     endings = []
+    beginings = []
     changed = True
     while changed and word:
         changed = False
-        for i in ['.', ',', ':', ';', '!', '?', '-']:
+        for i in punctuations:
             if word.endswith(i):
                 changed = True
                 endings.append(i)
                 word = word[:-len(i)]
+            if word.startswith(i):
+                changed = True
+                beginnings.append(i)
+                word = word[len(i):]
     endings.reverse()
-    return unconjugate(word) + ''.join(endings)
+    return ''.join(beginings) + unconjugate(word) + ''.join(endings)
 
 def genWordStats(filename = 'papS.txt'):
     """ Generuje statystyki słów z artykułów. """
@@ -64,7 +73,7 @@ def genWordStats(filename = 'papS.txt'):
         for line in file:
             line = line.strip()
             if line.startswith('#'):
-                print '[%s]' % (line, ),
+                #print '[%s]' % (line, ),
                 i = line
                 artnums[i] = 0
             else:
@@ -113,23 +122,12 @@ def findDescWord(filename = 'papS.txt', nbest = 5):
 
 def main():
     print 'Conjugations...'
-    loadConj('odm.txt')
+    loadConj(odmfile)
     print 'Generating stats...'
-    genWordStats('pap.txt')
-    print '\nGenerating best words...'
-    findDescWord('pap.txt')
-    #try:
-    #    papfp = open('pap.txt', 'r')
-    #    for line in papfp:
-    #        if line.startswith("#"):
-    #            print line
-    #        else:
-    #            lineprint=[]
-    #            for word in line.strip().split(' '):
-    #                lineprint.append(translateword(word))
-    #            print ' '.join(lineprint)
-    #finally:
-    #    papfp.close()
+    genWordStats(papfile)
+    print 'Generating best words...'
+    findDescWord(papfile)
 
 if __name__ == '__main__':
     main()
+    
