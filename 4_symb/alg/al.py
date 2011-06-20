@@ -47,7 +47,7 @@ class Sum(Exp):
     def __iter__(self):
         return ExpIter(self.expr)
     def __repr__(self):
-        return '+'.join(map(lambda x: str(x), self.expr))
+        return '(' + '+'.join(map(lambda x: str(x), self.expr)) + ')'
     def __mul__(self,other):
         """ Uproszczenie wyrażenia: (a+b+c)(d+e) --> ad + bd + cd + ae + be + ce.
         Wiemy, że (a+b+c+...) * XYZ gdzie XYZ jest (potomkiem?) Exp. """
@@ -84,17 +84,11 @@ class Mul(Exp):
     def __add__(self,other):
         return Sum([self,other])
 
-a = Exp('2')
-b = Exp('3')
-c = Exp('4')
-d = Exp('5')
-e = Exp('6')
-
-
-#a = Exp('a')
-#b = Exp(['b'])
-#ab = a*b
-#print 'a=%s b=%s ab=%s' % (a,b,ab)
+#a = Exp('2')
+#b = Exp('3')
+#c = Exp('4')
+#d = Exp('5')
+#e = Exp('6')
 
 def operatorrank(op):
     """ Zwraca priorytet operatora/funkcji. """
@@ -116,9 +110,20 @@ def arity(operator):
 def mkexpr(op, args): 
     """ Tworzy wyrażenie zbudowane z operatora i jego argumentów. """
     #if op == '*': return Exp(args)
-    tmp = [op]
-    tmp.extend(args)
-    return tmp
+    if not isinstance(args[0],Exp):
+        args[0] = Exp(args[0])
+    if not isinstance(args[1],Exp):
+        args[1] = Exp(args[1])
+    if op == '*':
+        return args[0]*args[1]
+    if op == '-':
+        return args[0]-args[1]
+    if op == '+':
+        return args[0]+args[1]
+    
+#    tmp = [op]
+#    tmp.extend(args)
+#    return tmp
     #return '(%s %s)' % (op, ' '.join(map(lambda x: str(x), args)), ) # zwracanie lisp-str
 
 def preparse(strin):
@@ -141,14 +146,9 @@ def parse(strin):
     i = 0
     while i < len(strin):
         tk = gettok(strin[i:])
-        #print 'token=%s' % tk
-        #print ' pre op=%s' % op
-        #print ' pre ex=%s' % ex
         if tk == '(': # start nawias
-            #print ' 1'
             op.append(tk)
         elif tk == ')': # koniec nawias
-            #print ' 2'
             opt = op.pop()
             while opt != '(':
                 arty = arity(tk)
@@ -157,10 +157,8 @@ def parse(strin):
                 ex.append(mkexpr(opt,args))
                 opt = op.pop()
         elif not tk in operators: # symbol
-            #print ' 3'
             ex.append(tk)
         else: # operator
-            #print ' 4'
             if len(op) > 0 and operatorrank(tk) <= operatorrank(op[-1]): # operator o mniejszym lub równym priorytecie
                 #print ' 4a'
                 opt = op.pop()
@@ -176,14 +174,18 @@ def parse(strin):
         args = ex[-arty:]
         ex = ex[:-arty]
         ex.append(mkexpr(opt,args))
+    print op
+    print ex
     return ex
 
 if __name__ == '__main__':
     strs = ['2', '2+2', '(2+2)',
-            '(m+n)*(m-n)-(m^2-n^2)',
+            #'(m+n)*(m-n)-(m^2-n^2)',
             '2-2+2', '2+2*2',
+            '(2+3+4)*(5*6*7)',
+            '(2+3+4)*(5+6+7)',
             '2+3*4', '2*3+4', '(2+3)*4', '2+(3*4)', '(2*3)+4', '2*(3+4)',
-            '(a+b+c)*(d-e)*(1-f)*g*6^2*9*_2'
+            #'(a+b+c)*(d-e)*(1-f)*g*6^2*9*_2'
             ]
     for strin in strs:
         print strin
