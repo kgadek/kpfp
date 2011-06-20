@@ -1,15 +1,82 @@
 #!/usr/bin/env python
 # -*- coding: utf-8
 
-operators = ['+', '-', '*', '^', '_'] 
+operators = ['+', '-', '*', '^', '_']
+
+class NotImplemented: pass
+
+def listp(x):
+    """ Stwierdza, czy obiekt jest listą. """
+    return type(x) == type([])
+
+class ExpIter:
+    """ Iterator klasy Exp. """
+    def __init__(self,exprs):
+        self.exprs = exprs
+    def __iter__(self):
+        return self
+    def next(self):
+        if len(self.exprs) == 0:
+            raise StopIteration
+        tmp = self.exprs[0]
+        self.exprs = self.exprs[1:]
+        return tmp 
+
+class Exp:
+    """ Klasa bazowa, przechowująca pojedynczy przetwarzany element. """
+    def __init__(self, expr = 1.0, sign=1):
+        self.sign = sign
+        self.expr = expr
+    def __iter__(self):
+        return ExpIter(list(self.expr))
+    def __repr__(self):
+        return '%s%s' % (self.sign < 0 and '-' or '', self.expr)
+    def __mul__(self,other):
+        return Mul([self,other])
+    def __add__(self,other):
+        return Sum([self,other])
+    def __pow__(self,other):
+        raise NotImplemented
+    
+class Sum(Exp):
+    def __init__(self,expr = 1.0,sign=1):
+        Exp.__init__(self,expr,sign)
+    def __repr__(self):
+        return '+'.join(map(lambda x: str(x), self.expr))
+    def __sum__(self,other):
+        tmp = list(self.expr)
+        tmp.append(other)
+        return Sum(tmp, self.sign * other.sign)
+
+class Mul(Exp):
+    def __init__(self,expr = 1.0,sign=1):
+        Exp.__init__(self,expr,sign)
+    def __repr__(self):
+        return '*'.join(map(lambda x: str(x), self.expr))
+    def __mul__(self,other):
+        tmp = list(self.expr)
+        tmp.append(other)
+        return Mul(tmp, self.sign * other.sign)
+
+a = Exp('2')
+b = Exp('3')
+c = Exp('4')
+bc = b*c
+abc = abc
+
+#a = Exp('a')
+#b = Exp(['b'])
+#ab = a*b
+#print 'a=%s b=%s ab=%s' % (a,b,ab)
 
 def operatorrank(op):
     """ Zwraca priorytet operatora/funkcji. """
     if op == '+': return 5
     if op == '-': return 5
+    if op == '_': return 5
     if op == '*': return 7
     if op == '^': return 9
-    if op == '_': return 5
+    return 1
 
 def gettok(strin):
     """ Zwraca pojedynczy token z początku stringu strin. """
@@ -21,11 +88,23 @@ def arity(operator):
 
 def mkexpr(op, args): 
     """ Tworzy wyrażenie zbudowane z operatora i jego argumentów. """
-    return '(%s %s)' % (op, ' '.join(map(lambda x: str(x), args)), )
+    #if op == '*': return Exp(args)
+    tmp = [op]
+    tmp.extend(args)
+    return tmp
+    #return '(%s %s)' % (op, ' '.join(map(lambda x: str(x), args)), ) # zwracanie lisp-str
 
 def preparse(strin):
     """ Zwraca dobrze określone wyrażenie infiksowe (bez dwuznaczności, np. operator "-"
-    w wyrażeniu (-a) zostaje zamieniony na operator "_" . """
+    w wyrażeniu (-a) zostaje zamieniony na operator "_" .
+    Kod generalnie jest wolny, ochydny i jeszcze bardziej ochydny. """
+    if strin[0] == '-': strin = '_' + strin[1:] # OMG jakie brzydkie
+    for i in range(len(strin))[1:]:
+        if strin[i] != '-': continue
+        opf = False
+        for op in operators:
+            if strin[:i].endswith(op): opf = op
+        if opf: strin = strin[:i] + '_' + (len(strin)>i+1 and strin[i+1:] or '') # OMG jakie TO jest dopiero brzydkie...
     return strin
 
 def parse(strin):
