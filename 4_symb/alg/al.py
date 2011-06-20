@@ -30,7 +30,7 @@ class Exp:
     def __iter__(self):
         return ExpIter(list(self.expr))
     def __repr__(self):
-        return '%s%s' % (self.sign < 0 and '-' or '', self.expr)
+        return '(%s%s)' % (self.sign < 0 and '-' or '', self.expr)
     def __mul__(self,other):
         print 'Mul z exp'
         return Mul([self,other])
@@ -72,7 +72,7 @@ class Mul(Exp):
     def __iter__(self):
         return ExpIter(self.expr)
     def __repr__(self):
-        return '*'.join(map(lambda x: str(x), self.expr))
+        return '('+'*'.join(map(lambda x: str(x), self.expr))+')'
     def __mul__(self,other):
         if isinstance(other,Mul):
             tmp = list(self.expr)
@@ -110,21 +110,11 @@ def arity(operator):
 def mkexpr(op, args): 
     """ Tworzy wyrażenie zbudowane z operatora i jego argumentów. """
     #if op == '*': return Exp(args)
-    if not isinstance(args[0],Exp):
-        args[0] = Exp(args[0])
-    if not isinstance(args[1],Exp):
-        args[1] = Exp(args[1])
-    if op == '*':
-        return args[0]*args[1]
-    if op == '-':
-        return args[0]-args[1]
-    if op == '+':
-        return args[0]+args[1]
-    
-#    tmp = [op]
-#    tmp.extend(args)
-#    return tmp
-    #return '(%s %s)' % (op, ' '.join(map(lambda x: str(x), args)), ) # zwracanie lisp-str
+    args = map(lambda x: isinstance(x,Exp) and x or Exp(x), args)
+    #print 'oper %s.%s %s %s.%s' % (A,classname(A),op,B,classname(B))
+    if op == '*': return args[0]*args[1]
+    if op == '-': return args[0]+Exp(args[1],-1)
+    if op == '+': return args[0]+args[1]
 
 def preparse(strin):
     """ Zwraca dobrze określone wyrażenie infiksowe (bez dwuznaczności, np. operator "-"
@@ -174,14 +164,13 @@ def parse(strin):
         args = ex[-arty:]
         ex = ex[:-arty]
         ex.append(mkexpr(opt,args))
-    print op
-    print ex
     return ex
 
 if __name__ == '__main__':
     strs = ['2', '2+2', '(2+2)',
             #'(m+n)*(m-n)-(m^2-n^2)',
             '2-2+2', '2+2*2',
+            '(a+b)*(a+b)',
             '(2+3+4)*(5*6*7)',
             '(2+3+4)*(5+6+7)',
             '2+3*4', '2*3+4', '(2+3)*4', '2+(3*4)', '(2*3)+4', '2*(3+4)',
