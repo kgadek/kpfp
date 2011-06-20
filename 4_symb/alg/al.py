@@ -37,40 +37,43 @@ class Exp:
     def __add__(self,other):
         print 'Add z exp'
         return Sum([self,other])
-    
+
+def classname(x): return x.__class__.__name__
+
 class Sum(Exp):
     def __init__(self,expr = 1.0,sign=1):
         Exp.__init__(self,expr,sign)
+        self.expr = list(expr)
+    def __iter__(self):
+        return ExpIter(self.expr)
     def __repr__(self):
         return '+'.join(map(lambda x: str(x), self.expr))
-    def __sum__(self,other):
-        print 'Sum z sum'
-        print 'Dodaję %s' % other.__class__.__name__
-        if other.__class__.__name__ in ['Sum', 'Exp']:
-            print "Dodaję %s i %s" % self, other
-            tmp = list(self.expr)
-            tmp.extend(other.expr)
-        else:
-            tmp = list(self.expr)
-            tmp.append(other)
-            return Sum(tmp, self.sign * other.sign)
     def __mul__(self,other):
         """ Uproszczenie wyrażenia: (a+b+c)(d+e) --> ad + bd + cd + ae + be + ce.
         Wiemy, że (a+b+c+...) * XYZ gdzie XYZ jest (potomkiem?) Exp. """
-        print 'Mul z sum'
         tmp = []
         for i in self:
-            for j in other:
+            for j in other:             
                 tmp.append(Mul([i,j]))
+        return Sum(tmp)
+    def __add__(self,other):
+        if classname(other) == 'Sum':
+            tmp = list(self.expr)
+            tmp.extend(other.expr)
+            return Sum(tmp)
+        tmp = list(self.expr)
+        tmp.append(other.expr)
         return Sum(tmp)
 
 class Mul(Exp):
     def __init__(self,expr = 1.0,sign=1):
         Exp.__init__(self,expr,sign)
+        self.expr = list(expr)
+    def __iter__(self):
+        return ExpIter(self.expr)
     def __repr__(self):
         return '*'.join(map(lambda x: str(x), self.expr))
     def __mul__(self,other):
-        print 'Mul z mul'
         if isinstance(other,Mul):
             tmp = list(self.expr)
             tmp.extend(other.expr)
@@ -79,7 +82,6 @@ class Mul(Exp):
             tmp.append(other)
             return Mul(tmp, self.sign * other.sign)
     def __add__(self,other):
-        print 'Sum z mul'
         return Sum([self,other])
 
 a = Exp('2')
