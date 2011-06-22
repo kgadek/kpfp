@@ -1,33 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <unistd.h>
-#include <time.h>
-#include <signal.h>
-#include <string.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <sys/un.h>
-#include <arpa/inet.h>
-#include <fcntl.h>
-#include <sys/sysinfo.h>
-#include <sys/ioctl.h>
-
-/*
-#include <stddef.h>
-#include <netinet/in.h>
-#include <netdb.h>
-*/
-
 #include "common.h"
-
-
 #define MYPAFMAXLEN 100
 
 
-void kaczInt(int);
 void kaczIo(int);
-void kaczExit(void);
 
 
 struct kpfpMsg msg;
@@ -45,14 +20,11 @@ int main(int argc, char **argv) {
 	struct sockaddr_in svNetAddr;
 	int tmp;
 	int myPort;
-	char svName[MAXNAMELEN];
 	pid_t pid;
 	int goToSleep;
 
 	/*init*/
 	srand((uint)time(0));
-	signal(SIGINT, kaczInt);
-	atexit(kaczExit);
 	pid = getpid();
 	snprintf(clPaf, MYPAFMAXLEN, "/tmp/kpfp_csock%d",pid);
 	printf("Mój sockecik: %s\n", clPaf);
@@ -83,14 +55,14 @@ int main(int argc, char **argv) {
 		if(sockFd == -1)
 			myerror("Błąd socket!",6);
 		svNetAddr.sin_family = clNetAddr.sin_family = AF_INET;
-		clNetAddr.sin_port = htons(myPort);
+		clNetAddr.sin_port = htons((uint16_t)myPort);
 		clNetAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 		tmp = bind(sockFd, (struct sockaddr*)&clNetAddr, sizeof(clNetAddr));
 		tmp = 1;
 		tmp = setsockopt(sockFd, SOL_SOCKET, SO_REUSEADDR, &tmp, sizeof(tmp));
 		if(tmp == -1)
 			myerror("Błąd setsockopt",8);
-		svNetAddr.sin_port = htons(atoi(argv[3]));
+		svNetAddr.sin_port = htons((uint16_t)atoi(argv[3]));
 		tmp = inet_aton(argv[2], &(svNetAddr.sin_addr));
 		if(tmp == -1)
 			myerror("Błąd inet_aton",9);
@@ -151,11 +123,6 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-void kaczInt(int sigid) {
-	/*dbg*/printf("kaczInt(%d)\n",sigid);
-	_exit(0);
-}
-
 void kaczIo(int sigid) {
 	struct sysinfo prywatneInfo;
 	struct kpfpMsg incMsg;
@@ -170,7 +137,8 @@ void kaczIo(int sigid) {
 		if(tmp == -1)
 			myerror("Błąd sysinfo",13);
 		strncpy(incMsg.name, name, (uint)MAXNAMELEN);
-		snprintf(incMsg.buf, "\nJa mam nast. problemy:\n\t" \
+		snprintf(incMsg.buf, MAXBUFSIZE,
+				"\nJa mam nast. problemy:\n\t" \
 				"Ilość aktywnych problemów: %d\n\t"\
 				"Średnie obciążenie problemami: %lu\n\t"\
 				"Ilość spokoju od problemów: %lu\n\t"\
@@ -181,8 +149,4 @@ void kaczIo(int sigid) {
 				prywatneInfo.totalram);
 		sendto(sockFd, &incMsg, sizeof(incMsg), 0, addrSo, addrSi);
 	}
-}
-
-void kaczExit(void) {
-	/*dbg*/printf("kaczExit()\n");
 }
