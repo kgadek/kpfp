@@ -63,7 +63,7 @@ int main(int argc, char **argv) {
 	for(;;) { /*main fuhrer-loop*/
 		poll(fds, 2, -1);
 		if((fds[0].revents & POLLIN) == POLLIN) {
-			printf("Lokalny ziooooooooom!");
+			printf("Lokalny ziooooooooom!\n");
 			addrSi = sizeof(clAddr);
 			addrSo = (struct sockaddr*)&clAddr;
 			sockCurr = sockFd;
@@ -119,9 +119,12 @@ int main(int argc, char **argv) {
 				timeout.tv_sec = 1;
 				timeout.tv_nsec = 0;
 				ppoll(tfds, 1, &timeout, NULL);
-				if((tfds[0].revents & POLLIN) == POLLIN)
+				if((tfds[0].revents & POLLIN) == POLLIN) {
 					recvfrom(tmp, &msg, sizeof(msg), 0, clts[i].addrSo, &(clts[i].addrSi));
-
+					printf("I się dowiedziałem. Kto pyta nie błądzi! :D \n");
+					printf("Wiem, że: %s\n", msg.buf);
+				} else
+					printf("WAAT?\n");
 			} else
 				strncpy(msg.buf, "nie znalazłem takiego klienta", MAXBUFSIZE);
 		} else if(!strcmp(msg.command, "list")) {
@@ -131,6 +134,7 @@ int main(int argc, char **argv) {
 				if(clts[i].name[0] == 0)
 					continue;
 				strncat(msg.buf, clts[i].name, MAXBUFSIZE);
+				strncat(msg.buf, "\n", MAXBUFSIZE);
 			}
 			printf("Lista do wysłania: %s\n",msg.buf);
 		} else if(!strcmp(msg.command, "registerMe")) {
@@ -148,6 +152,7 @@ int main(int argc, char **argv) {
 					if(clts[i].name[0] == 0)
 						continue;
 					strncat(msg.buf, clts[i].name, MAXBUFSIZE);
+					strncat(msg.buf, "\n", MAXBUFSIZE);
 				}
 			} else
 				strncpy(msg.buf, "za dużo was tutaj! - rzekł kapitan, po czym dodał: - ARRR!!\n", MAXBUFSIZE);

@@ -29,9 +29,9 @@
 #define NEW(type) ((type*)malloc(sizeof(type)))
 #define NEWTAB(n,type) ((type*)malloc(((uint)(n))*sizeof(type)))
 
-#define MAXNAMELEN 1000
+#define MAXNAMELEN 1024
 #define MAXBUFSIZE 8196
-#define MAXCOMMANDSIZE 32
+#define MAXCOMMANDSIZE 1024
 
 
 typedef unsigned int uint;

@@ -52,16 +52,24 @@ int main(int argc, char **argv) {
 		if(argc != 4)
 			myerror("Błędna ilość argumentów.", 7);
 		sockFd = socket(PF_INET, SOCK_DGRAM, 0);
-		if(sockFd == -1)
+		if(sockFd == -1) {
 			myerror("Błąd socket!",6);
+		} else
+			printf("Socket ok\n");
 		svNetAddr.sin_family = clNetAddr.sin_family = AF_INET;
 		clNetAddr.sin_port = htons((uint16_t)myPort);
 		clNetAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 		tmp = bind(sockFd, (struct sockaddr*)&clNetAddr, sizeof(clNetAddr));
+		if(tmp == -1) {
+			myerror("Błąd bind",123);
+		} else
+			printf("Bind ok\n");
 		tmp = 1;
 		tmp = setsockopt(sockFd, SOL_SOCKET, SO_REUSEADDR, &tmp, sizeof(tmp));
-		if(tmp == -1)
+		if(tmp == -1) {
 			myerror("Błąd setsockopt",8);
+		} else
+			printf("setsockopt OK\n");
 		svNetAddr.sin_port = htons((uint16_t)atoi(argv[3]));
 		tmp = inet_aton(argv[2], &(svNetAddr.sin_addr));
 		if(tmp == -1)
@@ -76,10 +84,13 @@ int main(int argc, char **argv) {
 	strncpy(msg.command, "registerMe", (uint)MAXCOMMANDSIZE);
 	snprintf(msg.buf, MAXBUFSIZE, "%u", addrSi);
 	strncpy(msg.name,name, MAXNAMELEN);
+	printf("AAA\n");
 	tmp = sendto(sockFd, &msg, sizeof(msg), 0, addrSo, addrSi);
 	if(tmp == -1)
 		myerror("Błąd sendto",10);
+	printf("BBB\n");
 	tmp = recvfrom(sockFd, &msg, sizeof(msg), 0, addrSo, &addrSi);
+	printf("CCC\n");
 	printf("Odpowiedź: (%s:%s) %s\n", msg.name, msg.command, msg.buf);
 
 	tmp = 1;
@@ -131,7 +142,7 @@ void kaczIo(int sigid) {
 	/*dbg*/printf("kaczIo(%d)\n",sigid);
 	tmp = recvfrom(sockFd, &incMsg, sizeof(incMsg), 0, addrSo, &addrSiInc);
 	if(!strcmp(incMsg.command, "reply"))
-		printf("Wielki Serwer z Zasiedmiogórogrodu odrzekł: %s\n",msg.buf);
+		printf("Wielki Serwer z Zasiedmiogórogrodu odrzekł:\n\tbuf=%s\tname=%s\n\tcommand=%s\n",incMsg.buf, incMsg.name, incMsg.command);
 	else if(!strcmp(incMsg.command, "getinfo")) {
 		tmp = sysinfo(&prywatneInfo);
 		if(tmp == -1)
