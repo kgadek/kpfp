@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
 	goToSleep = 0;
 	while(!goToSleep) {
 		printf("Komendy:\n\t0 - logałt und kłit\n\t1 - pytaj czy jest ktokolwiek kto mógłby mieć problem\n\t2 - zapytaj czy konkretny klient ma problem\n");
-		scanf(" %d ",&tmp);
+		scanf(" %d",&tmp);
 		switch(tmp) {
 		case 0: /*gary muwałt stąd*/
 			printf("No to papatki...\n");
@@ -110,7 +110,7 @@ int main(int argc, char **argv) {
 			printf("Ey, Ty! Tak, do ciebie k***a mówię! Masz problem?\n");
 			strncpy(msg.command, "ask", (uint)MAXCOMMANDSIZE);
 			printf("\t(Podaj, kto ma mieć problem)\n");
-			scanf(" %s ", msg.buf);
+			scanf("%s ", msg.buf);
 			break;
 		default:
 			printf("Nieprawidłowe polecenie!\n");

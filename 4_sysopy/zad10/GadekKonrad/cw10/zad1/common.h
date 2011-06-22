@@ -16,6 +16,7 @@
 #include <fcntl.h>
 #include <sys/sysinfo.h>
 #include <sys/ioctl.h>
+#include <poll.h>
 
 #define myerror(str,myerrno) {\
                         fprintf(stderr,"Err #%03d (errno=%d):\n\t%s\n",myerrno,errno,str);\
@@ -40,6 +41,13 @@ struct kpfpMsg {
 	char command[MAXCOMMANDSIZE];
 	char buf[MAXBUFSIZE];
 	char name[MAXNAMELEN];
+};
+
+struct kpfpClEntry {
+	struct sockaddr *addrSo;
+	socklen_t addrSi;
+	char name[MAXNAMELEN];
+	int mode;
 };
 
 

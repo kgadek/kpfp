@@ -6,7 +6,7 @@ CFLAGS		= -ansi -pedantic -W -Wall -Wextra -Wshadow -Wformat -Winit-self\
 				-Wmissing-prototypes -Wmissing-declarations -Wno-long-long
 LDFLAGS		= -lm -ggdb -lpthread
 
-SRC			= client.c
+SRC			= client.c serv.c
 .PHONY: 	clean all ipcclean
 
 all: $(SRC:%.c=%)
