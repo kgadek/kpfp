@@ -1,9 +1,5 @@
-#include "heap.h"
 #include <stdlib.h>
-
-#define LEFT(x) (((x)<<1)+1)
-#define RIGHT(x) (((x)+1)<<1)
-#define PARENT(x) (((x)-1)>>1)
+#include "heap.h"
 
 void kpfp_heap_init(struct kpfp_heap *heap, int maxSize) {
 	heap->size = 0;
@@ -14,7 +10,7 @@ void kpfp_heap_init(struct kpfp_heap *heap, int maxSize) {
 void kpfp_heap_free(struct kpfp_heap *heap) {
 	heap->max = 0;
 	free(heap->tab);
-	head->tab = 0;
+	heap->tab = 0;
 }
 int kpfp_heap_push(struct kpfp_heap *heap, int val) {
 	int i, l, p;
