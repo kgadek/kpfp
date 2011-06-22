@@ -110,7 +110,7 @@ int main(int argc, char **argv) {
 			printf("Ey, Ty! Tak, do ciebie k***a mówię! Masz problem?\n");
 			strncpy(msg.command, "ask", (uint)MAXCOMMANDSIZE);
 			printf("\t(Podaj, kto ma mieć problem)\n");
-			scanf("%s ", msg.buf);
+			scanf(" %s", msg.buf);
 			break;
 		default:
 			printf("Nieprawidłowe polecenie!\n");

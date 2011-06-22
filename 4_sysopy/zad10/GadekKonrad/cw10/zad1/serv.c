@@ -19,6 +19,7 @@ int main(int argc, char **argv) {
 	struct sockaddr_in svNetAddr;
 	struct sockaddr_in clNetAddr;
 	struct pollfd fds[2];
+	struct pollfd tfds[1];
 	struct timespec timeout;
 	char nameA[MAXNAMELEN];
 	char nameB[MAXNAMELEN];
@@ -103,8 +104,53 @@ int main(int argc, char **argv) {
 				if(!strcmp(nameB, clts[i].name))
 					break;
 			}
+			if(i<MAXCLIENTS) {
+				printf("Mam osobę o którą ktoś inny pytał: %s...\n", nameB);
+				strncpy(msg.command, "getinfo", MAXCOMMANDSIZE);
+				if(clts[i].mode == 0) /*UNIX*/
+					tmp = sockFd;
+				else /*if(clts[i].mode == 1 */ /*INET*/
+					tmp = sockNetFd;
+				tfds[0].fd = tmp;
+				tfds[0].events = POLLIN;
+				printf("Pytam tego kogoś jak tam jego problemy...\n");
+				sendto(tmp, &msg, sizeof(msg), 0, clts[i].addrSo, clts[i].addrSi);
+				printf("Zapytałem.\n");
+				timeout.tv_sec = 1;
+				timeout.tv_nsec = 0;
+				ppoll(tfds, 1, &timeout, NULL);
+				if((tfds[0].revents & POLLIN) == POLLIN)
+					recvfrom(tmp, &msg, sizeof(msg), 0, clts[i].addrSo, &(clts[i].addrSi));
+
+			} else
+				strncpy(msg.buf, "nie znalazłem takiego klienta", MAXBUFSIZE);
 		} else if(!strcmp(msg.command, "list")) {
+			printf("Tworzę listę klientów");
+			msg.buf[0]=0;
+			for(i=0;i<MAXCLIENTS; ++i) {
+				if(clts[i].name[0] == 0)
+					continue;
+				strncat(msg.buf, clts[i].name, MAXBUFSIZE);
+			}
+			printf("Lista do wysłania: %s\n",msg.buf);
 		} else if(!strcmp(msg.command, "registerMe")) {
+			printf("Widzę Cię... <okok> zaraz Cię dodam do listy\n");
+			for(i=0;i<MAXCLIENTS && clts[i].name[0];++i) ;
+			if(i<MAXCLIENTS) {
+				strncpy(clts[i].name, msg.name, MAXNAMELEN);
+				clts[i].mode = mode;
+				clts[i].addrSi = addrSi;
+				clts[i].addrSo = (struct sockaddr*)malloc(addrSi);
+				memcpy(clts[i].addrSo, addrSo, addrSi);
+				printf("<okok> dodałem %s do listy\n", msg.name);
+				msg.buf[0] = 0;
+				for(i=0;i<MAXCLIENTS;++i) {
+					if(clts[i].name[0] == 0)
+						continue;
+					strncat(msg.buf, clts[i].name, MAXBUFSIZE);
+				}
+			} else
+				strncpy(msg.buf, "za dużo was tutaj! - rzekł kapitan, po czym dodał: - ARRR!!\n", MAXBUFSIZE);
 		} else
 			strncpy(msg.buf, "WTF? invalid command!",MAXBUFSIZE);
 		strncpy(msg.command, "reply", MAXCOMMANDSIZE);

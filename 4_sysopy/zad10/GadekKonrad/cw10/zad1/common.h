@@ -30,7 +30,7 @@
 #define NEWTAB(n,type) ((type*)malloc(((uint)(n))*sizeof(type)))
 
 #define MAXNAMELEN 1000
-#define MAXBUFSIZE 512
+#define MAXBUFSIZE 8196
 #define MAXCOMMANDSIZE 32
 
 
