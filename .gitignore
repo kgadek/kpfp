@@ -4,6 +4,7 @@
 *.tar.gz
 *.tar.bz2
 *.tar
+*.tgz
 
 # Pliki tymczasowe =========================================================
 *.bkp
@@ -61,4 +62,11 @@ private
 db/*.sqlite3
 log/*.log
 tmp/**/*
+
+# Qt Creator
+*.config
+*.creator
+*.files
+*.includes
+*.creator.user
 
