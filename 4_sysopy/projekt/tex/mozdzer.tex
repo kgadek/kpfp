@@ -1,0 +1,91 @@
+\documentclass[prodmode]{acmsmall}
+
+% Package to generate and customize Algorithm as per ACM style
+\usepackage[ruled]{algorithm2e}
+\usepackage[MeX]{polski}
+\usepackage[utf8]{inputenc}
+\renewcommand{\algorithmcfname}{ALGORYTM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+% Document starts
+\begin{document}
+
+% Page heads
+\markboth{Konrad Gądek}{Porównanie wydajności LinuxThreads i NPTL}
+
+% Title portion
+\title{Porównanie wydajności LinuxThreads i Native POSIX Thread Library}
+\author{Konrad Gądek
+\affil{Akademia Górniczo-Hutnicza}}
+
+\begin{abstract}
+Jądro Linux zaczęło wspierać wątki w wersji 1.3.56\cite{mimuw:linux} i od tego czasu nastąpił znaczący rozwój idei wielowątkowości. Dwie znane implementacje wątków w kernelu to LinuxThreads oraz Native POSIX Thread Library, która zastąpiła LinuxThreads w jądrze 2.6 i następnych\cite{wiki:ntpl-pl}. NPTL -- podobnie jak LinuxThreads -- używa procesów do abstrakcji wątków na poziomie jądra\cite{wiki:ntpl}, jednak z założenia miała odświeżyć i zwiększyć wydajność całego podsystemu\cite{redhat:nptl}. Postaram się sprawdzić, czy to się faktycznie udało, jaki jest przyrost wydajności oraz postaram się opracować API upraszczające korzystanie z wątków w typowych przypadkach ich użycia.
+\end{abstract}
+
+%\begin{bottomstuff}
+%This work is supported by the National Science Foundation, under
+%grant CNS-0435060, grant CCR-0325197 and grant EN-CS-0329609.
+%
+%Author's addresses: G. Zhou, Computer Science Department,
+%College of William and Mary; Y. Wu  {and} J. A. Stankovic,
+%Computer Science Department, University of Virginia; T. Yan,
+%Eaton Innovation Center; T. He, Computer Science Department,
+%University of Minnesota; C. Huang, Google; T. F. Abdelzaher,
+%Computer Science Department, University of Illinois at Urbana-Champaign.
+%\end{bottomstuff}
+
+\maketitle
+
+
+\section{Introduction}
+Blabla.
+
+
+% Head 1
+\section{Sect}
+
+% Head 2
+\subsection{SectSect}
+
+Blahhh.
+
+\begin{algorithm}[t]
+\SetAlgoNoLine
+\KwIn{Node $\alpha$'s ID ($ID_{\alpha}$), and node $\alpha$'s
+neighbors' IDs within two communication hops.}
+\KwOut{The frequency number ($FreNum_{\alpha}$) node $\alpha$ gets assigned.}
+$index$ = 0; $FreNum_{\alpha}$ = -1\;
+\Repeat{$FreNum_{\alpha} > -1$}{
+        $Rnd_{\alpha}$ = Random($ID_{\alpha}$, $index$)\;
+        $Found$ = $TRUE$\;
+        \For{each node $\beta$ in $\alpha$'s two communication hops
+    }{
+      $Rnd_{\beta}$ = Random($ID_{\beta}$, $index$)\;
+      \If{($Rnd_{\alpha} < Rnd_{\beta}$) \text{or} ($Rnd_{\alpha}$ ==
+          $Rnd_{\beta}$ \text{and} $ID_{\alpha} < ID_{\beta}$)\;
+      }{
+        $Found$ = $FALSE$; break\;
+      }
+        }
+     \eIf{$Found$}{
+           $FreNum_{\alpha}$ = $index$\;
+         }{
+           $index$ ++\;
+     }
+      }
+\caption{Frequency Number Computation}
+\label{alg:one}
+\end{algorithm}
+
+
+% Bibliography
+\bibliographystyle{acmsmall}
+\bibliography{bibliografia}
+
+
+\end{document}
+
