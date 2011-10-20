@@ -23,3 +23,23 @@ let transform t (x,y) = match t with
   | So -> (-.x, -.y)
   | T(a,b) -> (x+.a, b+.y)
   | Jo(s) -> (s*.x, s*.y);;
+type expr =
+  | Int of int
+  | Float of float
+  | Add of expr*expr
+  | Sub of expr*expr
+  | Mult of expr*expr
+  | Div of expr*expr
+  | Minus of expr;;
+let rec eval ex = match ex with
+  | Float(x) -> x
+  | Int(x) -> float_of_int x
+  | Add(a,b) -> (eval a) +. (eval b)
+  | Sub(a,b) -> (eval a) -. (eval b)
+  | Mult(a,b) -> (eval a) *. (eval b)
+  | Div(a,b) -> (eval a) /. (eval b)
+  | Minus(a) -> -. (eval a);;
+
+open Builder;;
+open Lexer;;
+open Parser;;
