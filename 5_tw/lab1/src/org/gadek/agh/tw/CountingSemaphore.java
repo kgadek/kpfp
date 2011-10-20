@@ -18,22 +18,21 @@ public class CountingSemaphore implements ISemaphore {
 	}
 
 	@Override
-	synchronized public void waitAndObtain() {
+	public void waitAndObtain() {
 		theX.waitAndObtain();
-		while(resources <= 0) {
+		resources--;
+		if(resources < 0) {
 			theX.release();
 			theY.waitAndObtain();
-			theX.waitAndObtain();
 		}
-		resources--;
 		theX.release();
 	}
 
 	@Override
-	synchronized public void release() {
+	public void release() {
 		theX.waitAndObtain();
 		resources++;
-		if(resources == 1) theY.release();
+		if(resources <= 0) theY.release();
 		theX.release();
 	}
 
