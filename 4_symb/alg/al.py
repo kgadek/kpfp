@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8
 
+import pdb
+
 operators = ['+', '-', '*', '^', '_']
 
 class NotImplemented: pass
@@ -8,6 +10,14 @@ class NotImplemented: pass
 def listp(x):
     """ Stwierdza, czy obiekt jest listą. """
     return type(x) == type([])
+
+def list1p(x):
+    """ Stwierdza, czy obiekt jest listą zawierającą jeden element. """
+    return listp(x) and len(x) == 1
+
+def numberp(x):
+    """ Stwierdza, czy obiekt jest liczbą. """
+    return isinstance(x,int) or isinstance(x,float)
 
 class ExpIter:
     """ Iterator klasy Exp. """
@@ -30,24 +40,42 @@ class Exp:
     def __iter__(self):
         return ExpIter(list(self.expr))
     def __repr__(self):
-        return '(%s%s)' % (self.sign < 0 and '-' or '', self.expr)
+        #return '(%s%s)' % (self.sign < 0 and '-' or '', self.expr)
+        return 'E%s(%s)' % (self.sign < 0 and '-' or '', self.expr)
     def __mul__(self,other):
         print 'Mul z exp'
         return Mul([self,other])
     def __add__(self,other):
         print 'Add z exp'
         return Sum([self,other])
+    def __len__(self): return len(self.expr)
+    def simplify(self):
+        print "Upraszczam siebie: E %s --> %s" % (self.expr, self)
+        oldex = self.expr
+        olds = self
+        if listp(self.expr):
+            for i in self.expr:
+                if isinstance(i,Exp): i.simplify()
+        ret = self # possible bug: to przecież nie jest kopiowanie
+        # 1. E-(E(2))
+        if not listp(ret.expr) and isinstance(ret.expr,Exp):
+            if hasattr(ret.expr,"sign"):
+                ret.expr.sign = ret.expr.sign * self.sign
+            ret = ret.expr
+        print "Uproszczono: E %s --> %s ===> %s --> %s" % (oldex, olds, ret.expr, ret)
+        self = ret
+        return ret
 
 def classname(x): return x.__class__.__name__
 
 class Sum(Exp):
     def __init__(self,expr = 1.0,sign=1):
-        Exp.__init__(self,expr,sign)
         self.expr = list(expr)
     def __iter__(self):
         return ExpIter(self.expr)
     def __repr__(self):
-        return '(' + '+'.join(map(lambda x: str(x), self.expr)) + ')'
+        #return '(' + '+'.join(map(lambda x: str(x), self.expr)) + ')'
+        return 'S(' + ', '.join(map(lambda x: str(x), self.expr)) + ')'
     def __mul__(self,other):
         """ Uproszczenie wyrażenia: (a+b+c)(d+e) --> ad + bd + cd + ae + be + ce.
         Wiemy, że (a+b+c+...) * XYZ gdzie XYZ jest (potomkiem?) Exp. """
@@ -64,6 +92,11 @@ class Sum(Exp):
         tmp = list(self.expr)
         tmp.append(other.expr)
         return Sum(tmp)
+    def simplify(self):
+        print "Upraszczam siebie: S %s --> %s\n" % (self.expr, self)
+        for i in self.expr:
+            if isinstance(i,Exp): i.simplify()
+        return self
 
 class Mul(Exp):
     def __init__(self,expr = 1.0,sign=1):
@@ -72,7 +105,7 @@ class Mul(Exp):
     def __iter__(self):
         return ExpIter(self.expr)
     def __repr__(self):
-        return '('+'*'.join(map(lambda x: str(x), self.expr))+')'
+        return 'M('+', '.join(map(lambda x: str(x), self.expr))+')'
     def __mul__(self,other):
         if isinstance(other,Mul):
             tmp = list(self.expr)
@@ -83,12 +116,11 @@ class Mul(Exp):
             return Mul(tmp, self.sign * other.sign)
     def __add__(self,other):
         return Sum([self,other])
-
-#a = Exp('2')
-#b = Exp('3')
-#c = Exp('4')
-#d = Exp('5')
-#e = Exp('6')
+    def simplify(self):
+        print "Upraszczam siebie: M %s --> %s\n" % (self.expr, self)
+        for i in self.expr:
+            if isinstance(i,Exp): i.simplify()
+        return self
 
 def operatorrank(op):
     """ Zwraca priorytet operatora/funkcji. """
@@ -100,7 +132,8 @@ def operatorrank(op):
     return 1
 
 def gettok(strin):
-    """ Zwraca pojedynczy token z początku stringu strin. """
+    """ Zwraca pojedynczy token z początku stringu strin.
+        TODO: ta wersja nie obsługuje liczb/symboli wieloznakowych. """
     return strin[0]
 
 def arity(operator):
@@ -111,6 +144,8 @@ def mkexpr(op, args):
     """ Tworzy wyrażenie zbudowane z operatora i jego argumentów. """
     #if op == '*': return Exp(args)
     args = map(lambda x: isinstance(x,Exp) and x or Exp(x), args)
+    print "Upraszczam: %s" % (args,)
+    args = map(lambda x: x.simplify(), args)
     #print 'oper %s.%s %s %s.%s' % (A,classname(A),op,B,classname(B))
     if op == '*': return args[0]*args[1]
     if op == '-': return args[0]+Exp(args[1],-1)
@@ -131,6 +166,7 @@ def preparse(strin):
 
 def parse(strin):
     """ Parsuje dobrze określone wyrażenie infiksowe i zwraca wyrażenie w postaci prefiksowej, uproszczonej. """
+    strin = preparse(strin)
     op = []
     ex = []
     i = 0
@@ -166,18 +202,22 @@ def parse(strin):
         ex.append(mkexpr(opt,args))
     return ex
 
-if __name__ == '__main__':
-    strs = ['2', '2+2', '(2+2)',
-            #'(m+n)*(m-n)-(m^2-n^2)',
-            '2-2+2', '2+2*2',
-            '(a+b)*(a+b)',
-            '(2+3+4)*(5*6*7)',
-            '(2+3+4)*(5+6+7)',
-            '2+3*4', '2*3+4', '(2+3)*4', '2+(3*4)', '(2*3)+4', '2*(3+4)',
-            #'(a+b+c)*(d-e)*(1-f)*g*6^2*9*_2'
-            ]
+strs = ['2', '2+2', '(2+2)',
+        #'(m+n)*(m-n)-(m^2-n^2)',
+        '2-2+2', '2+2*2',
+        '(a+b)*(a+b)',
+        '(2+3+4)*(5*6*7)',
+        '(2+3+4)*(5+6+7)',
+        '2+3*4', '2*3+4', '(2+3)*4', '2+(3*4)', '(2*3)+4', '2*(3+4)',
+        #'(a+b+c)*(d-e)*(1-f)*g*6^2*9*_2'
+        ]
+
+def main():
     for strin in strs:
         print strin
-        print parse(preparse(strin))
-        print '===================================================================================================='
+        print parse(strin)
+        print '==========================================================='
     
+if __name__ == '__main__':
+    main()
+
