@@ -36,87 +36,75 @@ public class FineList implements MyList {
 		public void unlock() {
 			this.l.unlock();
 		}
-		
 	}
 	
 	private Node head;
-	private Lock headLock;
 
 	public FineList() {
-		head = null;
-		headLock = new ReentrantLock();
+		head = new Node(this);
 	}
 
 	@Override
 	public boolean contains(Object o) {
 		assert(o != null);
-		headLock.lock();
 		Node curr = head;
-		while(curr != null) {
-			if(o.equals(curr.getX())) {
-				return true;
-			}
+		curr.lock();
+		Node next = head.getN();
+		while(next != null) {
+			next.lock();
+			if(o.equals(next.getX()))
+				break;
+			curr.unlock();
+			curr = next;
+			next = curr.getN();
 		}
-		return false;
+		curr.unlock();
+		if(next == null)
+			return false;
+		next.unlock();
+		return true;
 	}
 
 	@Override
 	public boolean remove(Object o) {
 		assert(o != null);
-		headLock.lock();
 		Node curr = head;
 		curr.lock();
-		if(o.equals(curr.getX())) {
-			head = curr.getN();
-			headLock.unlock();
-			curr.unlock();
-			return true;
-		}
-		headLock.unlock();
-		Node next = null;
-		while(true) {
-			next = curr.getN();
-			if(next == null) {
-				curr.unlock();
-				return false;
-			}
+		Node next = head.getN();
+		while(next != null) {
 			next.lock();
-			if(o.equals(next.getX())) {
-				curr.setN(next.getN());
-				next.setN(null);
-				curr.unlock();
-				next.unlock();
-				return true;
-			}
+			if(o.equals(next.getX()))
+				break;
 			curr.unlock();
 			curr = next;
+			next = curr.getN();
 		}
+		if(next == null) {
+			curr.unlock();
+			return false;
+		}
+		curr.setN(next.getN());
+		next.setN(null);
+		curr.unlock();
+		next.unlock();
+		return true;
 	}
 
 	@Override
 	public boolean add(Object o) {
 		Node nnode = new Node(o);
-		headLock.lock();
-		if(head == null) {
-			head = nnode;
-			headLock.unlock();
-			return true;
-		}
 		Node curr = head;
-		Node next = null;
 		curr.lock();
-		headLock.unlock();
-		while(true) {
-			if(curr.getN() == null) {
-				curr.setN(nnode);
-				curr.unlock();
-				return true;
-			} 
-			next = curr.getN();
+		Node next = head.getN();
+		while(next != null) {
 			next.lock();
 			curr.unlock();
 			curr = next;
+			next = curr.getN();
 		}
+		curr.setN(nnode);
+		curr.unlock();
+		return true;
 	}
 
 }
