@@ -1,4 +1,4 @@
-package org.gadek.agh.tw.lab2.zad1;
+package org.gadek.agh.tw.lab2;
 
 import java.util.concurrent.Semaphore;
 
@@ -44,6 +44,7 @@ public class ResourceMgr {
 	static class ProducerSem extends Thread {
 		private int idx;
 		public ProducerSem(ResourceMgr resourceManager) {
+			super();
 			idx = 0;
 		}
 		@Override
@@ -55,7 +56,7 @@ public class ResourceMgr {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println("ProducerSem made " + (res[idx = ((idx+1) % res.length)] = 7));
+				System.out.println("ProducerSem made " + (res[idx = (idx+1) % res.length] = 7));
 				occupied.release();
 			}
 		}
@@ -64,6 +65,7 @@ public class ResourceMgr {
 	static class ConsumerSem extends Thread {
 		private int idx;
 		public ConsumerSem(ResourceMgr resourceManager) {
+			super();
 			idx = 0;
 		}
 		@Override
@@ -75,7 +77,7 @@ public class ResourceMgr {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				System.out.println("ConsumerSem got " + res[idx = ((idx+1) % res.length)]);
+				System.out.println("ConsumerSem got " + res[idx = (idx+1) % res.length]);
 				free.release();
 			}
 		}
@@ -84,6 +86,7 @@ public class ResourceMgr {
 	static class ProducerMon extends Thread {
 		private ResourceMgr resMgr = null;
 		public ProducerMon(ResourceMgr resourceManager) {
+			super();
 			resMgr = resourceManager;
 		}
 		@Override
@@ -102,6 +105,7 @@ public class ResourceMgr {
 	static class ConsumerMon extends Thread {
 		private ResourceMgr resMgr = null;
 		public ConsumerMon(ResourceMgr resourceManager) {
+			super();
 			resMgr = resourceManager;
 		}
 		@Override
