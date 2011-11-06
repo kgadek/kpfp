@@ -24,3 +24,20 @@ open Builder;;
 parse "1 + 2 + 3";;
 let calc exstr = Expr.eval(parse exstr);;
 *)
+
+let rec simplify_expr ex = match ex with
+  | Float(x) -> Float x
+  | Int(x) -> Int x
+  | Add(Int 0, a)
+  | Add(Float 0.0, a)
+  | Add(a, Int 0)
+  | Add(a, Float 0.0) -> simplify_expr(a)
+  | Mult(Int 1, a)
+  | Mult(Float 1.0, a)
+  | Mult(a, Int 1)
+  | Mult(a, Float 1.0) -> simplify_expr(a)
+  | Add(a,b) -> Add(simplify_expr(a), simplify_expr(b))
+  | Mult(a,b) -> Mult(simplify_expr(a), simplify_expr(b))
+  | Minus(a) -> Minus(simplify_expr(a))
+  | Div(a,b) -> Div(simplify_expr(a), simplify_expr(b))
+  | Sub(a,b) -> Sub(simplify_expr(a), simplify_expr(b));;
