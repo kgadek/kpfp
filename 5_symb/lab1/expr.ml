@@ -28,16 +28,21 @@ let calc exstr = Expr.eval(parse exstr);;
 let rec simplify_expr ex = match ex with
   | Float(x) -> Float x
   | Int(x) -> Int x
-  | Add(Int 0, a)
-  | Add(Float 0.0, a)
-  | Add(a, Int 0)
-  | Add(a, Float 0.0) -> simplify_expr(a)
-  | Mult(Int 1, a)
-  | Mult(Float 1.0, a)
-  | Mult(a, Int 1)
-  | Mult(a, Float 1.0) -> simplify_expr(a)
-  | Add(a,b) -> Add(simplify_expr(a), simplify_expr(b))
-  | Mult(a,b) -> Mult(simplify_expr(a), simplify_expr(b))
+  | Add(a, b) when a = Int 0 || a = Float 0.0 -> simplify_expr(b)
+  | Add(a, b) when b = Int 0 || b = Float 0.0 -> simplify_expr(a)
+  | Mult(a, b) when a = Int 1 || a = Float 1.0 -> simplify_expr(b)
+  | Mult(a, b) when b = Int 1 || b = Float 1.0 -> simplify_expr(a)
+  | Add(a,b) -> (let ap = simplify_expr(a) and bp = simplify_expr(b) in
+		 print_string ".";
+		 if ((a <> ap) || (b <> bp)) then
+		   simplify_expr(Add(ap, bp))
+		 else
+		   Add(ap,bp))
+  | Mult(a,b) -> (let ap = simplify_expr(a) and bp = simplify_expr(b) in
+		  if (a <> ap) || (b <> bp) then
+		    simplify_expr(Mult(ap, bp))
+		  else
+		    Mult(ap,bp))
   | Minus(a) -> Minus(simplify_expr(a))
   | Div(a,b) -> Div(simplify_expr(a), simplify_expr(b))
   | Sub(a,b) -> Sub(simplify_expr(a), simplify_expr(b));;
