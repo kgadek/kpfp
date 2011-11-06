@@ -47,7 +47,7 @@ let rec simplify_expr ex = match ex with
   | Div(a,b) -> Div(simplify_expr(a), simplify_expr(b))
   | Sub(a,b) -> Sub(simplify_expr(a), simplify_expr(b));;
 
-let print_expr ex =
+let print_expr ex = (* the ugly one. But works ∀ my test cases *)
   let rec pr_expr ex = match ex with
     | Int(a) -> string_of_int a
     | Float(a) -> string_of_float a
