@@ -32,6 +32,8 @@ core.*
 # MASM
 *.exe
 *.obj
+# Erlang
+*.beam
 
 # Ustawienia IDE ===========================================================
 # Eclipse
