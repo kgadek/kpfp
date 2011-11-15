@@ -43,7 +43,10 @@ SHORTHOSTNAME                           {WORD}
 SHORTHOST                               {WORD}\.{PORT}
 
 IPLINE									^{TIMESTAMP}{SP}+IP{SP}+({IP}|{HOSTNAME})\.(80){1,2}{SP}+.*$
-OTHER									^{TIMESTAMP}{SP}+{WORD}{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}){SP}+>{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}):{SP}+.*$
+OTHERIP									^{TIMESTAMP}{SP}+IP{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}){SP}+>{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}):{SP}+.*$
+OTHERARP								^{TIMESTAMP}{SP}+arp{SP}+{ALPHADIGITDASH}+{SP}+.*$
+OTHER   								^{TIMESTAMP}{SP}+{WORD}{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}){SP}+>{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}):{SP}+.*$
+EMPTY                                   ^\ +$
 UNMATCHED                               ^.*$
 
 %%
@@ -57,12 +60,21 @@ UNMATCHED                               ^.*$
                                             //printf("%s",b+3);
                                             addUnique(b+3,&root);
 										}
+{OTHERIP}								{
+                                            //printf("OTHER IP ### %s",yytext);
+                                        }
+{OTHERARP}                              {
+                                            //printf("OTHER ARP ### %s",yytext);
+                                        }
 {OTHER}									{
                                             //printf("OTHER ### %s",yytext);
                                         }
+{EMPTY}                                 {
+                                            //printf("EMPTY ### %s",yytext);
+                                        }
 {UNMATCHED}								{
                                             //printf("UNMATCHED ### %s",yytext);
-                                            fprintf(stderr,"Błędny format: %s\n",yytext);
+                                            fprintf(stderr,"Błędny format: >%s<\n",yytext);
                                             exit(1);
                                         }
 
