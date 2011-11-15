@@ -2,6 +2,7 @@
 
 %{
 #include <stdio.h>
+#include <string.h>
 %}
 
 WHITESPACE								[ 	]
@@ -23,8 +24,15 @@ OTHER									^.*$
 
 %%
 
-{IPLINE}								printf("IPLINE ### %s",yytext);
-{OTHER}									printf("OTHER ### %s",yytext);
+{IPLINE}								{
+											//printf("IPLINE ### %s\n",yytext);
+											char* b = strstr(yytext, "IP");
+											//printf("IP ### %s\n",b+3);
+											char* c = strstr(b+3," ");
+											c[0]=0;
+											printf("%s",b+3);
+										}
+{OTHER}									{} //printf("OTHER ### %s",yytext);
 
 %%
 
