@@ -4,6 +4,7 @@
 #include <stdio.h>
 %}
 
+WHITESPACE								[ 	]
 DIGIT									[0-9]
 ALPHA									[a-zA-Z]
 ALPHADIGIT								[a-zA-Z0-9]
@@ -14,13 +15,16 @@ IP_WPORT								{IP}\.{PORT}
 DOMAINLABEL								{ALPHADIGIT}|{ALPHADIGIT}{ALPHADIGITDASH}*{ALPHADIGIT}
 TOPLABEL								{ALPHA}|{ALPHA}{ALPHADIGITDASH}*{ALPHADIGIT}
 HOSTNAME								({DOMAINLABEL}\.)+{TOPLABEL}
-HOST									{HOSTNAME}\.PORT
+HOST									{HOSTNAME}\.{PORT}
+TIMESTAMP								({DIGIT}{2}:){2}{DIGIT}{2}\.{DIGIT}+
+
+IPLINE									^{TIMESTAMP}{WHITESPACE}+IP{WHITESPACE}+({IP}|{HOSTNAME})\.(80){1,2}{WHITESPACE}+.*$
+OTHER									^.*$
 
 %%
 
-{IP}									printf("\n######## IP: %s\n",yytext);
-{HOSTNAME}								printf("\n######## HOSTNAME: %s\n",yytext);
-
+{IPLINE}								printf("IPLINE ### %s",yytext);
+{OTHER}									printf("OTHER ### %s",yytext);
 
 %%
 
