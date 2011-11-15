@@ -44,7 +44,7 @@ SHORTHOST                               {WORD}\.{PORT}
 
 IPLINE									^{TIMESTAMP}{SP}+IP{SP}+({IP}|{HOSTNAME})\.(80){1,2}{SP}+.*$
 OTHERIP									^{TIMESTAMP}{SP}+IP{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}){SP}+>{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}):{SP}+.*$
-OTHERARP								^{TIMESTAMP}{SP}+arp{SP}+{ALPHADIGITDASH}+{SP}+.*$
+OTHERARP								^{TIMESTAMP}{SP}+arp{SP}+{ALPHADIGITDASH}+{SP}+{HOSTNAME}{SP}+"(Broadcast) "?{SP}*tell{SP}+{HOSTNAME}.*$
 OTHER   								^{TIMESTAMP}{SP}+{WORD}{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}){SP}+>{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}):{SP}+.*$
 EMPTY                                   ^\ +$
 UNMATCHED                               ^.*$
