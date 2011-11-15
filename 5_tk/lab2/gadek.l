@@ -2,13 +2,34 @@
 
 %{
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+struct _node {
+    char *str;
+    struct _node* next;
+} *root;
+typedef struct _node node;
+
+
+void addUnique(char *add, struct _node **n) {
+    if( (*n)==0 ) {
+        (*n)=(node*)malloc(sizeof(node));
+        (*n)->str = malloc(strlen(add)+1);
+        strcpy((*n)->str, add);
+        (*n)->next = (node*)0;
+    } else if( strcmp((*n)->str, add))
+        addUnique(add,&((*n)->next));
+     // wpp. znaleziono -> koniec
+}
 %}
 
-WHITESPACE								[ 	]
+
+SP								[ 	]
 DIGIT									[0-9]
 ALPHA									[a-zA-Z]
 ALPHADIGIT								[a-zA-Z0-9]
+WORD                                    {ALPHA}{ALPHADIGIT}*
 ALPHADIGITDASH							([a-zA-Z0-9]|-)
 PORT									[1-9][0-9]+
 IP										[1-9][0-9]*\.[1-9][0-9]*\.[1-9][0-9]*\.[1-9][0-9]*
@@ -18,9 +39,12 @@ TOPLABEL								{ALPHA}|{ALPHA}{ALPHADIGITDASH}*{ALPHADIGIT}
 HOSTNAME								({DOMAINLABEL}\.)+{TOPLABEL}
 HOST									{HOSTNAME}\.{PORT}
 TIMESTAMP								({DIGIT}{2}:){2}{DIGIT}{2}\.{DIGIT}+
+SHORTHOSTNAME                           {WORD}
+SHORTHOST                               {WORD}\.{PORT}
 
-IPLINE									^{TIMESTAMP}{WHITESPACE}+IP{WHITESPACE}+({IP}|{HOSTNAME})\.(80){1,2}{WHITESPACE}+.*$
-OTHER									^.*$
+IPLINE									^{TIMESTAMP}{SP}+IP{SP}+({IP}|{HOSTNAME})\.(80){1,2}{SP}+.*$
+OTHER									^{TIMESTAMP}{SP}+{WORD}{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}){SP}+>{SP}+({IP_WPORT}|{HOST}|{SHORTHOST}):{SP}+.*$
+UNMATCHED                               ^.*$
 
 %%
 
@@ -30,14 +54,28 @@ OTHER									^.*$
 											//printf("IP ### %s\n",b+3);
 											char* c = strstr(b+3," ");
 											c[0]=0;
-											printf("%s",b+3);
+                                            //printf("%s",b+3);
+                                            addUnique(b+3,&root);
 										}
-{OTHER}									{} //printf("OTHER ### %s",yytext);
+{OTHER}									{
+                                            //printf("OTHER ### %s",yytext);
+                                        }
+{UNMATCHED}								{
+                                            //printf("UNMATCHED ### %s",yytext);
+                                            fprintf(stderr,"Błędny format: %s\n",yytext);
+                                            exit(1);
+                                        }
 
 %%
 
+
 int main() {
+    root = (node*)0;
 	yylex();
+    while(root != 0) {
+        printf("%s\n", root->str);
+        root = root->next;
+    }
 	return 0;
 }
 
