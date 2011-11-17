@@ -1,5 +1,5 @@
 -module(ex3).
--export([procesUniw/2, procesC1/0, procesC2/0, procesC2B/0, procesC3/0]).
+-export([procesUniw/2, procesC1/0, procesC2/0, procesC2B/0, procesC3/0, procesUniwIt/4]).
 -author("Konrad Gadek").
 
 %% Uniwersalny proces. Wysy³a co 1s do Pid wiadomoœæ Msg.
@@ -10,6 +10,11 @@ procesUniw(Pid,Msg,Iter) ->
 	timer:sleep(1000),
 	Pid ! {self(), Msg, Iter},
 	procesUniw(Pid,Msg,Iter+1).
+
+procesUniwIt(Pid,Msg,Iter,MaxIter) ->
+	Iter < MaxIter andalso
+		Pid ! {self(), Msg, Iter},
+		procesUniwIt(Pid, Msg, Iter+1, MaxIter).
 
 %% Proces C1: odbiera tylko aaa oraz bbb (na przemian).
 procesC1() ->
