@@ -1,0 +1,1179 @@
+10:13:19.987226 IP GRAF2.1374 > student.uci.agh.edu.pl.22: S 889246656:889246656(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:19.987974 IP student.uci.agh.edu.pl.22 > GRAF2.1374: S 349401649:349401649(0) ack 889246657 win 24820 <nop,nop,sackOK,mss 1460>
+10:13:19.988317 IP GRAF2.1374 > student.uci.agh.edu.pl.22: . ack 1 win 65535
+10:13:20.006832 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  11356+ PTR? 127.99.156.149.in-addr.arpa. (45)
+10:13:20.006873 IP student.uci.agh.edu.pl.54836 > GRAF2.113: S 349566443:349566443(0) win 24820 <nop,nop,sackOK,mss 1460>
+10:13:20.007362 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  11356 NXDomain* 0/1/0 (135)
+10:13:20.019321 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  17758+ PTR? 53.99.156.149.in-addr.arpa. (44)
+10:13:20.019981 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  17758* 1/2/3 (197)
+10:13:20.088749 IP wind.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:20.838727 IP wind.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:21.004995 IP student.uci.agh.edu.pl.54836 > GRAF2.113: R 349566444:349566444(0) win 24820
+10:13:21.005533 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 1:26(25) ack 1 win 24820
+10:13:21.006525 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1:28(27) ack 26 win 65510
+10:13:21.006993 IP student.uci.agh.edu.pl.22 > GRAF2.1374: . ack 28 win 24820
+10:13:21.011649 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  12894+ PTR? 124.99.156.149.in-addr.arpa. (45)
+10:13:21.012350 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  12894* 1/2/3 (198)
+10:13:21.014378 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 26:634(608) ack 28 win 24820
+10:13:21.028889 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 28:500(472) ack 634 win 64902
+10:13:21.029351 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 500:516(16) ack 634 win 64902
+10:13:21.029717 IP student.uci.agh.edu.pl.22 > GRAF2.1374: . ack 516 win 24820
+10:13:21.055076 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 634:1058(424) ack 516 win 24820
+10:13:21.242532 IP GRAF2.1374 > student.uci.agh.edu.pl.22: . ack 1058 win 64478
+10:13:21.811626 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 516:932(416) ack 1058 win 64478
+10:13:21.904827 IP student.uci.agh.edu.pl.22 > GRAF2.1374: . ack 932 win 24820
+10:13:22.342262 IP comma.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:22.370459 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 1058:1794(736) ack 932 win 24820
+10:13:22.554995 IP GRAF2.1374 > student.uci.agh.edu.pl.22: . ack 1794 win 65535
+10:13:23.091988 IP comma.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:23.487659 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 932:948(16) ack 1794 win 65535
+10:13:23.488538 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 948:1000(52) ack 1794 win 65535
+10:13:23.489100 IP student.uci.agh.edu.pl.22 > GRAF2.1374: . ack 1000 win 24820
+10:13:23.489416 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 1794:1846(52) ack 1000 win 24820
+10:13:23.646852 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  30801+ A? www.google.pl. (31)
+10:13:23.648700 IP GRAF2.1374 > student.uci.agh.edu.pl.22: . ack 1846 win 65483
+10:13:23.707102 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  30801 3/10/10[|domain]
+10:13:23.758565 IP GRAF2.1376 > 66.102.9.99.80: S 2431371921:2431371921(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:23.820238 IP 66.102.9.99.80 > GRAF2.1376: S 3485505456:3485505456(0) ack 2431371922 win 8190 <mss 1460>
+10:13:23.820599 IP GRAF2.1376 > 66.102.9.99.80: . ack 1 win 65535
+10:13:23.821470 IP GRAF2.1376 > 66.102.9.99.80: P 1:466(465) ack 1 win 65535
+10:13:23.841996 IP comma.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:23.878924 IP 66.102.9.99.80 > GRAF2.1376: . ack 466 win 7725
+10:13:23.880371 IP 66.102.9.99.80 > GRAF2.1376: . ack 466 win 6432
+10:13:23.891497 IP 66.102.9.99.80 > GRAF2.1376: P 1431:1636(205) ack 466 win 6432
+10:13:23.891767 IP GRAF2.1376 > 66.102.9.99.80: . ack 1 win 65535
+10:13:23.892105 IP 66.102.9.99.80 > GRAF2.1376: . 1:1431(1430) ack 466 win 6432
+10:13:23.892463 IP GRAF2.1376 > 66.102.9.99.80: . ack 1636 win 65535
+10:13:24.091060 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  51025+ PTR? 99.9.102.66.in-addr.arpa. (42)
+10:13:24.186635 IP GRAF2.1063 > luke.icsr.agh.edu.pl.53:  34129+ A? toolbarqueries.google.com. (43)
+10:13:24.297127 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  51025 NXDomain* 0/1/0 (102)
+10:13:24.297762 IP GRAF2.137 > 66.102.9.99.137: UDP, length: 50
+10:13:24.338636 IP wind.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:24.364343 IP luke.icsr.agh.edu.pl.53 > GRAF2.1063:  34129 2/4/4[|domain]
+10:13:24.400314 IP GRAF2.1377 > 216.239.59.104.80: S 1048304281:1048304281(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:24.456464 IP 216.239.59.104.80 > GRAF2.1377: S 1981174880:1981174880(0) ack 1048304282 win 8190 <mss 1460>
+10:13:24.456835 IP GRAF2.1377 > 216.239.59.104.80: . ack 1 win 65535
+10:13:24.457454 IP GRAF2.1377 > 216.239.59.104.80: P 1:410(409) ack 1 win 65535
+10:13:24.514188 IP 216.239.59.104.80 > GRAF2.1377: . ack 410 win 7781
+10:13:24.514834 IP 216.239.59.104.80 > GRAF2.1377: . ack 410 win 6432
+10:13:24.528973 IP 216.239.59.104.80 > GRAF2.1377: P 1:175(174) ack 410 win 6432
+10:13:24.742439 IP GRAF2.1377 > 216.239.59.104.80: . ack 175 win 65361
+10:13:25.088632 IP wind.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:25.789244 IP GRAF2.137 > 66.102.9.99.137: UDP, length: 50
+10:13:26.596436 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: S 3076937488:3076937488(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:26.597366 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: S 1164017957:1164017957(0) ack 3076937489 win 24820 <nop,nop,sackOK,mss 1460>
+10:13:26.597706 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 1 win 65535
+10:13:26.598407 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: P 1:380(379) ack 1 win 65535
+10:13:26.599104 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . ack 380 win 24820
+10:13:26.603146 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 1:1461(1460) ack 380 win 24820
+10:13:26.603459 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 1461:2921(1460) ack 380 win 24820
+10:13:26.603680 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 2921 win 65535
+10:13:26.603705 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 2921:4381(1460) ack 380 win 24820
+10:13:26.604511 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 4381:5423(1042) ack 380 win 24820
+10:13:26.604852 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 5423 win 65535
+10:13:26.701538 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: P 380:645(265) ack 5423 win 65535
+10:13:26.703687 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 5423:6883(1460) ack 645 win 24820
+10:13:26.703996 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 6883:8343(1460) ack 645 win 24820
+10:13:26.704217 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 8343 win 65535
+10:13:26.704242 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 8343:9803(1460) ack 645 win 24820
+10:13:26.704427 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 9803:11263(1460) ack 645 win 24820
+10:13:26.704629 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 11263 win 65535
+10:13:26.704647 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 11263:12723(1460) ack 645 win 24820
+10:13:26.705253 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 12723:14183(1460) ack 645 win 24820
+10:13:26.705592 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 14183 win 65535
+10:13:26.705639 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 14183:15643(1460) ack 645 win 24820
+10:13:26.705776 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 15643:17103(1460) ack 645 win 24820
+10:13:26.705989 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 17103 win 64915
+10:13:26.706033 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 17103:18563(1460) ack 645 win 24820
+10:13:26.706169 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 18563:20023(1460) ack 645 win 24820
+10:13:26.706337 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 20023 win 61995
+10:13:26.706351 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 20023:21483(1460) ack 645 win 24820
+10:13:26.706606 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 21483:22943(1460) ack 645 win 24820
+10:13:26.706828 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 22943 win 59075
+10:13:26.706861 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 22943:24403(1460) ack 645 win 24820
+10:13:26.706997 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 24403:25863(1460) ack 645 win 24820
+10:13:26.707166 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 25863 win 56155
+10:13:26.707187 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 25863:27323(1460) ack 645 win 24820
+10:13:26.707306 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 27323:28783(1460) ack 645 win 24820
+10:13:26.707472 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 28783 win 53235
+10:13:26.707501 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 28783:30243(1460) ack 645 win 24820
+10:13:26.707625 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 30243:30589(346) ack 645 win 24820
+10:13:26.707793 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 30589 win 51429
+10:13:26.774467 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: S 1116771056:1116771056(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:26.775176 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: S 1164251707:1164251707(0) ack 1116771057 win 24820 <nop,nop,sackOK,mss 1460>
+10:13:26.775499 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 1 win 65535
+10:13:26.776921 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: P 1:266(265) ack 1 win 65535
+10:13:26.777596 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . ack 266 win 24820
+10:13:26.779209 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 1:1461(1460) ack 266 win 24820
+10:13:26.779511 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 1461:2921(1460) ack 266 win 24820
+10:13:26.779731 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 2921 win 65535
+10:13:26.779755 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 2921:4381(1460) ack 266 win 24820
+10:13:26.780797 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 30589 win 65535
+10:13:26.780858 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 4381:5841(1460) ack 266 win 24820
+10:13:26.781126 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 5841 win 65535
+10:13:26.781147 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 5841:7301(1460) ack 266 win 24820
+10:13:26.781293 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 7301:8761(1460) ack 266 win 24820
+10:13:26.781506 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 8761 win 65535
+10:13:26.782161 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 8761:10221(1460) ack 266 win 24820
+10:13:26.782457 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 10221:11681(1460) ack 266 win 24820
+10:13:26.782660 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 11681 win 62615
+10:13:26.782682 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 11681:13141(1460) ack 266 win 24820
+10:13:26.782827 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 13141:14601(1460) ack 266 win 24820
+10:13:26.783017 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 14601 win 59695
+10:13:26.783036 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 14601:16061(1460) ack 266 win 24820
+10:13:26.783209 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 16061:17521(1460) ack 266 win 24820
+10:13:26.783394 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 17521 win 56775
+10:13:26.783747 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 17521:18981(1460) ack 266 win 24820
+10:13:26.783965 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 18981:20441(1460) ack 266 win 24820
+10:13:26.784151 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 20441 win 53855
+10:13:26.784192 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 20441:21901(1460) ack 266 win 24820
+10:13:26.784323 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 21901:23361(1460) ack 266 win 24820
+10:13:26.784490 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 23361 win 50935
+10:13:26.784511 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 23361:24821(1460) ack 266 win 24820
+10:13:26.784634 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 24821:26281(1460) ack 266 win 24820
+10:13:26.784803 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 26281 win 48015
+10:13:26.784816 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 26281:27741(1460) ack 266 win 24820
+10:13:26.784967 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: . 27741:29201(1460) ack 266 win 24820
+10:13:26.785141 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 29201 win 45095
+10:13:26.785155 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 29201:30661(1460) ack 266 win 24820
+10:13:26.785282 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 30661:31988(1327) ack 266 win 24820
+10:13:26.785448 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 31988 win 42308
+10:13:26.800892 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 31988 win 46068
+10:13:26.811531 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 31988 win 65535
+10:13:26.823934 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: P 645:910(265) ack 30589 win 65535
+10:13:26.825769 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 30589:31396(807) ack 910 win 24820
+10:13:26.837774 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: P 266:528(262) ack 31988 win 65535
+10:13:26.839623 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 31988:32904(916) ack 528 win 24820
+10:13:26.861970 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: P 910:1173(263) ack 31396 win 64728
+10:13:26.864097 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: . 31396:32856(1460) ack 1173 win 24820
+10:13:26.864398 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 32856:34316(1460) ack 1173 win 24820
+10:13:26.864619 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 34316 win 65535
+10:13:26.864643 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 34316:34914(598) ack 1173 win 24820
+10:13:26.900938 IP GRAF2.1377 > 216.239.59.104.80: P 410:847(437) ack 175 win 65361
+10:13:26.995634 IP 216.239.59.104.80 > GRAF2.1377: . ack 847 win 7504
+10:13:27.002857 IP 216.239.59.104.80 > GRAF2.1377: P 175:349(174) ack 847 win 7504
+10:13:27.039249 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 32904 win 64619
+10:13:27.039341 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 34914 win 64937
+10:13:27.148632 IP GRAF2.1377 > 216.239.59.104.80: . ack 349 win 65187
+10:13:27.289206 IP GRAF2.137 > 66.102.9.99.137: UDP, length: 50
+10:13:27.832164 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: S 718262502:718262502(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:27.833043 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: S 3974989823:3974989823(0) ack 718262503 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:27.833375 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:27.834076 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: P 1:385(384) ack 1 win 65535
+10:13:27.834953 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . ack 385 win 6432
+10:13:27.838756 IP wind.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 174
+10:13:27.839058 IP wind.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:27.868833 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 1:1461(1460) ack 385 win 6432
+10:13:27.869137 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 1461:2921(1460) ack 385 win 6432
+10:13:27.869345 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 2921 win 65535
+10:13:27.870745 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: P 2921:4149(1228) ack 385 win 6432
+10:13:27.871082 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 4149 win 64307
+10:13:27.889573 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 4149:5609(1460) ack 385 win 6432
+10:13:27.889863 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 5609:7069(1460) ack 385 win 6432
+10:13:27.890067 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 7069 win 65535
+10:13:27.890091 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: P 7069:8372(1303) ack 385 win 6432
+10:13:27.890328 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 8372 win 64232
+10:13:27.891739 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 8372:9832(1460) ack 385 win 6432
+10:13:27.892041 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 9832:11292(1460) ack 385 win 6432
+10:13:27.892245 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 11292 win 65535
+10:13:27.892270 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: P 11292:12595(1303) ack 385 win 6432
+10:13:27.892493 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 12595 win 64232
+10:13:27.901703 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 12595:14055(1460) ack 385 win 6432
+10:13:27.901999 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 14055:15515(1460) ack 385 win 6432
+10:13:27.902204 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 15515 win 61312
+10:13:27.902226 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: P 15515:16735(1220) ack 385 win 6432
+10:13:27.903369 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 16735 win 65155
+10:13:27.921424 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 16735:18195(1460) ack 385 win 6432
+10:13:27.921718 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 18195:19655(1460) ack 385 win 6432
+10:13:27.921921 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 19655 win 65535
+10:13:27.921944 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: P 19655:21017(1362) ack 385 win 6432
+10:13:27.922172 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 21017 win 64173
+10:13:27.937580 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 21017:22477(1460) ack 385 win 6432
+10:13:27.937904 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . 22477:23937(1460) ack 385 win 6432
+10:13:27.938111 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 23937 win 61253
+10:13:27.938135 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: P 23937:24823(886) ack 385 win 6432
+10:13:27.938252 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: F 24823:24823(0) ack 385 win 6432
+10:13:27.938395 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 24824 win 60367
+10:13:27.941552 IP GRAF2.1377 > 216.239.59.104.80: P 847:1254(407) ack 349 win 65187
+10:13:27.943718 IP GRAF2.1381 > gucio.eaie.agh.edu.pl.80: S 1338320293:1338320293(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:27.944443 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: S 3972334095:3972334095(0) ack 1338320294 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:27.944764 IP GRAF2.1381 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:27.945666 IP GRAF2.1381 > gucio.eaie.agh.edu.pl.80: P 1:275(274) ack 1 win 65535
+10:13:27.946595 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: . ack 275 win 6432
+10:13:27.947664 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: . ack 24824 win 65489
+10:13:27.948430 IP GRAF2.1380 > gucio.eaie.agh.edu.pl.80: F 385:385(0) ack 24824 win 65489
+10:13:27.948591 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: . 1:1461(1460) ack 275 win 6432
+10:13:27.948832 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: . 1461:2921(1460) ack 275 win 6432
+10:13:27.949030 IP GRAF2.1381 > gucio.eaie.agh.edu.pl.80: . ack 2921 win 65535
+10:13:27.949067 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1380: . ack 386 win 6432
+10:13:27.950532 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: . 2921:4381(1460) ack 275 win 6432
+10:13:27.950901 IP GRAF2.1381 > gucio.eaie.agh.edu.pl.80: . ack 4381 win 65535
+10:13:27.950948 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: . 4381:5841(1460) ack 275 win 6432
+10:13:27.951115 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: . 5841:7301(1460) ack 275 win 6432
+10:13:27.951297 IP GRAF2.1381 > gucio.eaie.agh.edu.pl.80: . ack 7301 win 65535
+10:13:27.951314 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: FP 7301:7580(279) ack 275 win 6432
+10:13:27.951664 IP GRAF2.1381 > gucio.eaie.agh.edu.pl.80: . ack 7581 win 65256
+10:13:27.962556 IP GRAF2.1381 > gucio.eaie.agh.edu.pl.80: F 275:275(0) ack 7581 win 65256
+10:13:27.963175 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1381: . ack 276 win 6432
+10:13:27.998616 IP 216.239.59.104.80 > GRAF2.1377: . ack 1254 win 8576
+10:13:28.038681 IP 216.239.59.104.80 > GRAF2.1377: P 349:523(174) ack 1254 win 8576
+10:13:28.058097 IP GRAF2.1382 > gucio.eaie.agh.edu.pl.80: S 631571305:631571305(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.061216 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1382: S 3965170145:3965170145(0) ack 631571306 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.061583 IP GRAF2.1382 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.071345 IP GRAF2.1382 > gucio.eaie.agh.edu.pl.80: P 1:360(359) ack 1 win 65535
+10:13:28.072199 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1382: . ack 360 win 6432
+10:13:28.073418 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1382: P 1:169(168) ack 360 win 6432
+10:13:28.073702 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1382: F 169:169(0) ack 360 win 6432
+10:13:28.074048 IP GRAF2.1382 > gucio.eaie.agh.edu.pl.80: . ack 170 win 65367
+10:13:28.074599 IP GRAF2.1382 > gucio.eaie.agh.edu.pl.80: F 360:360(0) ack 170 win 65367
+10:13:28.075113 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1382: . ack 361 win 6432
+10:13:28.170840 IP GRAF2.1383 > gucio.eaie.agh.edu.pl.80: S 3804887394:3804887394(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.171566 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1383: S 3969922911:3969922911(0) ack 3804887395 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.171889 IP GRAF2.1383 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.231024 IP GRAF2.1384 > gucio.eaie.agh.edu.pl.80: S 4145380098:4145380098(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.231738 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1384: S 3969286557:3969286557(0) ack 4145380099 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.232062 IP GRAF2.1384 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.242361 IP GRAF2.1377 > 216.239.59.104.80: . ack 523 win 65013
+10:13:28.254249 IP agent2.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:28.286506 IP GRAF2.1383 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.287368 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1383: . ack 270 win 6432
+10:13:28.287866 IP GRAF2.1384 > gucio.eaie.agh.edu.pl.80: P 1:272(271) ack 1 win 65535
+10:13:28.289425 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1383: . 1:1461(1460) ack 270 win 6432
+10:13:28.289729 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1383: . 1461:2921(1460) ack 270 win 6432
+10:13:28.289944 IP GRAF2.1383 > gucio.eaie.agh.edu.pl.80: . ack 2921 win 65535
+10:13:28.289968 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1384: . ack 272 win 6432
+10:13:28.290723 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1384: . 1:1461(1460) ack 272 win 6432
+10:13:28.291016 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1384: . 1461:2921(1460) ack 272 win 6432
+10:13:28.291228 IP GRAF2.1384 > gucio.eaie.agh.edu.pl.80: . ack 2921 win 65535
+10:13:28.291252 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1384: FP 2921:4084(1163) ack 272 win 6432
+10:13:28.291508 IP GRAF2.1384 > gucio.eaie.agh.edu.pl.80: . ack 4085 win 64372
+10:13:28.291721 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1383: . 2921:4381(1460) ack 270 win 6432
+10:13:28.291975 IP GRAF2.1383 > gucio.eaie.agh.edu.pl.80: . ack 4381 win 65535
+10:13:28.291997 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1383: . 4381:5841(1460) ack 270 win 6432
+10:13:28.292148 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1383: FP 5841:6697(856) ack 270 win 6432
+10:13:28.292510 IP GRAF2.1383 > gucio.eaie.agh.edu.pl.80: . ack 6698 win 65535
+10:13:28.301058 IP GRAF2.1384 > gucio.eaie.agh.edu.pl.80: F 272:272(0) ack 4085 win 64372
+10:13:28.301669 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1384: . ack 273 win 6432
+10:13:28.322062 IP GRAF2.1383 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 6698 win 65535
+10:13:28.322669 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1383: . ack 271 win 6432
+10:13:28.393047 IP GRAF2.1385 > gucio.eaie.agh.edu.pl.80: S 377992982:377992982(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.393820 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1385: S 3980335958:3980335958(0) ack 377992983 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.394151 IP GRAF2.1385 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.414939 IP GRAF2.1385 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.415673 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1385: . ack 270 win 6432
+10:13:28.417216 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1385: P 1:575(574) ack 270 win 6432
+10:13:28.417513 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1385: F 575:575(0) ack 270 win 6432
+10:13:28.417868 IP GRAF2.1385 > gucio.eaie.agh.edu.pl.80: . ack 576 win 64961
+10:13:28.434456 IP GRAF2.1386 > gucio.eaie.agh.edu.pl.80: S 573354608:573354608(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.435188 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1386: S 3968109376:3968109376(0) ack 573354609 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.435504 IP GRAF2.1386 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.437805 IP GRAF2.1385 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 576 win 64961
+10:13:28.438432 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1385: . ack 271 win 6432
+10:13:28.451707 IP GRAF2.1386 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.452443 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1386: . ack 270 win 6432
+10:13:28.453994 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1386: P 1:645(644) ack 270 win 6432
+10:13:28.454280 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1386: F 645:645(0) ack 270 win 6432
+10:13:28.454621 IP GRAF2.1386 > gucio.eaie.agh.edu.pl.80: . ack 646 win 64891
+10:13:28.473088 IP GRAF2.1386 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 646 win 64891
+10:13:28.473629 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1386: . ack 271 win 6432
+10:13:28.510012 IP GRAF2.1387 > gucio.eaie.agh.edu.pl.80: S 610795682:610795682(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.510741 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1387: S 3966498156:3966498156(0) ack 610795683 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.511063 IP GRAF2.1387 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.512281 IP GRAF2.1387 > gucio.eaie.agh.edu.pl.80: P 1:267(266) ack 1 win 65535
+10:13:28.513078 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1387: . ack 267 win 6432
+10:13:28.514275 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1387: P 1:314(313) ack 267 win 6432
+10:13:28.514539 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1387: F 314:314(0) ack 267 win 6432
+10:13:28.514873 IP GRAF2.1387 > gucio.eaie.agh.edu.pl.80: . ack 315 win 65222
+10:13:28.517486 IP GRAF2.1387 > gucio.eaie.agh.edu.pl.80: F 267:267(0) ack 315 win 65222
+10:13:28.518017 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1387: . ack 268 win 6432
+10:13:28.588542 IP wind.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:28.619376 IP GRAF2.1388 > gucio.eaie.agh.edu.pl.80: S 547732712:547732712(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.620143 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1388: S 3971684871:3971684871(0) ack 547732713 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.620486 IP GRAF2.1388 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.624173 IP GRAF2.1389 > gucio.eaie.agh.edu.pl.80: S 195807403:195807403(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.624976 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1389: S 3974380402:3974380402(0) ack 195807404 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.625306 IP GRAF2.1389 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.625878 IP GRAF2.1388 > gucio.eaie.agh.edu.pl.80: P 1:271(270) ack 1 win 65535
+10:13:28.626838 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1388: . ack 271 win 6432
+10:13:28.628664 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1388: P 1:1268(1267) ack 271 win 6432
+10:13:28.628960 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1388: F 1268:1268(0) ack 271 win 6432
+10:13:28.629295 IP GRAF2.1388 > gucio.eaie.agh.edu.pl.80: . ack 1269 win 64268
+10:13:28.633130 IP GRAF2.1389 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.633849 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1389: . ack 270 win 6432
+10:13:28.635476 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1389: P 1:786(785) ack 270 win 6432
+10:13:28.635692 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1389: F 786:786(0) ack 270 win 6432
+10:13:28.636025 IP GRAF2.1389 > gucio.eaie.agh.edu.pl.80: . ack 787 win 64750
+10:13:28.636327 IP GRAF2.1388 > gucio.eaie.agh.edu.pl.80: F 271:271(0) ack 1269 win 64268
+10:13:28.636858 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1388: . ack 272 win 6432
+10:13:28.652996 IP GRAF2.1389 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 787 win 64750
+10:13:28.653612 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1389: . ack 271 win 6432
+10:13:28.723065 IP GRAF2.1390 > gucio.eaie.agh.edu.pl.80: S 1864420797:1864420797(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.723792 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1390: S 3971965225:3971965225(0) ack 1864420798 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.724124 IP GRAF2.1390 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.735778 IP GRAF2.1391 > gucio.eaie.agh.edu.pl.80: S 1178035474:1178035474(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.736577 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1391: S 3977734245:3977734245(0) ack 1178035475 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.736908 IP GRAF2.1391 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.737950 IP GRAF2.1390 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.738796 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1390: . ack 270 win 6432
+10:13:28.739420 IP GRAF2.1391 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.740627 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1390: P 1:1057(1056) ack 270 win 6432
+10:13:28.740896 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1390: F 1057:1057(0) ack 270 win 6432
+10:13:28.741231 IP GRAF2.1390 > gucio.eaie.agh.edu.pl.80: . ack 1058 win 64479
+10:13:28.741272 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1391: . ack 270 win 6432
+10:13:28.741931 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1391: P 1:1058(1057) ack 270 win 6432
+10:13:28.742221 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1391: F 1058:1058(0) ack 270 win 6432
+10:13:28.742565 IP GRAF2.1391 > gucio.eaie.agh.edu.pl.80: . ack 1059 win 64478
+10:13:28.744937 IP GRAF2.1390 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 1058 win 64479
+10:13:28.745458 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1390: . ack 271 win 6432
+10:13:28.762663 IP GRAF2.1391 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 1059 win 64478
+10:13:28.763247 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1391: . ack 271 win 6432
+10:13:28.804251 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  26707+ PTR? 104.59.239.216.in-addr.arpa. (45)
+10:13:28.823729 IP GRAF2.1392 > gucio.eaie.agh.edu.pl.80: S 666130071:666130071(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.824456 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1392: S 3970589623:3970589623(0) ack 666130072 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.824771 IP GRAF2.1392 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.845184 IP GRAF2.1393 > gucio.eaie.agh.edu.pl.80: S 1110656602:1110656602(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.845992 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1393: S 3973642010:3973642010(0) ack 1110656603 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.846331 IP GRAF2.1393 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.847050 IP GRAF2.1392 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.847904 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1392: . ack 270 win 6432
+10:13:28.848558 IP GRAF2.1393 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.849986 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1392: . 1:1461(1460) ack 270 win 6432
+10:13:28.850265 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1392: P 1461:1765(304) ack 270 win 6432
+10:13:28.850473 IP GRAF2.1392 > gucio.eaie.agh.edu.pl.80: . ack 1765 win 65535
+10:13:28.850497 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1392: F 1765:1765(0) ack 270 win 6432
+10:13:28.850840 IP GRAF2.1392 > gucio.eaie.agh.edu.pl.80: . ack 1766 win 65535
+10:13:28.850861 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1393: . ack 270 win 6432
+10:13:28.851004 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1393: P 1:739(738) ack 270 win 6432
+10:13:28.851163 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1393: F 739:739(0) ack 270 win 6432
+10:13:28.851471 IP GRAF2.1393 > gucio.eaie.agh.edu.pl.80: . ack 740 win 64797
+10:13:28.855659 IP GRAF2.1392 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 1766 win 65535
+10:13:28.860566 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1392: . ack 271 win 6432
+10:13:28.871202 IP GRAF2.1393 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 740 win 64797
+10:13:28.871744 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1393: . ack 271 win 6432
+10:13:28.919153 IP GRAF2.1394 > gucio.eaie.agh.edu.pl.80: S 3319230364:3319230364(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.919988 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1394: S 3979980993:3979980993(0) ack 3319230365 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.920330 IP GRAF2.1394 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:28.921703 IP GRAF2.1394 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:28.922496 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1394: . ack 270 win 6432
+10:13:28.923955 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1394: P 1:564(563) ack 270 win 6432
+10:13:28.924240 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1394: F 564:564(0) ack 270 win 6432
+10:13:28.924583 IP GRAF2.1394 > gucio.eaie.agh.edu.pl.80: . ack 565 win 64972
+10:13:28.939595 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  26707 NXDomain* 0/1/0 (105)
+10:13:28.942286 IP GRAF2.1394 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 565 win 64972
+10:13:28.942815 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1394: . ack 271 win 6432
+10:13:28.946934 IP GRAF2.137 > 216.239.59.104.137: UDP, length: 50
+10:13:28.974126 IP GRAF2.1395 > gucio.eaie.agh.edu.pl.80: S 3983714274:3983714274(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:28.974937 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1395: S 3977758034:3977758034(0) ack 3983714275 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:28.975276 IP GRAF2.1395 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.002678 IP agent2.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:29.010753 IP GRAF2.1396 > gucio.eaie.agh.edu.pl.80: S 1459202177:1459202177(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:29.011555 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1396: S 3975056866:3975056866(0) ack 1459202178 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:29.011897 IP GRAF2.1396 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.012611 IP GRAF2.1395 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:29.013467 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1395: . ack 270 win 6432
+10:13:29.013962 IP GRAF2.1396 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:29.014929 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1395: P 1:554(553) ack 270 win 6432
+10:13:29.015187 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1395: F 554:554(0) ack 270 win 6432
+10:13:29.015525 IP GRAF2.1395 > gucio.eaie.agh.edu.pl.80: . ack 555 win 64982
+10:13:29.015552 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1396: . ack 270 win 6432
+10:13:29.016682 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1396: . 1:1461(1460) ack 270 win 6432
+10:13:29.016974 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1396: . 1461:2921(1460) ack 270 win 6432
+10:13:29.017175 IP GRAF2.1396 > gucio.eaie.agh.edu.pl.80: . ack 2921 win 65535
+10:13:29.018507 IP GRAF2.1395 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 555 win 64982
+10:13:29.018668 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1396: . 2921:4381(1460) ack 270 win 6432
+10:13:29.018987 IP GRAF2.1396 > gucio.eaie.agh.edu.pl.80: . ack 4381 win 65535
+10:13:29.019024 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1396: . 4381:5841(1460) ack 270 win 6432
+10:13:29.019188 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1396: FP 5841:6840(999) ack 270 win 6432
+10:13:29.019547 IP GRAF2.1396 > gucio.eaie.agh.edu.pl.80: . ack 6841 win 65535
+10:13:29.019569 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1395: . ack 271 win 6432
+10:13:29.031837 IP GRAF2.1396 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 6841 win 65535
+10:13:29.032360 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1396: . ack 271 win 6432
+10:13:29.082400 IP GRAF2.1397 > gucio.eaie.agh.edu.pl.80: S 2336324600:2336324600(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:29.083197 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1397: S 3972087111:3972087111(0) ack 2336324601 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:29.083532 IP GRAF2.1397 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.085137 IP GRAF2.1397 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:29.085974 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1397: . ack 270 win 6432
+10:13:29.088086 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1397: . 1:1461(1460) ack 270 win 6432
+10:13:29.088409 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1397: P 1461:2045(584) ack 270 win 6432
+10:13:29.088625 IP GRAF2.1397 > gucio.eaie.agh.edu.pl.80: . ack 2045 win 65535
+10:13:29.088650 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1397: F 2045:2045(0) ack 270 win 6432
+10:13:29.088983 IP GRAF2.1397 > gucio.eaie.agh.edu.pl.80: . ack 2046 win 65535
+10:13:29.119518 IP GRAF2.1397 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 2046 win 65535
+10:13:29.120054 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1397: . ack 271 win 6432
+10:13:29.135408 IP GRAF2.1398 > gucio.eaie.agh.edu.pl.80: S 3733594810:3733594810(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:29.136130 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1398: S 3976267755:3976267755(0) ack 3733594811 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:29.136447 IP GRAF2.1398 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.137766 IP GRAF2.1398 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:29.138555 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1398: . ack 270 win 6432
+10:13:29.140608 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1398: . 1:1461(1460) ack 270 win 6432
+10:13:29.140910 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1398: P 1461:1980(519) ack 270 win 6432
+10:13:29.141129 IP GRAF2.1398 > gucio.eaie.agh.edu.pl.80: . ack 1980 win 65535
+10:13:29.141155 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1398: F 1980:1980(0) ack 270 win 6432
+10:13:29.141493 IP GRAF2.1398 > gucio.eaie.agh.edu.pl.80: . ack 1981 win 65535
+10:13:29.155193 IP GRAF2.1398 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 1981 win 65535
+10:13:29.160379 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1398: . ack 271 win 6432
+10:13:29.189252 IP GRAF2.1399 > gucio.eaie.agh.edu.pl.80: S 257554947:257554947(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:29.189970 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1399: S 3971536642:3971536642(0) ack 257554948 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:29.190288 IP GRAF2.1399 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.191335 IP GRAF2.1399 > gucio.eaie.agh.edu.pl.80: P 1:274(273) ack 1 win 65535
+10:13:29.192128 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1399: . ack 274 win 6432
+10:13:29.193624 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1399: P 1:616(615) ack 274 win 6432
+10:13:29.193861 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1399: F 616:616(0) ack 274 win 6432
+10:13:29.194204 IP GRAF2.1399 > gucio.eaie.agh.edu.pl.80: . ack 617 win 64920
+10:13:29.212607 IP GRAF2.1399 > gucio.eaie.agh.edu.pl.80: F 274:274(0) ack 617 win 64920
+10:13:29.213137 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1399: . ack 275 win 6432
+10:13:29.338524 IP wind.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:29.415856 IP GRAF2.1400 > gucio.eaie.agh.edu.pl.80: S 1879354154:1879354154(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:29.416674 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1400: S 3980402179:3980402179(0) ack 1879354155 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:29.417022 IP GRAF2.1400 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.433288 IP GRAF2.1401 > gucio.eaie.agh.edu.pl.80: S 2365454939:2365454939(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:29.433999 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1401: S 3966421478:3966421478(0) ack 2365454940 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:29.434316 IP GRAF2.1401 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.435322 IP GRAF2.1400 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:29.436166 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1400: . ack 270 win 6432
+10:13:29.436663 IP GRAF2.1401 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:29.437779 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1400: P 1:799(798) ack 270 win 6432
+10:13:29.438050 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1400: F 799:799(0) ack 270 win 6432
+10:13:29.438387 IP GRAF2.1400 > gucio.eaie.agh.edu.pl.80: . ack 800 win 64737
+10:13:29.438429 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1401: . ack 270 win 6432
+10:13:29.438914 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1401: P 1:732(731) ack 270 win 6432
+10:13:29.439197 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1401: F 732:732(0) ack 270 win 6432
+10:13:29.439538 IP GRAF2.1401 > gucio.eaie.agh.edu.pl.80: . ack 733 win 64804
+10:13:29.443100 IP GRAF2.1400 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 800 win 64737
+10:13:29.443616 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1400: . ack 271 win 6432
+10:13:29.458905 IP GRAF2.1401 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 733 win 64804
+10:13:29.460294 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1401: . ack 271 win 6432
+10:13:29.524917 IP GRAF2.1402 > gucio.eaie.agh.edu.pl.80: S 4163248429:4163248429(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:29.525657 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1402: S 3968719792:3968719792(0) ack 4163248430 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:29.525995 IP GRAF2.1402 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.528285 IP GRAF2.1402 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:29.529078 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1402: . ack 270 win 6432
+10:13:29.530602 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1402: P 1:669(668) ack 270 win 6432
+10:13:29.530881 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1402: F 669:669(0) ack 270 win 6432
+10:13:29.531224 IP GRAF2.1402 > gucio.eaie.agh.edu.pl.80: . ack 670 win 64867
+10:13:29.536933 IP GRAF2.1402 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 670 win 64867
+10:13:29.537464 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1402: . ack 271 win 6432
+10:13:29.590929 IP GRAF2.1403 > gucio.eaie.agh.edu.pl.80: S 677681611:677681611(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:29.591694 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1403: S 3968798167:3968798167(0) ack 677681612 win 5840 <mss 1460,nop,nop,sackOK>
+10:13:29.592024 IP GRAF2.1403 > gucio.eaie.agh.edu.pl.80: . ack 1 win 65535
+10:13:29.593044 IP GRAF2.1403 > gucio.eaie.agh.edu.pl.80: P 1:270(269) ack 1 win 65535
+10:13:29.593864 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1403: . ack 270 win 6432
+10:13:29.595448 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1403: P 1:656(655) ack 270 win 6432
+10:13:29.595724 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1403: F 656:656(0) ack 270 win 6432
+10:13:29.596078 IP GRAF2.1403 > gucio.eaie.agh.edu.pl.80: . ack 657 win 64880
+10:13:29.602225 IP GRAF2.1403 > gucio.eaie.agh.edu.pl.80: F 270:270(0) ack 657 win 64880
+10:13:29.602746 IP gucio.eaie.agh.edu.pl.80 > GRAF2.1403: . ack 271 win 6432
+10:13:29.753636 IP agent2.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:30.445372 IP GRAF2.137 > 216.239.59.104.137: UDP, length: 50
+10:13:31.244764 IP anakin.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 174
+10:13:31.247652 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:31.889525 arp who-has molly01.icsr.agh.edu.pl tell neapolian.icsr.agh.edu.pl
+10:13:31.945329 IP GRAF2.137 > 216.239.59.104.137: UDP, length: 50
+10:13:31.994086 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:32.088537 IP wind.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 183
+10:13:32.745238 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:33.369241 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: S 2404502363:2404502363(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:33.369452 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: S 2595703212:2595703212(0) ack 2404502364 win 32768 <mss 1460>
+10:13:33.369763 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 1 win 65535
+10:13:33.392934 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 1:24(23) ack 1 win 32768
+10:13:33.393527 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1:43(42) ack 24 win 65512
+10:13:33.401351 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 24:300(276) ack 43 win 32768
+10:13:33.425710 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 43:199(156) ack 300 win 65236
+10:13:33.450846 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  6227+ PTR? 113.99.156.149.in-addr.arpa. (45)
+10:13:33.451677 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  6227* 1/2/3 (197)
+10:13:33.480775 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 199 win 32768
+10:13:33.493778 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 300:312(12) ack 199 win 32768
+10:13:33.494348 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 199:219(20) ack 312 win 65224
+10:13:33.502660 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 312:324(12) ack 219 win 32768
+10:13:33.503877 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 219:619(400) ack 324 win 65212
+10:13:33.522486 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 324:336(12) ack 619 win 32768
+10:13:33.523050 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 619:631(12) ack 336 win 65200
+10:13:33.580794 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 631 win 32768
+10:13:33.581073 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 631:703(72) ack 336 win 65200
+10:13:33.650826 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 703 win 32768
+10:13:33.659505 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 336:436(100) ack 703 win 32768
+10:13:33.820319 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 436 win 65100
+10:13:33.825330 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 436:1728(1292) ack 703 win 32768
+10:13:34.039061 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 1728 win 65535
+10:13:34.039391 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 1728:1836(108) ack 703 win 32768
+10:13:34.040055 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 703:771(68) ack 1836 win 65427
+10:13:34.042645 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  21586+ PTR? 72.99.156.149.in-addr.arpa. (44)
+10:13:34.043533 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  21586* 1/2/3 (196)
+10:13:34.110774 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 771 win 32768
+10:13:34.111060 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 771:791(20) ack 1836 win 65427
+10:13:34.119299 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 1836:1888(52) ack 791 win 32768
+10:13:34.120179 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 791:859(68) ack 1888 win 65375
+10:13:34.180779 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 859 win 32768
+10:13:34.181064 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 859:879(20) ack 1888 win 65375
+10:13:34.250773 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 879 win 32768
+10:13:34.299327 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 1888:1916(28) ack 879 win 32768
+10:13:34.476551 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 1916 win 65347
+10:13:34.476752 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 1916:1960(44) ack 879 win 32768
+10:13:34.477696 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 879:955(76) ack 1960 win 65303
+10:13:34.540767 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 955 win 32768
+10:13:34.541022 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 955:975(20) ack 1960 win 65303
+10:13:34.549294 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 1960:2004(44) ack 975 win 32768
+10:13:34.549921 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 975:1051(76) ack 2004 win 65259
+10:13:34.610766 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1051 win 32768
+10:13:34.611048 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1051:1071(20) ack 2004 win 65259
+10:13:34.619276 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2004:2048(44) ack 1071 win 32768
+10:13:34.619898 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1071:1147(76) ack 2048 win 65215
+10:13:34.680765 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1147 win 32768
+10:13:34.681041 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1147:1167(20) ack 2048 win 65215
+10:13:34.689477 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2048:2092(44) ack 1167 win 32768
+10:13:34.690121 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1167:1243(76) ack 2092 win 65171
+10:13:34.739978 IP luke.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 187
+10:13:34.750757 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1243 win 32768
+10:13:34.751015 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1243:1263(20) ack 2092 win 65171
+10:13:34.759276 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2092:2136(44) ack 1263 win 32768
+10:13:34.759905 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1263:1339(76) ack 2136 win 65127
+10:13:34.820768 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1339 win 32768
+10:13:34.821054 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1339:1359(20) ack 2136 win 65127
+10:13:34.829268 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2136:2180(44) ack 1359 win 32768
+10:13:34.829904 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1359:1435(76) ack 2180 win 65083
+10:13:34.890764 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1435 win 32768
+10:13:34.891062 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1435:1455(20) ack 2180 win 65083
+10:13:34.899272 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2180:2224(44) ack 1455 win 32768
+10:13:34.899911 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1455:1531(76) ack 2224 win 65039
+10:13:34.960792 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1531 win 32768
+10:13:34.961078 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1531:1551(20) ack 2224 win 65039
+10:13:34.969269 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2224:2268(44) ack 1551 win 32768
+10:13:34.969916 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1551:1627(76) ack 2268 win 64995
+10:13:35.030765 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1627 win 32768
+10:13:35.031054 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1627:1647(20) ack 2268 win 64995
+10:13:35.039266 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2268:2312(44) ack 1647 win 32768
+10:13:35.039906 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1647:1723(76) ack 2312 win 64951
+10:13:35.100760 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1723 win 32768
+10:13:35.101042 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1723:1743(20) ack 2312 win 64951
+10:13:35.109266 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2312:2356(44) ack 1743 win 32768
+10:13:35.109913 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1743:1819(76) ack 2356 win 64907
+10:13:35.170764 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1819 win 32768
+10:13:35.171039 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1819:1839(20) ack 2356 win 64907
+10:13:35.180072 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2356:2400(44) ack 1839 win 32768
+10:13:35.180712 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1839:1915(76) ack 2400 win 64863
+10:13:35.240762 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 1915 win 32768
+10:13:35.241038 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1915:1935(20) ack 2400 win 64863
+10:13:35.249266 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2400:2444(44) ack 1935 win 32768
+10:13:35.249898 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 1935:2011(76) ack 2444 win 64819
+10:13:35.310766 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2011 win 32768
+10:13:35.311044 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2011:2031(20) ack 2444 win 64819
+10:13:35.319264 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2444:2488(44) ack 2031 win 32768
+10:13:35.319911 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2031:2107(76) ack 2488 win 64775
+10:13:35.380764 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2107 win 32768
+10:13:35.381038 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2107:2127(20) ack 2488 win 64775
+10:13:35.389270 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2488:2532(44) ack 2127 win 32768
+10:13:35.389910 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2127:2203(76) ack 2532 win 64731
+10:13:35.435681 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  60754+ A? www.icsr.agh.edu.pl. (37)
+10:13:35.436396 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  60754* 2/2/2 CNAME[|domain]
+10:13:35.450760 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2203 win 32768
+10:13:35.451046 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2203:2223(20) ack 2532 win 64731
+10:13:35.459270 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2532:2576(44) ack 2223 win 32768
+10:13:35.459941 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2223:2299(76) ack 2576 win 64687
+10:13:35.477809 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: S 1763338193:1763338193(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:35.478131 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: S 2596102783:2596102783(0) ack 1763338194 win 32768 <mss 1460>
+10:13:35.478423 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 1 win 65535
+10:13:35.480805 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 1:385(384) ack 1 win 65535
+10:13:35.494387 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 1:1461(1460) ack 385 win 32768
+10:13:35.494719 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 1461:2921(1460) ack 385 win 32768
+10:13:35.494954 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 2921 win 65535
+10:13:35.495827 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 2921:4381(1460) ack 385 win 32768
+10:13:35.496123 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 4381:5841(1460) ack 385 win 32768
+10:13:35.496325 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 5841 win 65535
+10:13:35.496348 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 5841:6307(466) ack 385 win 32768
+10:13:35.499223 IP anakin.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 174
+10:13:35.501848 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:35.503025 IP luke.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 187
+10:13:35.520761 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2299 win 32768
+10:13:35.521019 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2299:2319(20) ack 2576 win 64687
+10:13:35.529294 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2576:2620(44) ack 2319 win 32768
+10:13:35.529991 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2319:2395(76) ack 2620 win 64643
+10:13:35.590768 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2395 win 32768
+10:13:35.591057 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2395:2415(20) ack 2620 win 64643
+10:13:35.599274 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2620:2664(44) ack 2415 win 32768
+10:13:35.600160 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2415:2491(76) ack 2664 win 64599
+10:13:35.602042 IP GRAF2.1377 > 216.239.59.104.80: P 1254:1699(445) ack 523 win 65013
+10:13:35.606290 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 385:817(432) ack 6307 win 65069
+10:13:35.609004 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 6307:6804(497) ack 817 win 32768
+10:13:35.620351 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 817:1249(432) ack 6804 win 64572
+10:13:35.622208 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 6804:7301(497) ack 1249 win 32768
+10:13:35.633699 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 1249:1678(429) ack 7301 win 65535
+10:13:35.638169 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 7301:8164(863) ack 1678 win 32768
+10:13:35.658991 IP 216.239.59.104.80 > GRAF2.1377: . ack 1699 win 9648
+10:13:35.660754 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2491 win 32768
+10:13:35.661015 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2491:2511(20) ack 2664 win 64599
+10:13:35.669284 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2664:2708(44) ack 2511 win 32768
+10:13:35.670208 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2511:2587(76) ack 2708 win 64555
+10:13:35.701032 IP 216.239.59.104.80 > GRAF2.1377: P 523:697(174) ack 1699 win 9648
+10:13:35.730760 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2587 win 32768
+10:13:35.731045 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2587:2607(20) ack 2708 win 64555
+10:13:35.739259 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2708:2752(44) ack 2607 win 32768
+10:13:35.740090 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2607:2683(76) ack 2752 win 64511
+10:13:35.776289 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: S 3356919275:3356919275(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:35.776498 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: S 2596239005:2596239005(0) ack 3356919276 win 32768 <mss 1460>
+10:13:35.776807 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 1 win 65535
+10:13:35.789017 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 8164 win 64672
+10:13:35.791208 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 1:428(427) ack 1 win 65535
+10:13:35.792254 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 1678:2116(438) ack 8164 win 64672
+10:13:35.796827 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 8164:9624(1460) ack 2116 win 32768
+10:13:35.797152 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 9624:9917(293) ack 2116 win 32768
+10:13:35.797381 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 9917 win 65535
+10:13:35.800778 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2683 win 32768
+10:13:35.801055 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2683:2703(20) ack 2752 win 64511
+10:13:35.809281 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2752:2796(44) ack 2703 win 32768
+10:13:35.810142 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2703:2787(84) ack 2796 win 64467
+10:13:35.860789 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . ack 428 win 32768
+10:13:35.870777 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2787 win 32768
+10:13:35.871042 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2787:2807(20) ack 2796 win 64467
+10:13:35.874446 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 1:1461(1460) ack 428 win 32768
+10:13:35.874765 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 1461:2921(1460) ack 428 win 32768
+10:13:35.875000 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 2921 win 65535
+10:13:35.875692 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 2921:4089(1168) ack 428 win 32768
+10:13:35.879476 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2796:2840(44) ack 2807 win 32768
+10:13:35.880362 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2807:2891(84) ack 2840 win 64423
+10:13:35.898404 IP GRAF2.1377 > 216.239.59.104.80: . ack 697 win 64839
+10:13:35.939038 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 428:859(431) ack 4089 win 64367
+10:13:35.940580 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 2116:2398(282) ack 9917 win 65535
+10:13:35.940785 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2891 win 32768
+10:13:35.941018 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2891:2911(20) ack 2840 win 64423
+10:13:35.943694 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 4089:5549(1460) ack 859 win 32768
+10:13:35.943962 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 5549:5674(125) ack 859 win 32768
+10:13:35.944176 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 5674 win 65535
+10:13:35.944399 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  20565+ A? genias.biz. (28)
+10:13:35.949311 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2840:2884(44) ack 2911 win 32768
+10:13:35.950154 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2911:2995(84) ack 2884 win 64379
+10:13:35.952257 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 9917:11377(1460) ack 2398 win 32768
+10:13:35.952609 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 11377:12837(1460) ack 2398 win 32768
+10:13:35.952850 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 12837 win 65535
+10:13:35.952878 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 12837:14297(1460) ack 2398 win 32768
+10:13:35.953016 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 14297:14893(596) ack 2398 win 32768
+10:13:35.953212 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 14893 win 65535
+10:13:36.010763 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 2995 win 32768
+10:13:36.011045 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 2995:3015(20) ack 2884 win 64379
+10:13:36.019275 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2884:2928(44) ack 3015 win 32768
+10:13:36.020123 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3015:3091(76) ack 2928 win 64335
+10:13:36.024184 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 2398:2676(278) ack 14893 win 65535
+10:13:36.025233 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 859:1144(285) ack 5674 win 65535
+10:13:36.028197 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 5674:6158(484) ack 1144 win 32768
+10:13:36.033255 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 14893:15603(710) ack 2676 win 32768
+10:13:36.080768 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3091 win 32768
+10:13:36.081071 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3091:3111(20) ack 2928 win 64335
+10:13:36.089272 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2928:2972(44) ack 3111 win 32768
+10:13:36.092892 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3111:3195(84) ack 2972 win 64291
+10:13:36.103470 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 1144:1428(284) ack 6158 win 65051
+10:13:36.105002 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 2676:2962(286) ack 15603 win 64825
+10:13:36.105612 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 6158:6648(490) ack 1428 win 32768
+10:13:36.107269 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 15603:16094(491) ack 2962 win 32768
+10:13:36.120628 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 1428:1711(283) ack 6648 win 64561
+10:13:36.123101 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 6648:7129(481) ack 1711 win 32768
+10:13:36.137816 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 2962:3244(282) ack 16094 win 64334
+10:13:36.146440 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 16094:17554(1460) ack 3244 win 32768
+10:13:36.146807 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 17554:18521(967) ack 3244 win 32768
+10:13:36.147042 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 18521 win 65535
+10:13:36.150761 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3195 win 32768
+10:13:36.151048 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3195:3215(20) ack 2972 win 64291
+10:13:36.154093 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 1711:1996(285) ack 7129 win 64080
+10:13:36.158630 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 7129:8589(1460) ack 1996 win 32768
+10:13:36.158955 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 8589:10049(1460) ack 1996 win 32768
+10:13:36.159187 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 10049 win 65535
+10:13:36.159214 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 10049:10363(314) ack 1996 win 32768
+10:13:36.159389 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 2972:3016(44) ack 3215 win 32768
+10:13:36.160176 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3215:3291(76) ack 3016 win 64247
+10:13:36.174198 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 3244:3534(290) ack 18521 win 65535
+10:13:36.183533 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 18521:19981(1460) ack 3534 win 32768
+10:13:36.183899 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 19981:20398(417) ack 3534 win 32768
+10:13:36.184130 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 20398 win 65535
+10:13:36.191579 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 1996:2285(289) ack 10363 win 65221
+10:13:36.200392 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 10363:11823(1460) ack 2285 win 32768
+10:13:36.200772 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 11823:13283(1460) ack 2285 win 32768
+10:13:36.201016 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 13283 win 65535
+10:13:36.201044 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 13283:14743(1460) ack 2285 win 32768
+10:13:36.201198 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 14743:16203(1460) ack 2285 win 32768
+10:13:36.201428 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 16203 win 65535
+10:13:36.201449 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 16203:17663(1460) ack 2285 win 32768
+10:13:36.211198 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 17663:19123(1460) ack 2285 win 32768
+10:13:36.211587 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 19123 win 65535
+10:13:36.211636 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 19123:20583(1460) ack 2285 win 32768
+10:13:36.211805 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 20583:22043(1460) ack 2285 win 32768
+10:13:36.211991 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 22043 win 62615
+10:13:36.212008 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 22043:23503(1460) ack 2285 win 32768
+10:13:36.212183 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 23503:24963(1460) ack 2285 win 32768
+10:13:36.212364 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 24963 win 59695
+10:13:36.212380 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 24963:26423(1460) ack 2285 win 32768
+10:13:36.212499 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 26423:27883(1460) ack 2285 win 32768
+10:13:36.212665 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 27883 win 56775
+10:13:36.212688 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 27883:29343(1460) ack 2285 win 32768
+10:13:36.212812 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 29343:30803(1460) ack 2285 win 32768
+10:13:36.212978 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 30803 win 53855
+10:13:36.213013 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 30803:32263(1460) ack 2285 win 32768
+10:13:36.213140 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: . 32263:33723(1460) ack 2285 win 32768
+10:13:36.213309 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 33723 win 50935
+10:13:36.213323 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 33723:34389(666) ack 2285 win 32768
+10:13:36.220757 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3291 win 32768
+10:13:36.221044 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3291:3311(20) ack 3016 win 64247
+10:13:36.229278 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 3016:3060(44) ack 3311 win 32768
+10:13:36.230388 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3311:3395(84) ack 3060 win 64203
+10:13:36.250283 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:36.275887 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 34389 win 54029
+10:13:36.279584 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 34389 win 65535
+10:13:36.290751 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3395 win 32768
+10:13:36.291034 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3395:3415(20) ack 3060 win 64203
+10:13:36.299277 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 3060:3104(44) ack 3415 win 32768
+10:13:36.302143 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3415:3483(68) ack 3104 win 64159
+10:13:36.302975 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 3534:3828(294) ack 20398 win 65535
+10:13:36.304014 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 2285:2565(280) ack 34389 win 65535
+10:13:36.306216 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 20398:21858(1460) ack 3828 win 32768
+10:13:36.306538 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 21858:23318(1460) ack 3828 win 32768
+10:13:36.306779 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 23318 win 65535
+10:13:36.306808 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 23318:24778(1460) ack 3828 win 32768
+10:13:36.306967 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 24778:26238(1460) ack 3828 win 32768
+10:13:36.307203 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 26238 win 65535
+10:13:36.307225 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 26238:27698(1460) ack 3828 win 32768
+10:13:36.307378 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 27698:29158(1460) ack 3828 win 32768
+10:13:36.307591 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 29158 win 65535
+10:13:36.307629 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 29158:30618(1460) ack 3828 win 32768
+10:13:36.307783 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 30618:32078(1460) ack 3828 win 32768
+10:13:36.307963 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 32078 win 62615
+10:13:36.307981 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 32078:33538(1460) ack 3828 win 32768
+10:13:36.308099 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 33538:34998(1460) ack 3828 win 32768
+10:13:36.308264 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 34998 win 59695
+10:13:36.308285 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 34998:36458(1460) ack 3828 win 32768
+10:13:36.308407 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 36458:37918(1460) ack 3828 win 32768
+10:13:36.308575 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 37918 win 56775
+10:13:36.308588 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 37918:39378(1460) ack 3828 win 32768
+10:13:36.308740 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 39378:40838(1460) ack 3828 win 32768
+10:13:36.308917 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 40838 win 53855
+10:13:36.308930 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 40838:42298(1460) ack 3828 win 32768
+10:13:36.309063 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 42298:43758(1460) ack 3828 win 32768
+10:13:36.309236 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 43758 win 50935
+10:13:36.309249 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 43758:45218(1460) ack 3828 win 32768
+10:13:36.309387 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 45218:46678(1460) ack 3828 win 32768
+10:13:36.309567 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 46678 win 48015
+10:13:36.309580 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 46678:48138(1460) ack 3828 win 32768
+10:13:36.309701 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 48138:49598(1460) ack 3828 win 32768
+10:13:36.309870 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 49598 win 45095
+10:13:36.309896 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 49598:51058(1460) ack 3828 win 32768
+10:13:36.310023 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 51058:52518(1460) ack 3828 win 32768
+10:13:36.310193 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 52518 win 42175
+10:13:36.310206 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 52518:53978(1460) ack 3828 win 32768
+10:13:36.310328 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 53978:55438(1460) ack 3828 win 32768
+10:13:36.310496 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 55438 win 39255
+10:13:36.310517 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 55438:56898(1460) ack 3828 win 32768
+10:13:36.310641 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 56898:58358(1460) ack 3828 win 32768
+10:13:36.310809 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 58358 win 36335
+10:13:36.310821 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 58358:59818(1460) ack 3828 win 32768
+10:13:36.310942 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 59818:61278(1460) ack 3828 win 32768
+10:13:36.311113 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 61278 win 33415
+10:13:36.311133 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 61278:62738(1460) ack 3828 win 32768
+10:13:36.311257 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 62738:64198(1460) ack 3828 win 32768
+10:13:36.311438 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 64198 win 30495
+10:13:36.311454 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 64198:65658(1460) ack 3828 win 32768
+10:13:36.311575 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 65658:67118(1460) ack 3828 win 32768
+10:13:36.311743 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 67118 win 27575
+10:13:36.311765 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 67118:68578(1460) ack 3828 win 32768
+10:13:36.311889 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 68578:70038(1460) ack 3828 win 32768
+10:13:36.312057 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 70038 win 24655
+10:13:36.312072 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 70038:71498(1460) ack 3828 win 32768
+10:13:36.312193 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 71498:72958(1460) ack 3828 win 32768
+10:13:36.312362 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 72958 win 21735
+10:13:36.312383 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 72958:74418(1460) ack 3828 win 32768
+10:13:36.312505 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 74418:75878(1460) ack 3828 win 32768
+10:13:36.312678 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 75878 win 18815
+10:13:36.312692 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 75878:77338(1460) ack 3828 win 32768
+10:13:36.312816 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 77338:78798(1460) ack 3828 win 32768
+10:13:36.312984 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 78798 win 15895
+10:13:36.313068 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 78798:80258(1460) ack 3828 win 32768
+10:13:36.313204 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 80258:81718(1460) ack 3828 win 32768
+10:13:36.313376 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 81718 win 12975
+10:13:36.313388 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 81718:83178(1460) ack 3828 win 32768
+10:13:36.313530 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 83178:84638(1460) ack 3828 win 32768
+10:13:36.313698 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 84638 win 10055
+10:13:36.313720 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 84638:86098(1460) ack 3828 win 32768
+10:13:36.313840 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 86098:87558(1460) ack 3828 win 32768
+10:13:36.314007 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 87558 win 7135
+10:13:36.314020 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 87558:89018(1460) ack 3828 win 32768
+10:13:36.314140 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 89018:90478(1460) ack 3828 win 32768
+10:13:36.314306 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 90478 win 4215
+10:13:36.314326 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 90478:91938(1460) ack 3828 win 32768
+10:13:36.314448 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 91938:93398(1460) ack 3828 win 32768
+10:13:36.314613 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 93398 win 1295
+10:13:36.314627 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 34389:35849(1460) ack 2565 win 32768
+10:13:36.314831 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 35849:37309(1460) ack 2565 win 32768
+10:13:36.315041 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 37309 win 65535
+10:13:36.315066 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 37309:37312(3) ack 2565 win 32768
+10:13:36.315851 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 93398 win 5055
+10:13:36.316711 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 93398:94858(1460) ack 3828 win 32768
+10:13:36.316952 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 94858:96318(1460) ack 3828 win 32768
+10:13:36.317138 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 96318 win 2135
+10:13:36.317161 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 96318:97778(1460) ack 3828 win 32768
+10:13:36.323609 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 97778 win 61155
+10:13:36.324477 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 97778:99238(1460) ack 3828 win 32768
+10:13:36.324726 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 99238:100698(1460) ack 3828 win 32768
+10:13:36.324917 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 100698 win 58235
+10:13:36.324941 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: . 100698:102158(1460) ack 3828 win 32768
+10:13:36.325089 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 102158:103115(957) ack 3828 win 32768
+10:13:36.325263 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 103115 win 55818
+10:13:36.326250 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 103115 win 60198
+10:13:36.326752 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 103115 win 65535
+10:13:36.360753 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3483 win 32768
+10:13:36.361031 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3483:3503(20) ack 3104 win 64159
+10:13:36.379350 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: P 3828:4110(282) ack 103115 win 65535
+10:13:36.379495 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  20565* 1/0/0 A 217.115.198.135 (44)
+10:13:36.386714 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 103115:104575(1460) ack 4110 win 32768
+10:13:36.387081 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: P 104575:105665(1090) ack 4110 win 32768
+10:13:36.387318 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 105665 win 65535
+10:13:36.399311 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 3104:3172(68) ack 3503 win 32768
+10:13:36.400209 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3503:3571(68) ack 3172 win 64091
+10:13:36.418440 IP GRAF2.1407 > 217.115.198.135.8082: S 3276062174:3276062174(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:36.419754 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: P 2565:2846(281) ack 37312 win 65532
+10:13:36.425986 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 37312:38772(1460) ack 2846 win 32768
+10:13:36.426320 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 38772:40232(1460) ack 2846 win 32768
+10:13:36.426560 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 40232 win 65535
+10:13:36.426587 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: P 40232:41268(1036) ack 2846 win 32768
+10:13:36.456275 IP 217.115.198.135.8082 > GRAF2.1407: R 0:0(0) ack 3276062175 win 0
+10:13:36.460756 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3571 win 32768
+10:13:36.461032 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3571:3591(20) ack 3172 win 64091
+10:13:36.530750 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3591 win 32768
+10:13:36.554622 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 41268 win 64499
+10:13:36.557200 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 3172:4632(1460) ack 3591 win 32768
+10:13:36.557508 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 4632:4824(192) ack 3591 win 32768
+10:13:36.557730 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 4824 win 65535
+10:13:36.579872 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 4824:4868(44) ack 3591 win 32768
+10:13:36.773374 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 4868 win 65491
+10:13:36.992225 IP GRAF2.1407 > 217.115.198.135.8082: S 3276062174:3276062174(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:37.001278 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:37.028314 IP 217.115.198.135.8082 > GRAF2.1407: R 0:0(0) ack 1 win 0
+10:13:37.308851 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  8277+ PTR? 135.198.115.217.in-addr.arpa. (46)
+10:13:37.411959 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  8277 NXDomain* 0/1/0 (109)
+10:13:37.412609 IP GRAF2.137 > 217.115.198.135.137: UDP, length: 50
+10:13:37.539096 IP GRAF2.1407 > 217.115.198.135.8082: S 3276062174:3276062174(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:37.575220 IP 217.115.198.135.8082 > GRAF2.1407: R 0:0(0) ack 1 win 0
+10:13:37.999794 IP luke.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 187
+10:13:38.898290 IP GRAF2.137 > 217.115.198.135.137: UDP, length: 50
+10:13:39.091640 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: P 528:994(466) ack 32904 win 64619
+10:13:39.095233 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 32904:33126(222) ack 994 win 24820
+10:13:39.120353 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: P 1173:1527(354) ack 34914 win 64937
+10:13:39.122078 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 34914:35138(224) ack 1527 win 24820
+10:13:39.136521 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: P 994:1348(354) ack 33126 win 64397
+10:13:39.138152 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 33126:33350(224) ack 1348 win 24820
+10:13:39.158386 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: P 1527:1880(353) ack 35138 win 64713
+10:13:39.159947 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 35138:35361(223) ack 1880 win 24820
+10:13:39.172844 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: P 1348:1698(350) ack 33350 win 64173
+10:13:39.174316 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: P 33350:33573(223) ack 1698 win 24820
+10:13:39.187846 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: P 1880:2231(351) ack 35361 win 64490
+10:13:39.189304 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: P 35361:35584(223) ack 2231 win 24820
+10:13:39.229420 IP GRAF2.1377 > 216.239.59.104.80: P 1699:2136(437) ack 697 win 64839
+10:13:39.286577 IP 216.239.59.104.80 > GRAF2.1377: . ack 2136 win 10720
+10:13:39.288871 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 33573 win 65535
+10:13:39.384862 IP 216.239.59.104.80 > GRAF2.1377: P 697:871(174) ack 2136 win 10720
+10:13:39.398282 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 35584 win 64267
+10:13:39.507670 IP GRAF2.1377 > 216.239.59.104.80: . ack 871 win 64665
+10:13:39.755341 IP anakin.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 174
+10:13:39.756472 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:39.757495 IP luke.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 187
+10:13:40.398234 IP GRAF2.137 > 217.115.198.135.137: UDP, length: 50
+10:13:40.506272 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:41.170726 arp who-has artem.icsr.agh.edu.pl (Broadcast) tell luke.icsr.agh.edu.pl
+10:13:41.257269 IP anakin.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:41.890790 arp who-has molly01.icsr.agh.edu.pl tell neapolian.icsr.agh.edu.pl
+10:13:42.210710 arp who-has artem.icsr.agh.edu.pl (Broadcast) tell luke.icsr.agh.edu.pl
+10:13:42.249784 IP luke.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 187
+10:13:42.889558 arp who-has molly01.icsr.agh.edu.pl tell neapolian.icsr.agh.edu.pl
+10:13:42.898908 IP GRAF2.1043 > luke.icsr.agh.edu.pl.53:  10581+ PTR? 86.99.156.149.in-addr.arpa. (44)
+10:13:42.899797 IP luke.icsr.agh.edu.pl.53 > GRAF2.1043:  10581* 1/2/3 (196)
+10:13:43.021754 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1000:1068(68) ack 1846 win 65483
+10:13:43.041263 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 1846:1914(68) ack 1068 win 24820
+10:13:43.226301 IP GRAF2.1374 > student.uci.agh.edu.pl.22: . ack 1914 win 65415
+10:13:44.011261 IP anakin.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 183
+10:13:47.450666 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1068:1364(296) ack 1914 win 65415
+10:13:47.469444 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 1914:1950(36) ack 1364 win 24820
+10:13:47.470424 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1364:1432(68) ack 1950 win 65379
+10:13:47.480087 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 1950:2002(52) ack 1432 win 24820
+10:13:47.481220 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1432:1532(100) ack 2002 win 65327
+10:13:47.491091 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 2002:2038(36) ack 1532 win 24820
+10:13:47.492203 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1532:1584(52) ack 2038 win 65291
+10:13:47.495221 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 2038:2126(88) ack 1584 win 24820
+10:13:47.497066 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 2126:2226(100) ack 1584 win 24820
+10:13:47.497398 IP GRAF2.1374 > student.uci.agh.edu.pl.22: . ack 2226 win 65103
+10:13:47.498189 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1584:1636(52) ack 2226 win 65103
+10:13:47.593638 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 2226:2342(116) ack 1636 win 24820
+10:13:47.594675 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1636:1688(52) ack 2342 win 64987
+10:13:47.611393 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 2342:2410(68) ack 1688 win 24820
+10:13:47.612387 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1688:1740(52) ack 2410 win 64919
+10:13:47.623623 IP student.uci.agh.edu.pl.22 > GRAF2.1374: P 2410:2478(68) ack 1740 win 24820
+10:13:47.624621 IP GRAF2.1374 > student.uci.agh.edu.pl.22: P 1740:1792(52) ack 2478 win 64851
+10:13:47.724720 IP student.uci.agh.edu.pl.22 > GRAF2.1374: . ack 1792 win 24820
+10:13:49.392928 IP comma.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:50.142529 IP comma.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:50.892521 IP comma.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:13:51.389208 IP luke.icsr.agh.edu.pl.80 > GRAF2.1405: F 105665:105665(0) ack 4110 win 32768
+10:13:51.389665 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: . ack 105666 win 65535
+10:13:51.419170 IP luke.icsr.agh.edu.pl.80 > GRAF2.1406: F 41268:41268(0) ack 2846 win 32768
+10:13:51.419624 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: . ack 41269 win 64499
+10:13:52.869007 IP GRAF2.1409 > 66.102.9.99.80: S 314316480:314316480(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:52.891474 arp who-has molly01.icsr.agh.edu.pl tell neapolian.icsr.agh.edu.pl
+10:13:52.925922 IP 66.102.9.99.80 > GRAF2.1409: S 2522778985:2522778985(0) ack 314316481 win 8190 <mss 1460>
+10:13:52.926295 IP GRAF2.1409 > 66.102.9.99.80: . ack 1 win 65535
+10:13:52.927063 IP GRAF2.1409 > 66.102.9.99.80: P 1:466(465) ack 1 win 65535
+10:13:52.984545 IP 66.102.9.99.80 > GRAF2.1409: . ack 466 win 7725
+10:13:52.985222 IP 66.102.9.99.80 > GRAF2.1409: . ack 466 win 6432
+10:13:52.991798 IP 66.102.9.99.80 > GRAF2.1409: P 1431:1636(205) ack 466 win 6432
+10:13:52.992052 IP GRAF2.1409 > 66.102.9.99.80: . ack 1 win 65535
+10:13:52.992602 IP 66.102.9.99.80 > GRAF2.1409: . 1:1431(1430) ack 466 win 6432
+10:13:52.992966 IP GRAF2.1409 > 66.102.9.99.80: . ack 1636 win 65535
+10:13:53.244942 IP GRAF2.1410 > 216.239.59.104.80: S 2398760690:2398760690(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:53.304353 IP 216.239.59.104.80 > GRAF2.1410: S 2041482336:2041482336(0) ack 2398760691 win 8190 <mss 1460>
+10:13:53.304739 IP GRAF2.1410 > 216.239.59.104.80: . ack 1 win 65535
+10:13:53.305402 IP GRAF2.1410 > 216.239.59.104.80: P 1:410(409) ack 1 win 65535
+10:13:53.362166 IP 216.239.59.104.80 > GRAF2.1410: . ack 410 win 7781
+10:13:53.362720 IP 216.239.59.104.80 > GRAF2.1410: . ack 410 win 6432
+10:13:53.380496 IP 216.239.59.104.80 > GRAF2.1410: P 1:175(174) ack 410 win 6432
+10:13:53.450608 arp who-has artem.icsr.agh.edu.pl (Broadcast) tell luke.icsr.agh.edu.pl
+10:13:53.507299 IP GRAF2.1410 > 216.239.59.104.80: . ack 175 win 65361
+10:13:53.891664 arp who-has molly01.icsr.agh.edu.pl tell neapolian.icsr.agh.edu.pl
+10:13:54.179409 IP GRAF2.1405 > luke.icsr.agh.edu.pl.80: R 4110:4110(0) ack 105666 win 0
+10:13:54.179829 IP GRAF2.1406 > luke.icsr.agh.edu.pl.80: R 2846:2846(0) ack 41269 win 0
+10:13:55.308093 IP arax.uci.agh.edu.pl.80 > GRAF2.1378: F 35584:35584(0) ack 2231 win 24820
+10:13:55.308583 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: . ack 35585 win 64267
+10:13:55.308628 IP arax.uci.agh.edu.pl.80 > GRAF2.1379: F 33573:33573(0) ack 1698 win 24820
+10:13:55.308951 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: . ack 33574 win 65535
+10:13:55.530592 arp who-has artem.icsr.agh.edu.pl (Broadcast) tell luke.icsr.agh.edu.pl
+10:13:56.138518 IP GRAF2.1411 > www.ki.agh.edu.pl.80: S 2759245436:2759245436(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:56.139330 IP www.ki.agh.edu.pl.80 > GRAF2.1411: S 3575347890:3575347890(0) ack 2759245437 win 24820 <nop,nop,sackOK,mss 1460>
+10:13:56.139658 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 1 win 65535
+10:13:56.140358 IP GRAF2.1411 > www.ki.agh.edu.pl.80: P 1:433(432) ack 1 win 65535
+10:13:56.141157 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . ack 433 win 24820
+10:13:56.146414 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 1:1461(1460) ack 433 win 24820
+10:13:56.146712 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 1461:2921(1460) ack 433 win 24820
+10:13:56.146938 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 2921 win 65535
+10:13:56.146963 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 2921:4381(1460) ack 433 win 24820
+10:13:56.147949 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 4381:5479(1098) ack 433 win 24820
+10:13:56.148299 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 5479 win 65535
+10:13:56.206823 IP GRAF2.1411 > www.ki.agh.edu.pl.80: P 433:759(326) ack 5479 win 65535
+10:13:56.208769 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 5479:6939(1460) ack 759 win 24820
+10:13:56.209081 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 6939:8260(1321) ack 759 win 24820
+10:13:56.209306 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 8260 win 65535
+10:13:56.274708 IP GRAF2.1412 > www.ki.agh.edu.pl.80: S 1408656621:1408656621(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:56.275544 IP www.ki.agh.edu.pl.80 > GRAF2.1412: S 3575490230:3575490230(0) ack 1408656622 win 24820 <nop,nop,sackOK,mss 1460>
+10:13:56.275867 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 1 win 65535
+10:13:56.276729 IP GRAF2.1412 > www.ki.agh.edu.pl.80: P 1:324(323) ack 1 win 65535
+10:13:56.277466 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . ack 324 win 24820
+10:13:56.278935 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 1:1461(1460) ack 324 win 24820
+10:13:56.279196 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 1461:2921(1460) ack 324 win 24820
+10:13:56.279420 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 2921 win 65535
+10:13:56.279444 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 2921:3215(294) ack 324 win 24820
+10:13:56.377422 IP GRAF2.1411 > www.ki.agh.edu.pl.80: P 759:1080(321) ack 8260 win 65535
+10:13:56.379149 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 8260:8676(416) ack 1080 win 24820
+10:13:56.436389 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 3215 win 65241
+10:13:56.537027 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 8676 win 65119
+10:13:56.711244 IP GRAF2.1412 > www.ki.agh.edu.pl.80: P 324:616(292) ack 3215 win 65241
+10:13:56.713468 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 3215:4675(1460) ack 616 win 24820
+10:13:56.713776 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 4675:6135(1460) ack 616 win 24820
+10:13:56.714004 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 6135 win 65535
+10:13:56.714028 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 6135:7595(1460) ack 616 win 24820
+10:13:56.714218 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 7595:9055(1460) ack 616 win 24820
+10:13:56.714424 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 9055 win 65535
+10:13:56.714442 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 9055:10515(1460) ack 616 win 24820
+10:13:56.715242 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 10515:11975(1460) ack 616 win 24820
+10:13:56.715599 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 11975 win 65535
+10:13:56.715647 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 11975:13435(1460) ack 616 win 24820
+10:13:56.715784 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 13435:14895(1460) ack 616 win 24820
+10:13:56.716006 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 14895 win 64915
+10:13:56.716048 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 14895:16355(1460) ack 616 win 24820
+10:13:56.716189 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 16355:17815(1460) ack 616 win 24820
+10:13:56.716358 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 17815 win 61995
+10:13:56.716372 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 17815:19275(1460) ack 616 win 24820
+10:13:56.716886 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 19275:20735(1460) ack 616 win 24820
+10:13:56.717159 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 20735 win 59075
+10:13:56.717200 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 20735:22195(1460) ack 616 win 24820
+10:13:56.717331 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 22195:23655(1460) ack 616 win 24820
+10:13:56.717511 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 23655 win 56155
+10:13:56.717547 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 23655:25115(1460) ack 616 win 24820
+10:13:56.717676 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 25115:26575(1460) ack 616 win 24820
+10:13:56.717846 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 26575 win 53235
+10:13:56.717858 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 26575:28035(1460) ack 616 win 24820
+10:13:56.717989 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 28035:28922(887) ack 616 win 24820
+10:13:56.718156 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 28922 win 50888
+10:13:56.747728 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 28922 win 65535
+10:13:56.761568 IP GRAF2.1410 > 216.239.59.104.80: P 410:853(443) ack 175 win 65361
+10:13:56.844187 IP GRAF2.1411 > www.ki.agh.edu.pl.80: P 1080:1373(293) ack 8676 win 65119
+10:13:56.847623 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 8676:10136(1460) ack 1373 win 24820
+10:13:56.847930 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 10136:11596(1460) ack 1373 win 24820
+10:13:56.848146 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 11596 win 65535
+10:13:56.848172 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 11596:13056(1460) ack 1373 win 24820
+10:13:56.848364 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 13056:14516(1460) ack 1373 win 24820
+10:13:56.848574 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 14516 win 65535
+10:13:56.848592 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 14516:15976(1460) ack 1373 win 24820
+10:13:56.848743 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 15976:17436(1460) ack 1373 win 24820
+10:13:56.848933 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 17436 win 65535
+10:13:56.848952 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 17436:18896(1460) ack 1373 win 24820
+10:13:56.849102 IP 216.239.59.104.80 > GRAF2.1410: P 175:349(174) ack 853 win 7504
+10:13:56.849497 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 18896:20356(1460) ack 1373 win 24820
+10:13:56.849758 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 20356 win 62615
+10:13:56.849799 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 20356:21816(1460) ack 1373 win 24820
+10:13:56.849928 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 21816:23276(1460) ack 1373 win 24820
+10:13:56.850096 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 23276 win 59695
+10:13:56.850127 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 23276:24736(1460) ack 1373 win 24820
+10:13:56.850255 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 24736:26196(1460) ack 1373 win 24820
+10:13:56.850428 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 26196 win 56775
+10:13:56.850441 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 26196:27656(1460) ack 1373 win 24820
+10:13:56.850580 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 27656:28872(1216) ack 1373 win 24820
+10:13:56.850749 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 28872 win 54099
+10:13:56.865020 IP GRAF2.1412 > www.ki.agh.edu.pl.80: P 616:936(320) ack 28922 win 65535
+10:13:56.866267 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 28872 win 57859
+10:13:56.867174 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 28922:30382(1460) ack 936 win 24820
+10:13:56.867494 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 30382:31842(1460) ack 936 win 24820
+10:13:56.867716 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 31842 win 65535
+10:13:56.867738 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 31842:33302(1460) ack 936 win 24820
+10:13:56.867939 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 33302:34762(1460) ack 936 win 24820
+10:13:56.868146 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 34762 win 65535
+10:13:56.868164 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 34762:36222(1460) ack 936 win 24820
+10:13:56.868323 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 36222:36610(388) ack 936 win 24820
+10:13:56.868504 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 36610 win 65535
+10:13:56.894149 IP GRAF2.1412 > www.ki.agh.edu.pl.80: P 936:1256(320) ack 36610 win 65535
+10:13:56.895982 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 36610:38070(1460) ack 1256 win 24820
+10:13:56.896283 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 38070:39530(1460) ack 1256 win 24820
+10:13:56.896508 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 39530 win 65535
+10:13:56.896532 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 39530:40990(1460) ack 1256 win 24820
+10:13:56.896728 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 40990:42450(1460) ack 1256 win 24820
+10:13:56.896937 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 42450 win 65535
+10:13:56.896955 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 42450:43910(1460) ack 1256 win 24820
+10:13:56.897108 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 43910:45370(1460) ack 1256 win 24820
+10:13:56.897308 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 45370 win 65535
+10:13:56.897324 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 45370:46830(1460) ack 1256 win 24820
+10:13:56.897480 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 46830:47789(959) ack 1256 win 24820
+10:13:56.897659 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 47789 win 63116
+10:13:56.906840 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 47789 win 65535
+10:13:56.920352 IP GRAF2.1412 > www.ki.agh.edu.pl.80: P 1256:1586(330) ack 47789 win 65535
+10:13:56.922167 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 47789:49249(1460) ack 1586 win 24820
+10:13:56.922486 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 49249:50709(1460) ack 1586 win 24820
+10:13:56.922729 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 50709 win 65535
+10:13:56.922754 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 50709:52169(1460) ack 1586 win 24820
+10:13:56.922952 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 52169:53629(1460) ack 1586 win 24820
+10:13:56.923167 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 53629 win 65535
+10:13:56.923186 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 53629:55089(1460) ack 1586 win 24820
+10:13:56.923342 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 55089:56549(1460) ack 1586 win 24820
+10:13:56.923544 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 56549 win 65535
+10:13:56.923626 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 56549:58009(1460) ack 1586 win 24820
+10:13:56.923818 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 58009:59469(1460) ack 1586 win 24820
+10:13:56.924010 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 59469 win 62615
+10:13:56.924028 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 59469:60929(1460) ack 1586 win 24820
+10:13:56.924150 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 60929:62389(1460) ack 1586 win 24820
+10:13:56.924316 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 62389 win 59695
+10:13:56.924328 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 62389:63849(1460) ack 1586 win 24820
+10:13:56.924456 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 63849:65309(1460) ack 1586 win 24820
+10:13:56.924653 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 65309 win 56775
+10:13:56.924666 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 65309:66769(1460) ack 1586 win 24820
+10:13:56.924789 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 66769:68229(1460) ack 1586 win 24820
+10:13:56.924955 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 68229 win 53855
+10:13:56.924969 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 68229:69689(1460) ack 1586 win 24820
+10:13:56.925099 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 69689:71149(1460) ack 1586 win 24820
+10:13:56.925269 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 71149 win 50935
+10:13:56.925282 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 71149:72609(1460) ack 1586 win 24820
+10:13:56.925401 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 72609:74069(1460) ack 1586 win 24820
+10:13:56.925577 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 74069 win 48015
+10:13:56.925591 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 74069:75529(1460) ack 1586 win 24820
+10:13:56.925720 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 75529:76989(1460) ack 1586 win 24820
+10:13:56.925888 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 76989 win 45095
+10:13:56.925902 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 76989:78449(1460) ack 1586 win 24820
+10:13:56.926022 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 78449:79909(1460) ack 1586 win 24820
+10:13:56.926191 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 79909 win 42175
+10:13:56.926203 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 79909:80845(936) ack 1586 win 24820
+10:13:56.926329 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 80845:82305(1460) ack 1586 win 24820
+10:13:56.926513 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 82305 win 39779
+10:13:56.926528 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 82305:83765(1460) ack 1586 win 24820
+10:13:56.926650 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 83765:85225(1460) ack 1586 win 24820
+10:13:56.926818 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 85225 win 36859
+10:13:56.926831 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 85225:86685(1460) ack 1586 win 24820
+10:13:56.926961 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 86685:88145(1460) ack 1586 win 24820
+10:13:56.927130 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 88145 win 33939
+10:13:56.927143 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 88145:89605(1460) ack 1586 win 24820
+10:13:56.927261 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 89605:91065(1460) ack 1586 win 24820
+10:13:56.927438 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 91065 win 31019
+10:13:56.927452 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 91065:92525(1460) ack 1586 win 24820
+10:13:56.927581 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 92525:93985(1460) ack 1586 win 24820
+10:13:56.927751 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 93985 win 28099
+10:13:56.927764 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 93985:95445(1460) ack 1586 win 24820
+10:13:56.927884 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 95445:96905(1460) ack 1586 win 24820
+10:13:56.928053 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 96905 win 25179
+10:13:56.928065 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 96905:98365(1460) ack 1586 win 24820
+10:13:56.928188 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 98365:99632(1267) ack 1586 win 24820
+10:13:56.928360 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 99632 win 22452
+10:13:56.938154 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 99632 win 26212
+10:13:56.955125 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 28872 win 65535
+10:13:56.966436 IP GRAF2.1411 > www.ki.agh.edu.pl.80: P 1373:1665(292) ack 28872 win 65535
+10:13:56.968402 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 28872:30332(1460) ack 1665 win 24820
+10:13:56.968713 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 30332:30431(99) ack 1665 win 24820
+10:13:56.968925 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 30431 win 65535
+10:13:56.969672 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 99632 win 65535
+10:13:56.991000 IP GRAF2.1412 > www.ki.agh.edu.pl.80: P 1586:1905(319) ack 99632 win 65535
+10:13:56.992839 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 99632:101092(1460) ack 1905 win 24820
+10:13:56.993165 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 101092:102552(1460) ack 1905 win 24820
+10:13:56.993391 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 102552 win 65535
+10:13:56.993417 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 102552:104012(1460) ack 1905 win 24820
+10:13:56.993610 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 104012:105472(1460) ack 1905 win 24820
+10:13:56.993819 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 105472 win 65535
+10:13:56.993847 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 105472:106932(1460) ack 1905 win 24820
+10:13:56.994003 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 106932:108392(1460) ack 1905 win 24820
+10:13:56.994190 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 108392 win 65535
+10:13:56.994207 IP www.ki.agh.edu.pl.80 > GRAF2.1412: . 108392:109852(1460) ack 1905 win 24820
+10:13:56.994374 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 109852:110264(412) ack 1905 win 24820
+10:13:56.994554 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 110264 win 63663
+10:13:57.032673 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 110264 win 65535
+10:13:57.039910 IP GRAF2.1410 > 216.239.59.104.80: . ack 349 win 65187
+10:13:57.062801 IP GRAF2.1412 > www.ki.agh.edu.pl.80: P 1905:2199(294) ack 110264 win 65535
+10:13:57.064517 IP www.ki.agh.edu.pl.80 > GRAF2.1412: P 110264:111326(1062) ack 2199 win 24820
+10:13:57.174165 IP GRAF2.1411 > www.ki.agh.edu.pl.80: P 1665:1996(331) ack 30431 win 65535
+10:13:57.176127 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 30431:31891(1460) ack 1996 win 24820
+10:13:57.176448 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 31891:33351(1460) ack 1996 win 24820
+10:13:57.176679 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 33351 win 65535
+10:13:57.176706 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 33351:34811(1460) ack 1996 win 24820
+10:13:57.176893 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 34811:36271(1460) ack 1996 win 24820
+10:13:57.177097 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 36271 win 65535
+10:13:57.177114 IP www.ki.agh.edu.pl.80 > GRAF2.1411: . 36271:37731(1460) ack 1996 win 24820
+10:13:57.177266 IP www.ki.agh.edu.pl.80 > GRAF2.1411: P 37731:38917(1186) ack 1996 win 24820
+10:13:57.177463 IP GRAF2.1411 > www.ki.agh.edu.pl.80: . ack 38917 win 65535
+10:13:57.241048 IP GRAF2.1412 > www.ki.agh.edu.pl.80: . ack 111326 win 64473
+10:13:59.163966 IP GRAF2.1379 > arax.uci.agh.edu.pl.80: R 1698:1698(0) ack 33574 win 0
+10:13:59.164385 IP GRAF2.1378 > arax.uci.agh.edu.pl.80: R 2231:2231(0) ack 35585 win 0
+10:13:59.294760 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: S 1188328881:1188328881(0) win 65535 <mss 1460,nop,nop,sackOK>
+10:13:59.295544 IP arax.uci.agh.edu.pl.80 > GRAF2.1413: S 1179017562:1179017562(0) ack 1188328882 win 24820 <nop,nop,sackOK,mss 1460>
+10:13:59.295873 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: . ack 1 win 65535
+10:13:59.296714 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: P 1:467(466) ack 1 win 65535
+10:13:59.297463 IP arax.uci.agh.edu.pl.80 > GRAF2.1413: . ack 467 win 24820
+10:13:59.300663 IP arax.uci.agh.edu.pl.80 > GRAF2.1413: P 1:223(222) ack 467 win 24820
+10:13:59.336715 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: P 467:821(354) ack 223 win 65313
+10:13:59.338177 IP arax.uci.agh.edu.pl.80 > GRAF2.1413: P 223:447(224) ack 821 win 24820
+10:13:59.345218 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: P 821:1175(354) ack 447 win 65089
+10:13:59.346891 IP arax.uci.agh.edu.pl.80 > GRAF2.1413: P 447:671(224) ack 1175 win 24820
+10:13:59.360606 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: P 1175:1528(353) ack 671 win 64865
+10:13:59.362169 IP arax.uci.agh.edu.pl.80 > GRAF2.1413: P 671:894(223) ack 1528 win 24820
+10:13:59.367888 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: P 1528:1878(350) ack 894 win 64642
+10:13:59.369242 IP arax.uci.agh.edu.pl.80 > GRAF2.1413: P 894:1117(223) ack 1878 win 24820
+10:13:59.377912 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: P 1878:2229(351) ack 1117 win 64419
+10:13:59.379281 IP arax.uci.agh.edu.pl.80 > GRAF2.1413: P 1117:1340(223) ack 2229 win 24820
+10:13:59.425771 IP GRAF2.1410 > 216.239.59.104.80: P 853:1290(437) ack 349 win 65187
+10:13:59.511978 IP 216.239.59.104.80 > GRAF2.1410: P 349:523(174) ack 1290 win 8576
+10:13:59.585224 IP GRAF2.1413 > arax.uci.agh.edu.pl.80: . ack 1340 win 64196
+10:13:59.694618 IP GRAF2.1410 > 216.239.59.104.80: . ack 523 win 65013
+10:14:04.321345 IP anakin.icsr.agh.edu.pl.138 > 149.156.99.185.138: UDP, length: 207
+10:14:04.748911 arp who-has artem.icsr.agh.edu.pl (Broadcast) tell luke.icsr.agh.edu.pl
+10:14:07.007191 IP dwarf.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:14:07.757103 IP dwarf.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:14:08.049167 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3591:3667(76) ack 4868 win 65491
+10:14:08.120452 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3667 win 32768
+10:14:08.120738 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3667:3687(20) ack 4868 win 65491
+10:14:08.129037 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 4868:4912(44) ack 3687 win 32768
+10:14:08.130219 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3687:3755(68) ack 4912 win 65447
+10:14:08.190443 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3755 win 32768
+10:14:08.190723 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3755:3775(20) ack 4912 win 65447
+10:14:08.239055 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 4912:4956(44) ack 3775 win 32768
+10:14:08.444379 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 4956 win 65403
+10:14:08.444588 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 4956:5000(44) ack 3775 win 32768
+10:14:08.445674 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3775:3843(68) ack 5000 win 65359
+10:14:08.507218 IP dwarf.icsr.agh.edu.pl.137 > 149.156.99.185.137: UDP, length: 50
+10:14:08.510443 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: . ack 3843 win 32768
+10:14:08.510716 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: P 3843:3863(20) ack 5000 win 65359
+10:14:08.578980 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 5000:5628(628) ack 3863 win 32768
+10:14:08.772472 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 5628 win 64731
+10:14:08.772785 IP luke.icsr.agh.edu.pl.22 > GRAF2.1404: P 5628:5672(44) ack 3863 win 32768
+10:14:08.991236 IP GRAF2.1404 > luke.icsr.agh.edu.pl.22: . ack 5672 win 64687
