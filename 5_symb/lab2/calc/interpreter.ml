@@ -44,6 +44,6 @@ let rec eval env ex =
       
 
 let interpret env stmt = match stmt with
-  | Eval(ex) -> print_string (string_of_float (eval env ex)); env
+  | Eval(ex) -> Printf.printf "%f\n" (eval env ex); env
   | Let(k,v) -> setBind env k (eval env v)
   | Def(f,a,e) -> setFun env f a e
