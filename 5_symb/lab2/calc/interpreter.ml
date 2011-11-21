@@ -28,27 +28,22 @@ let rec setFun env name args expr = match env with
     ((TFun, k), Fun(args, expr)) :: tail
   | head :: tail -> head :: setFun tail name args expr
 
-let rec eval env expr =
-  match expr with
+let rec eval env ex =
+  match ex with
     | Const(v) -> v
-    | Var(vn) -> getBind env vn
+    | Var(vn) -> let Bind(x) = getBind env vn in x
     | Add(e1, e2) -> (eval env e1) +. (eval env e2)
     | Sub(e1, e2) -> (eval env e1) -. (eval env e2)
     | Mult(e1, e2) -> (eval env e1) *. (eval env e2)
     | Div(e1, e2) -> (eval env e1) /. (eval env e2)
     | Minus(e1) -> 0. -. (eval env e1)
-    | Call(f, body) ->
-      let Fun(a,b) = (getFun env f) in 5.
-      (*let Fun(f, expr list ) = getFun env f in *)
-      (*let Fun(f_a, f_e) = getFun env f in*)
-      (*let env = List.fold_left2 setBind env f_a exprs in*)
-	
+    | Call(fname, fexprs) ->
+      let Fun(fargs,fbody) = getFun env fname in
+      let env = (List.fold_left2 (fun e k v -> setBind e k (eval env v)) env fargs fexprs) in
+      eval env fbody
       
-	
 
-let interpret env stmt =
-  print_string (string_of_float (eval env expr)); env
-  (* match stmt with
-  | Eval(expr) -> print_string (string_of_float (eval env expr)); env
+let interpret env stmt = match stmt with
+  | Eval(ex) -> print_string (string_of_float (eval env ex)); env
   | Let(k,v) -> setBind env k (eval env v)
-  | Def(f, a, e) -> setFun env f a e *)
+  | Def(f,a,e) -> setFun env f a e
