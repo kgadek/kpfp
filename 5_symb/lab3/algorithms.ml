@@ -1,3 +1,9 @@
+let flip f x y = f y x
+
+let curry f x y = f (x,y)
+
+let uncurry f (x,y) = f x y
+
 let rec map f l = match l with
   | [] -> []
   | car :: cdr -> (f car) :: map f cdr
@@ -26,6 +32,8 @@ let rec fold_left f acc l = match l with
 
 let fold_right f l acc = fold_left (flip f) acc (List.rev l)
 
+let filter3 f l = fold_right (fun x y -> if (f x) then x::y else y) l []
+
 let head l = match l with
   | [] -> invalid_arg "Pusta głowa!"
   | car :: cdr -> fold_left (fun x y -> x) car cdr (* waat? *)
@@ -47,3 +55,22 @@ let capitalized = filter (fun x -> let fst = (String.get x 0)
 let firsts = List.map (fun (x,y) -> x)
 
 let append la lb = List.rev (fold_left (fun x y -> y :: x) (List.rev la) lb)
+
+let rec map2 f l1 l2 = match (l1,l2) with
+  | ([], []) -> []
+  | (h1::t1, h2::t2) -> (f h1 h2) :: map2 f t1 t2
+  | (_, _) -> invalid_arg "Listy nie są równej długości"
+
+let fold_left2 f acc l1 l2 =
+  let rec fl2 acc l1 l2 = match (l1,l2) with
+    | ([], []) -> List.rev acc
+    | (h1::t1, h2::t2) -> fl2 ((h1,h2)::acc) t1 t2
+  in fold_left (fun x (y,z) -> f x y z) acc (fl2 [] l1 l2)
+
+let vadd = map2 (+)
+
+let vmul = fold_left2 (fun x y z -> x+y*z) 0
+
+let for_all f = fold_left (fun x y -> x && (f y)) true
+
+let combine l1 l2 = List.rev (fold_left2 (fun x y z -> (y,z)::x) [] l1 l2)
