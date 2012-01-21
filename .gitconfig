@@ -1,0 +1,21 @@
+[user]
+	name = Konrad Gądek
+	email = kgadek@gmail.com
+[diff]
+	tool = vimdiff
+[alias]
+	st = status
+	cm = commit
+    cmm = commit -m
+	cmma = commit -am
+	co = checkout
+	df = diff
+	head = log -n1
+	hd = log -n1
+    sta = stash
+    br = branch
+    up = pull origin
+    psom = push origin master
+    psoa = push origin --all
+	au = add -u
+
