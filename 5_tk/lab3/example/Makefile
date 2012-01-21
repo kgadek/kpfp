@@ -1,5 +1,5 @@
 SRC		= example add char calc
-CXXSRC	= symtab
+CXXSRC	= symtab exp
 
 .PHONY:	all clean tags pkg
 

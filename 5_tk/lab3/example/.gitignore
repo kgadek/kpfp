@@ -3,6 +3,7 @@ add
 calc
 char
 example
+exp
 *.h
 symtab
 TAGS

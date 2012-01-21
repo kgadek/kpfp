@@ -1,9 +1,10 @@
 SRC		= 
-CXXSRC	= val
+CXXSRC	= gadek
 
 .PHONY:	all clean tags pkg
 
 all: $(SRC:%=%.bla) $(CXXSRC:%=%.ble) tags
+	echo ".gitignore" >> .gitignore
 	cat .gitignore | sort | uniq > .gitignore.tmp
 	rm .gitignore
 	mv .gitignore.tmp .gitignore
