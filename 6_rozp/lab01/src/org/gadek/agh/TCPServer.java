@@ -8,10 +8,8 @@ import java.net.Socket;
 
 public class TCPServer {
 
-	static int port = 12346;
-	/**
-	 * @param args
-	 */
+	private static int port = 12346;
+
 	public static void main(String[] args) {
 		Socket socket = null;
 		ServerSocket ssocket;

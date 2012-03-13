@@ -7,12 +7,9 @@ import java.net.Socket;
 
 public class TCPClient {
 
-	static int port = 12346;
-	static String host = "localhost";
+	private static String host = "localhost";
+	private static int port = 12346;
 	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		Socket socket = null;
 		try {
