@@ -47,8 +47,9 @@ def t_ANY_newline(t):
 def p_root(p):
     """ root : sexp
              | sexp root """
-    ret = [ 'progn' ]
-    ret.extend(p[1:])
+    ret = [ 'progn', p[1] ]
+    if len(p[2:]) > 0:
+        ret.append(p[2][1])
     p[0] = ret
     print "p_root = %s" % p[0]
 
@@ -97,10 +98,17 @@ def p_error(p):
 def ex(exp):
     if type(exp) is list:
         exp = map(ex, exp)
-        return { '+' : lambda: sum(exp[1:]),
-                 '-' : lambda: exp[1]-sum(exp[2:]),
-                 'progn' : lambda: map(ex, exp[1:])
-               }[exp[0]]()
+        res = None
+        try:
+            res = { '+' : lambda: sum(exp[1:]),
+                    '-' : lambda: exp[1]-sum(exp[2:]),
+                    'progn' : lambda: map(ex, exp[1:]),
+                    'if' : lambda: ex(exp[1]) and ex(exp[2]) or ex(exp[3])
+                  }[exp[0]]()
+            print "Ex res: %-10s <--  %s" % (res, exp)
+        except:
+            print "Ex error: %s" % exp
+        return res
     else:
         return exp
 
