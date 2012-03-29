@@ -28,7 +28,7 @@ GLfloat diffuseLight[4] = {0.7f, 0.7f, 0.7f, 1.0f};
 GLfloat specularLight[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 
 
-/*normalizacja wektora* /
+/ *normalizacja wektora* /
 void ReduceToUnit(float vector[3])
 {
 	float length;
@@ -44,7 +44,7 @@ void ReduceToUnit(float vector[3])
 	vector[2] /= length;
 }
 
-/*obliczanie wektora normalnego* /
+/ *obliczanie wektora normalnego* /
 void calcNormal(float v[3][3], float out[3])
 	{
 	float v1[3],v2[3];
@@ -109,22 +109,22 @@ void init() {
 	gluQuadricTexture(obj1, GLU_TRUE);
 	
 
- /************************************************************************ /
+ / ************************************************************************ /
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	glEnable(GL_TEXTURE_2D);
   
 
-	/*...* /
+	/ *...* /
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
-	/*...* /
+	/ *...* /
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	/*...* /
+	/ *...* /
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -182,7 +182,7 @@ void display()
 	//else
 		glDisable(GL_TEXTURE_2D);
 
-	/*polozenia obserwatora - troche inaczej niz zwykle* /
+	/ *polozenia obserwatora - troche inaczej niz zwykle* /
 	glRotatef(180.0f*atan(ye/zoom)/PI, 1.0, 0.0, 0.0);
 	glTranslatef(0.0, -ye, -zoom);
 	glRotatef(angle, 0.0, 1.0, 0.0);
@@ -193,35 +193,35 @@ void display()
 		glPushMatrix();
 			glTranslatef(-90.0f, -5.0f, -90.0f);
 			glScalef(180.0f, 0.0f, 180.0f);
-			/*...* /
+			/ *...* /
 			drawTexturedMesh();
 		glPopMatrix();
 		
 		glPushMatrix();
 			glTranslatef(28.0f, -5.0f, 28.0f);
 			glRotatef(-90.0f, 1.0, 0.0f, 0.0f);
-			/*...* /
+			/ *...* /
 			gluCylinder(obj1, 8.0f, 8.0f, 15.0f, 20, 20);
 		glPopMatrix();
 		
 		glPushMatrix();
 			glTranslatef(0.0f, 7.0f, 0.0f);
 			glRotatef(-90.0f, 1.0, 0.0f, 0.0f);
-			/*...* /
+			/ *...* /
 			gluSphere(obj1, 10.0, 30, 30);
 		glPopMatrix();
 		
 		glPushMatrix();
 			glTranslatef(28.0f, 10.0f, 28.0f);
 			glRotatef(-90.0f, 1.0, 0.0f, 0.0f);
-			/*...* /
+			/ *...* /
 			gluCylinder(obj1, 5.0f, 0.0f, 8.0f, 20, 20);
 		glPopMatrix();
 		
 		glPushMatrix();
 			glTranslatef(28.0f, 10.0f, 28.0f);
 			glRotatef(-90.0f, 1.0, 0.0f, 0.0f);
-			/*...* /
+			/ *...* /
 			gluDisk(obj1, 5.0f, 8.0f,  20, 2);
 		glPopMatrix();
 
@@ -308,6 +308,71 @@ int main(int argc, char** argv) {
 	return 0;
 }*/
 
+const float SMALLSTEPD = 10.0f;
+
+float angle = 0.0f, step = 0.5f;
+
+void timer(int t) {
+	angle += step;
+	if(angle>SMALLSTEPD*360.0f)
+		angle -= SMALLSTEPD*360.0f;
+
+	glutPostRedisplay();
+	glutTimerFunc(10, timer, 0);
+}
+
+void reshape(int w, int h) {
+	glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(60.0, (GLfloat) w/ (GLfloat) h, 1.0, 400.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+};
+
+void display() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glDisable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+
+	//gluLookAt(1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, sin(angle/SMALLSTEPD), cos(angle/SMALLSTEPD));
+
+	glPushMatrix();
+		glTranslatef(0.0f, 0.0f, -4.0f);
+		glRotatef(angle, 5.0f, 7.0f, 11.0f);
+		glutWireTeapot(1.0f);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(3.0f*sin(180.0f+angle/SMALLSTEPD), 3.0f*cos(180.0f+angle/SMALLSTEPD), -4.0f);
+		glRotatef(angle, -17.0f, 19.0f, -13.0f);
+		glutWireTeapot(0.3f);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(3.0f*sin(90.0f+angle/SMALLSTEPD), 3.0f*cos(90.0f+angle/SMALLSTEPD), -4.0f);
+		glRotatef(angle, -17.0f, 19.0f, -13.0f);
+		glutWireTeapot(0.3f);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(3.0f*sin(angle/SMALLSTEPD), 3.0f*cos(angle/SMALLSTEPD), -4.0f);
+		glRotatef(angle, -17.0f, 19.0f, -13.0f);
+		glutWireTeapot(0.3f);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(0.0f, 0.0f, -4.0f);
+		glRotatef(3.0f*angle, 1.0f, 0.0f, 0.0f);
+		glutWireTorus(1.0f, 4.0f, 36.0f, 36.0f);
+	glPopMatrix();
+
+	glFinish();
+	glutSwapBuffers();
+}
+
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
@@ -315,11 +380,15 @@ int main(int argc, char** argv) {
 	glutInitWindowPosition(0, 0);
 	glutCreateWindow(argv[0]);
 	
-	//obj1 = gluNewQuadric();
+	// init
+	glClearColor(0.15f, 0.15f, 0.4f, 1.0f);
+	glEnable(GL_DEPTH_TEST);
+	glShadeModel(GL_SMOOTH);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	init();
 	glutDisplayFunc(display);
-	//glutReshapeFunc(reshape);
+	glutReshapeFunc(reshape);
+	glutTimerFunc(10, timer, 0);
 	//glutSpecialFunc(skeys);
 	//glutKeyboardFunc(keybs);
 	//glutIdleFunc(idle);

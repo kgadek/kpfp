@@ -1,4 +1,4 @@
-CXX = clang
+CXX = gcc
 TARGET = kpfp
 SOURCE = kpfp.c
 OBJECTS = $(SOURCE:%.c=%.o)
