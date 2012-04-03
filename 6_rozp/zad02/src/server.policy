@@ -1,0 +1,4 @@
+grant codeBase "file:/home/konrad/dev/kpfp/6_rozp/zad02/src/" {
+	permission java.security.AllPermission;
+};
+
