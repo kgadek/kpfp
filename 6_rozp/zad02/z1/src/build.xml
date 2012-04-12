@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<project default="compile">
+  <target name="clean">
+    <delete dir="src_client"/>
+    <delete dir="src_server"/>
+    <delete dir="src_interfaces"/>
+  </target>
+
+  <target name="init">
+    <mkdir dir="src_interfaces"/>
+    <copy file="Task.java" todir="src_interfaces"/>
+    <copy file="Compute.java" todir="src_interfaces"/>
+
+    <mkdir dir="src_server"/>
+    <copy file="ComputeEngine.java" todir="src_server"/>
+
+    <!--
+    <mkdir dir="src_client"/>
+    <copy file="" todir="src_client"/>
+    <copy file="" todir="src_client"/>
+    <copy file="" todir="src_client"/>
+    -->
+  </target>
+
+  <target name="interfaces" depends="init">
+    <javac srcdir="src_interfaces"
+	   destdir="src_interfaces"
+	   source="1.7" />
+    <jar basedir="src_interfaces"
+	 destfile="compute.jar" />
+  </target>
+
+  <target name="server" depends="interfaces">
+    <javac srcdir="src_server"
+	   destdir="src_server"
+	   classpath="compute.jar"
+	   source="1.7" />
+  </target>
+
+
+  <!--
+	<property name="interface" value="./home/interface" />
+	<property name="client" value="./home/client" />
+	<property name="server" value="./home/server" />
+	<property name="compute" value="compute.jar" />
+	<property name="serverclass" value="engine.Server" />
+	<property name="clientclass" value="client.Client" />
+
+	<property name="systempath" value="z:/Studia/Semestr6/Rozprochy" />
+	<property name="interface_codebase" value="file:${systempath}/Lab2/Zadanie1/home/interface/${compute}" />
+	<property name="client_codebase" value="${interface_codebase} file:${systempath}/Lab2/Zadanie1/home/client/bin/" />
+
+	<property name="server.policy" value="server.policy" />
+	<property name="client.policy" value="client.policy" />
+
+	<property name="ip" value="localhost" />
+	<property name="port" value="1099" />
+
+	<target name="clean">
+		<delete dir="${interface}/bin" />
+		<delete dir="${client}/bin" />
+		<delete dir="${server}/bin" />
+		<delete file="${interface}/${compute}" />
+	</target>
+	<target name="compile">
+		<mkdir dir="${interface}/bin" />
+		<mkdir dir="${client}/bin" />
+		<mkdir dir="${server}/bin" />
+		<javac srcdir="${interface}/src" destdir="${interface}/bin" />
+		<jar basedir="${interface}/bin" destfile="${interface}/${compute}" />
+
+		<javac srcdir="${server}/src" destdir="${server}/bin" classpath="${interface}/${compute}" />
+		<javac srcdir="${client}/src" destdir="${client}/bin" classpath="${interface}/${compute}" />
+	</target>
+	<target name="server">
+		<java fork="true" classname="${serverclass}" classpath="${server}/bin/;${interface}/${compute}">
+			<jvmarg value="-Djava.rmi.server.codebase=${interface_codebase}" />
+			<jvmarg value="-Djava.security.policy=${server.policy}" />
+		</java>
+	</target>
+	<target name="client">
+		<java fork="true" classname="${clientclass}" classpath="${client}/bin/;${interface}/${compute}">
+			<jvmarg value="-Djava.rmi.server.codebase=${client_codebase}" />
+			<jvmarg value="-Djava.security.policy=${client.policy}" />
+			<arg value="${ip}" />
+			<arg value="${port}" />
+		</java>
+	</target>
+ -->
+</project>
