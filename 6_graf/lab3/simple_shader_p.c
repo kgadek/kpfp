@@ -26,6 +26,8 @@ GLfloat blue[4] = {0.3, 0.3, 1.0, 1.0};
 GLfloat white[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 
 //DECLARE HERE
+GLuint vertexShaderObjectA, fragmentShaderObjectA;
+GLuint ProgramA;
 
 unsigned long getFileLength(ifstream& file)
 {
@@ -91,10 +93,64 @@ void setupShaders(char* vertexfile, char* fragmentfile,
 			GLuint *vertexShaderObject,
 			GLuint *fragmentShaderObject)
 {
-  //TODO
-  
+	glewInit();
+	//1. Stworzyć obiekty shaderów
+	*vertexShaderObject = glCreateShader(GL_VERTEX_SHADER);
+	*fragmentShaderObject = glCreateShader(GL_FRAGMENT_SHADER);
 
+	//2. Wczytać kody źródłowe
+	GLchar *vertexShaderSource = 0, *fragmentShaderSource = 0;
+	GLint vlength=0, flength=0;
+
+	loadShader((char *)vertexfile, &vertexShaderSource, &vlength);
+	loadShader((char *)fragmentfile, &fragmentShaderSource, &flength);
+
+ 	glShaderSource(*vertexShaderObject, 1,
+		       (const GLchar**) &vertexShaderSource,
+		       &vlength);
+	glShaderSource(*fragmentShaderObject, 1,
+		       (const GLchar**) &fragmentShaderSource,
+		       &flength);
+
+	//3. Kompilacja
+	glCompileShader(*vertexShaderObject);
+	glCompileShader(*fragmentShaderObject);
+
+	GLint compiled = 0;
+	glGetShaderiv(*vertexShaderObject, GL_COMPILE_STATUS, &compiled);
+	if(!compiled) {
+	  GLint len;
+	  GLchar *log;
+	  glGetShaderiv(*vertexShaderObject, GL_INFO_LOG_LENGTH, &len);
+	  log = (GLchar*) malloc(len);
+	  glGetShaderInfoLog(*vertexShaderObject, len, &len, log);
+	  free(log);
+	}
+
+	//4. Stworzyć program
+	*Program = glCreateProgram();
+
+	//5. Połączyć program z shaderami
+	glAttachShader(*Program, *vertexShaderObject);
+	glAttachShader(*Program, *fragmentShaderObject);
+
+	//6. Linkowanie
+	glLinkProgram(*Program);
+
+	//weryfikacja linkowania
+	GLint linked = 0;
+	glGetProgramiv(*Program, GL_LINK_STATUS, &linked);
+	if(!linked) {
+	  GLint len;
+	  GLchar *log;
+	  glGetProgramiv(*Program, GL_INFO_LOG_LENGTH, &len);
+	  log = (GLchar*)malloc(len);
+	  glGetProgramInfoLog(*Program, len, &len, log);
+	  fprintf(stderr, "Link log: %s\n", log);
+	  free(log);
+	}
 }
+
 
 
 void init()
@@ -113,7 +169,7 @@ void init()
 	
 	
 	
-	
+	setupShaders((char *)"vertexshader.txt", (char*) "fragmentshader.txt", &ProgramA, &vertexShaderObjectA, &fragmentShaderObjectA);
 
 }
 	
@@ -138,7 +194,7 @@ void display()
 	gluLookAt(xe, ye, ze, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 	
 	
-	
+	glUseProgram(ProgramA);
 	glutWireTorus(2, 12, 20, 20);
 	
 	
