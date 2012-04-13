@@ -5,7 +5,6 @@
     <delete dir="src_server"/>
     <delete dir="src_interfaces"/>
     <delete dir="src_common"/>
-
   </target>
 
   <target name="init">
@@ -58,9 +57,10 @@
 	  classpath="src_common/compute.jar:src_server"
 	  spawn="true"
 	  fork="true">
-      <arg prefix="-Djava.rmi.server.codebase=file:" file="src_common/compute.jar" />
+      <arg value="-Djava.rmi.server.codebase=file:/home/konrad/dev/kpfp/6_rozp/zad02/z1/src/src_common/compute.jar"/>
       <arg value="-Djava.security.policy=server.policy" />
     </java>
+    <sleep seconds="2" />
     <java classname="ComputePi"
 	  classpath="src_common/compute.jar:src_client" >
       <arg prefix="-Djava.rmi.server.codebase=file:" file="src_common/compute.jar" />

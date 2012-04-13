@@ -18,7 +18,7 @@ public class ComputePi {
 			Pi task = new Pi(5);
 			BigDecimal pi = comp.executeTask(task);
 			System.out.println("Pi =~ " + String.valueOf(pi));
-		} catch (NotBoundException | RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
