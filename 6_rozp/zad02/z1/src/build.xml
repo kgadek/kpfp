@@ -63,7 +63,7 @@
     <sleep seconds="2" />
     <java classname="ComputePi"
 	  classpath="src_common/compute.jar:src_client" >
-      <arg prefix="-Djava.rmi.server.codebase=file:" file="src_common/compute.jar" />
+      <arg prefix="-Djava.rmi.server.codebase=file:" file="src_client" />
       <arg value="-Djava.security.policy=client.policy" />
     </java>
 
