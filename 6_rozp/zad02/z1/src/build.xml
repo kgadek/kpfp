@@ -4,22 +4,28 @@
     <delete dir="src_client"/>
     <delete dir="src_server"/>
     <delete dir="src_interfaces"/>
+    <delete dir="src_common"/>
+
   </target>
 
   <target name="init">
+    <mkdir dir="src_common" />
+    
     <mkdir dir="src_interfaces"/>
-    <copy file="Task.java" todir="src_interfaces"/>
-    <copy file="Compute.java" todir="src_interfaces"/>
+    <copy file="Task.java"
+	  todir="src_interfaces"/>
+    <copy file="Compute.java"
+	  todir="src_interfaces"/>
 
     <mkdir dir="src_server"/>
-    <copy file="ComputeEngine.java" todir="src_server"/>
+    <copy file="ComputeEngine.java"
+	  todir="src_server"/>
 
-    <!--
     <mkdir dir="src_client"/>
-    <copy file="" todir="src_client"/>
-    <copy file="" todir="src_client"/>
-    <copy file="" todir="src_client"/>
-    -->
+    <copy file="Pi.java"
+	  todir="src_client"/>
+    <copy file="ComputePi.java"
+	  todir="src_client"/>
   </target>
 
   <target name="interfaces" depends="init">
@@ -27,14 +33,40 @@
 	   destdir="src_interfaces"
 	   source="1.7" />
     <jar basedir="src_interfaces"
-	 destfile="compute.jar" />
+	 destfile="src_common/compute.jar" />
   </target>
 
   <target name="server" depends="interfaces">
     <javac srcdir="src_server"
 	   destdir="src_server"
-	   classpath="compute.jar"
+	   classpath="src_common/compute.jar"
 	   source="1.7" />
+  </target>
+
+  <target name="client" depends="interfaces">
+    <javac srcdir="src_client"
+	   destdir="src_client"
+	   classpath="src_common/compute.jar" />
+    <copy file="src_client/Pi.class"
+	  todir="src_common" />
+  </target>
+
+  <target name="test" depends="server,client">
+    <exec command="rmiregistry"
+	  spawn="true" />
+    <java classname="ComputeEngine"
+	  classpath="src_common/compute.jar:src_server"
+	  spawn="true"
+	  fork="true">
+      <arg prefix="-Djava.rmi.server.codebase=file:" file="src_common/compute.jar" />
+      <arg value="-Djava.security.policy=server.policy" />
+    </java>
+    <java classname="ComputePi"
+	  classpath="src_common/compute.jar:src_client" >
+      <arg prefix="-Djava.rmi.server.codebase=file:" file="src_common/compute.jar" />
+      <arg value="-Djava.security.policy=client.policy" />
+    </java>
+
   </target>
 
 
