@@ -54,7 +54,7 @@
     <exec command="rmiregistry"
 	  spawn="true" />
     <java classname="ComputeEngine"
-	  classpath="src_common/compute.jar:src_server"
+	  classpath="src_client:src_common/compute.jar:src_server"
 	  spawn="true"
 	  fork="true">
       <arg value="-Djava.rmi.server.codebase=file:/home/konrad/dev/kpfp/6_rozp/zad02/z1/src/src_common/compute.jar"/>
