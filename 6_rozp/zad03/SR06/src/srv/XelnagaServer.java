@@ -28,6 +28,7 @@ public class XelnagaServer {
 			NameComponent path[] = ncRef.to_name("Xelnaga");
 			ncRef.rebind(path, href);
 			
+			xelnagaImpl.setNcRef(ncRef);
 			System.out.println("CORBA initialized on Zerus, yay!");
 			
 			orb.run();

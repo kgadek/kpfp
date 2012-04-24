@@ -3,6 +3,7 @@ package srv;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.omg.CosNaming.NamingContextExt;
 import org.omg.PortableServer.POA;
 import org.omg.PortableServer.Servant;
 import org.omg.PortableServer.POAPackage.ServantAlreadyActive;
@@ -11,6 +12,8 @@ import org.omg.PortableServer.POAPackage.WrongPolicy;
 
 import lab.Drone;
 import lab.DroneHelper;
+import lab.Mutalisk;
+import lab.MutaliskHelper;
 import lab.Overlord;
 import lab.XelnagaPOA;
 
@@ -23,14 +26,11 @@ public class XelnagaImpl extends XelnagaPOA {
 	private static int currDroneId = 0;
 	
 	public XelnagaImpl(POA rootpoa) throws ServantAlreadyActive, WrongPolicy, ServantNotActive, InstantiationException, IllegalAccessException {
-		//this.rootpoa = rootpoa;
-		
 		Servant drone01instance = new MutaliskImpl();
 		rootpoa.activate_object(drone01instance);
-		Drone drone01 = DroneHelper.narrow(rootpoa.servant_to_reference(drone01instance));
+		Mutalisk drone01 = MutaliskHelper.narrow(rootpoa.servant_to_reference(drone01instance));
 		drone01.id(currDroneId++);
 		drone01.name("Ed");
-		
 		drones.add(drone01);
 	}
 
@@ -65,7 +65,14 @@ public class XelnagaImpl extends XelnagaPOA {
 
 	@Override
 	public void controlDrone(int id, Overlord lstnr) {
-		String msg = "<drone in reaction to " + id + " registering new overlord (listener)> Blumbbbrrrr!";
+		String msg = "<drone " + id + " in reaction to registering new overlord (listener)> Blumbbbrrrr!";
+		System.out.println("LOG: " + msg);
+		System.out.println("LOG: listener = " + lstnr);
+		if(lstnr == null) {
+			System.err.println("LOG: Oh wait... It's null ;<");
+			return;
+		}
+			
 		for(Overlord i : overlords)
 			i.detector(msg);
 		for(Drone i : drones)
@@ -79,6 +86,9 @@ public class XelnagaImpl extends XelnagaPOA {
 		for(Overlord i : overlords)
 			i.detector(msg);
 		overlords.remove(lstnr);
+	}
+
+	public void setNcRef(NamingContextExt ncRef) {
 	}
 
 }

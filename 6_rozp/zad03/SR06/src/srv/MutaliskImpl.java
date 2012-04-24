@@ -14,7 +14,7 @@ public class MutaliskImpl extends MutaliskPOA {
 
 	@Override
 	public void disableWPA() {
-		command("<mutalisk> *skrzek* GRROOOOOOOOOORRRR [wy��cza AGH-WPA]");
+		command("<mutalisk> *skrzek* GRROOOOOOOOOORRRR [wylacza AGH-WPA]");
 	}
 
 	@Override
