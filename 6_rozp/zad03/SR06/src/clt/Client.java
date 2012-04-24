@@ -31,7 +31,7 @@ public class Client {
 			POA rootpoa = POAHelper.narrow(orb.resolve_initial_references("RootPOA"));
 			rootpoa.the_POAManager().activate();
 			
-			OverlordImpl overlordImpl = new OverlordImpl();
+			OverlordImpl overlordImpl = new OverlordImpl("for:"+myNameIs);
 			org.omg.CORBA.Object ref = rootpoa.servant_to_reference(overlordImpl);
 			Overlord href = OverlordHelper.narrow(ref);
 			

@@ -14,12 +14,12 @@ public class MutaliskImpl extends MutaliskPOA {
 
 	@Override
 	public void disableWPA() {
-		command("<mutalisk> *skrzek* GRROOOOOOOOOORRRR [wylacza AGH-WPA]");
+		command("<mutalisk " + name + "> *skrzek* GRROOOOOOOOOORRRR [wylacza AGH-WPA]");
 	}
 
 	@Override
 	public void justFly() {
-		command("<mutalisk> GRRAAARRRR [sobie lata]");
+		command("<mutalisk " + name + "> GRRAAARRRR [sobie lata]");
 	}
 
 	@Override
