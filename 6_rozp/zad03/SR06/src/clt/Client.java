@@ -21,11 +21,10 @@ import org.omg.PortableServer.POA;
 import org.omg.PortableServer.POAHelper;
 
 public class Client {
-	private static Xelnaga someRandomHiveOnSomePlanet;
-	private final static String myNameIs = "Client"+(new Random()).nextInt();
-		// TODO move to class (obj)
-
-	public static void main(String[] args) {
+	private Xelnaga someRandomHiveOnSomePlanet;
+	private String myNameIs = "Client"+(new Random()).nextInt();
+	
+	private void run(String[] args) {
 		try {
 			// things 'n stuff from oracle tutorial
 			ORB orb = ORB.init(args, null);
@@ -49,12 +48,12 @@ public class Client {
 				System.out.println("\tAvailable drone: #" + i.id() + " name:" + i.name());
 			
 			Drone ed = someRandomHiveOnSomePlanet.searchDroneByName("Ed");
-//			System.out.println("Ed is a mutalisk? " + ((_MutaliskStub)ed)._is_a("Mutalisk"));
+			System.out.println("Ed is a mutalisk? " + ed._is_a("Mutalisk"));
 			Mutalisk m_ed = MutaliskHelper.narrow(ed);
 			System.out.println("Ed?\n >>> " + m_ed);
 			
-			someRandomHiveOnSomePlanet.controlDrone(ed.id(), OverlordHelper.narrow(ncRef.resolve_str(myNameIs)));
-			someRandomHiveOnSomePlanet.controlDrone(ed.id(), OverlordHelper.narrow(ncRef.resolve_str(myNameIs)));
+//			someRandomHiveOnSomePlanet.controlDrone(ed.id(), OverlordHelper.narrow(ncRef.resolve_str(myNameIs)));
+//			someRandomHiveOnSomePlanet.controlDrone(ed.id(), OverlordHelper.narrow(ncRef.resolve_str(myNameIs)));
 			someRandomHiveOnSomePlanet.controlDrone(ed.id(), OverlordHelper.narrow(ncRef.resolve_str(myNameIs)));
 			
 			DateFormat jo = DateFormat.getTimeInstance(DateFormat.FULL);
@@ -67,5 +66,10 @@ public class Client {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String[] args) {
+		Client a = new Client();
+		a.run(args);
 	}
 }
