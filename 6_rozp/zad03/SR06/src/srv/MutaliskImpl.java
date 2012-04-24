@@ -11,7 +11,7 @@ public class MutaliskImpl extends MutaliskPOA {
 	private List<Overlord> overlords = new ArrayList<Overlord>();
 	private String name;
 	private int id;
-
+	
 	@Override
 	public void disableWPA() {
 		command("<mutalisk " + name + "> *skrzek* GRROOOOOOOOOORRRR [wylacza AGH-WPA]");
@@ -45,7 +45,7 @@ public class MutaliskImpl extends MutaliskPOA {
 	@Override
 	public void command(String cmd) {
 		System.out.println("<mutalisk> received command: " + cmd);
-		System.out.println("<mutalisk>                   groar?");
+		System.out.println("<mutalisk> responded: groaaaarrr!");
 		for(Overlord i : overlords)
 			i.detector(cmd);
 	}

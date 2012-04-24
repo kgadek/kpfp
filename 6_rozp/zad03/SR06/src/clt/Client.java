@@ -11,7 +11,6 @@ import lab.Overlord;
 import lab.OverlordHelper;
 import lab.Xelnaga;
 import lab.XelnagaHelper;
-import lab._MutaliskStub;
 
 import org.omg.CORBA.ORB;
 import org.omg.CosNaming.NameComponent;

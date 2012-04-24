@@ -1,14 +1,13 @@
 package srv;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import lab.Drone;
-import lab.Mutalisk;
-import lab.MutaliskHelper;
 import lab.Overlord;
 import lab.XelnagaPOA;
 
@@ -28,16 +27,14 @@ public class XelnagaImpl extends XelnagaPOA {
 	private int xid;
 	private List<Overlord> overlords = new ArrayList<Overlord>();
 	private List<Drone> drones = new ArrayList<Drone>();
-	//private POA rootpoa;
-	private static int currDroneId = 0;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public XelnagaImpl(POA rootpoa) throws ServantAlreadyActive, WrongPolicy, ServantNotActive, InstantiationException, IllegalAccessException {
 		try {
-//			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-//			DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File("../config.xml"));
 			// a w Clojure to wyżej wygląda tak:
 			// 		(. DocumentBuilderFactory NewInstance newDocumentBuilder (parse (File. "config.xml")))
+			// Lisp bardziej przejrzysty niż Java? :D 
 			doc.getDocumentElement().normalize();
 			NodeList listOfDrones = doc.getElementsByTagName("drones");
 			for(int idx = 0; idx < listOfDrones.getLength(); ++idx) { // nie ma iteratora? a to smut ;<
@@ -45,37 +42,38 @@ public class XelnagaImpl extends XelnagaPOA {
 				if(droneNode.getNodeType() != Node.ELEMENT_NODE)
 					continue;
 				
-				Element firstDroneE = (Element)droneNode;
-				
-				String type =
-						((Node)
-								((Element) firstDroneE.getElementsByTagName("type").item(0))
-							.getChildNodes().item(0)).getNodeValue().trim();
-				
-				String name =
-						((Node)
-								((Element) firstDroneE.getElementsByTagName("name").item(0))
-							.getChildNodes().item(0)).getNodeValue().trim();
-				
-				String idS =
-						((Node)
-								((Element) firstDroneE.getElementsByTagName("id").item(0))
-							.getChildNodes().item(0)).getNodeValue().trim();
-				int id = Integer.parseInt(idS);
-			
-				Drone curr = null;
+				String type;
+				String name;
+				String idS;
+				int id;
+				Element thisDroneOrAThing = null;
 				try {
-					if(type.equals("Mutalisk")) { // ohhh, dirty and dirty but works & is quicker to write
-						Servant currI = new MutaliskImpl();
-						rootpoa.activate_object(currI);
-						curr = MutaliskHelper.narrow(rootpoa.servant_to_reference(currI));
-					} else continue;
+					thisDroneOrAThing = (Element)droneNode;
+
+					type = ((Node)
+								((Element) thisDroneOrAThing.getElementsByTagName("type").item(0))
+							.getChildNodes().item(0)).getNodeValue().trim();
+					name = ((Node)
+								((Element) thisDroneOrAThing.getElementsByTagName("name").item(0))
+							.getChildNodes().item(0)).getNodeValue().trim();
+					idS = ((Node)
+								((Element) thisDroneOrAThing.getElementsByTagName("id").item(0))
+							.getChildNodes().item(0)).getNodeValue().trim();
+					id = Integer.parseInt(idS);
+
+					Servant currI = (Servant) Class.forName("srv."+type+"Impl").newInstance();
+					rootpoa.activate_object(currI);
+					Class c = Class.forName("lab."+type+"Helper");
+					Method m = c.getDeclaredMethod("narrow", org.omg.CORBA.Object.class);
+					Drone curr = (Drone) m.invoke(null, rootpoa.servant_to_reference(currI));
 					
 					curr.id(id);
 					curr.name(name);
 					System.out.format("==LOG: adding type=%s id=%d name=%s\n", type, id, name);
 					drones.add(curr);
 				} catch (Exception e) {
+					System.out.format("==LOG: couldn't parse: %s\n", thisDroneOrAThing.getTextContent());  
+					System.out.format("==LOG: stacktrace:\n");
 					e.printStackTrace();
 				}
 			}
@@ -83,14 +81,6 @@ public class XelnagaImpl extends XelnagaPOA {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		/*Servant drone01instance = new MutaliskImpl();
-		rootpoa.activate_object(drone01instance);
-		Mutalisk drone01 = MutaliskHelper.narrow(rootpoa.servant_to_reference(drone01instance));
-		drone01.id(currDroneId++);
-		drone01.name("Ed");
-		drones.add(drone01);*/
 	}
 
 	@Override
