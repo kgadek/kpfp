@@ -5,36 +5,40 @@ module lab {
 	interface Drone { // = device
 		attribute string name;
 		attribute long id;
-		void command(in string cmd);
+		void command(in long ticket, in string cmd);
+		long getTicket();
+		void relTicket(); 
 		void add_overmind(in Overlord lstnr);
 		void rem_overmind(in Overlord lstnr);
 	};
 	
 	interface Ground : Drone {
-		void eatStudent();
+		void eatStudent(in long ticket);
 	};
 	
 	interface Zergling : Ground {
-		void cutEtherCables();
+		void cutEtherCables(in long ticket);
 	};
 	
 	interface Air : Drone {
-		void justFly();
+		void justFly(in long ticket);
 	};
 	
 	interface Mutalisk : Air {
-		void disableWPA();
+		void disableWPA(in long ticket);
 	};
 	
 	
 	
-	interface xelnaga { // = observer / factory
+	interface Xelnaga { // = observer / factory
 		typedef sequence<Drone> armyOfDrones; // stupid CORBA, Y U can't put this inline?
 	
 		attribute long xid;
 		Drone searchDroneByName(in string name);
 		armyOfDrones searchSpaceAndDestroyProtossRace();
-		void controlDrone(in long id, in Overlord lstnr);
-		void abandonDrone(in long id, in Overlord lstnr);
+		void observeDrone(in long id, in Overlord lstnr);
+		void unobserveDrone(in long id, in Overlord lstnr);
+		//void controlDrone(in long id);
+		//void abandonDrone(in long id);
 	};
 };
