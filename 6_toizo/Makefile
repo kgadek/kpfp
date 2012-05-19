@@ -7,9 +7,8 @@ CXXFLAGS	=	-march=native -ansi -pedantic -O2 -g -W \
 				-Wmissing-prototypes -Wmissing-declarations
 LDFLAGS		=	-lm -L/usr/tools/lib
 
-PSRC		=	proto.py
 CSRC		=	proto.cpp
-.PHONY:		clean all all_py all_c
+.PHONY:		clean all all_c
 
 all: all_c
 	cat .gitignore | sort | uniq > .gitignore.tmp
@@ -21,7 +20,7 @@ all_c: $(CSRC:%.cpp=%)
 
 
 %: %.cpp
-	$(CXX) $(CXXFLAGS) $? -c -o $@
+	$(CXX) $(CXXFLAGS) $? -o $@
 
 clean:
-	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(SRC:%.cpp=%) *.out
+	rm -rf *.o *.so *.a *~ *swp .*swp *.tmp core.* $(CSRC:%.cpp=%) *.out
