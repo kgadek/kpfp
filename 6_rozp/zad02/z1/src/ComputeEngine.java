@@ -32,4 +32,9 @@ public class ComputeEngine implements Compute {
 		}
 	}
 
+	@Override
+	public Ble jol() {
+		return new Ble("serw");
+	}
+
 }
