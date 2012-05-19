@@ -1,4 +1,7 @@
 #include <cstdio>
+#include <cmath>
+
+#define STATS 1
 
 enum cell_type { SIMPLE, SOURCE, LIGHT };
 
@@ -30,6 +33,7 @@ cell devices[] = {
 	cell(SOURCE, 0,1,1,1, 'H'),
 	cell(LIGHT , 0,1,0,0, 'I'),
 };
+int rotations[] = { 1, 2, 4, 1, 2, 4, 4, 4, 4 };
 
 int X, Y;
 cell ***board;
@@ -62,6 +66,22 @@ int main() {
 		(*ptr_board) = &(devices[input[0]-'A']);
 		(*ptr_rots) = input[1]-'1';
 	}
+
+	// STATS:
+	#ifdef STATS
+	{
+		long long possibilities(1);
+		for(int ii=0; ii<Y; ++ii)
+			for(int jj=0; jj<X; ++jj)
+				possibilities *= rotations[board[ii][jj]->name - 'A'];
+		fprintf(stderr, "==> Theoretical possibilities: %25.0f ~= 2^%d.0\n",
+			pow((long long)4, X*Y),
+			2*X*Y);
+		fprintf(stderr, "==> Real possibilities:        %25lld ~= 2^%.1f\n",
+			possibilities,
+			log((double)possibilities) / log(2.0));
+	}
+	#endif
 
 	// PRINT OUTPUT
 	printf("%d %d", X, Y);
