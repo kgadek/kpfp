@@ -11,7 +11,6 @@ import lab.Drone;
 import lab.Overlord;
 import lab.XelnagaPOA;
 
-import org.omg.CosNaming.NamingContextExt;
 import org.omg.PortableServer.POA;
 import org.omg.PortableServer.Servant;
 import org.omg.PortableServer.POAPackage.ServantAlreadyActive;
@@ -113,7 +112,7 @@ public class XelnagaImpl extends XelnagaPOA {
 	}
 
 	@Override
-	public void controlDrone(int id, Overlord lstnr) {
+	public void observeDrone(int id, Overlord lstnr) {
 		String msg = "<drone " + id + " in reaction to registering new overlord (listener)> Blumbbbrrrr!";
 		System.out.println("LOG: " + msg);
 		System.out.println("LOG: listener = " + lstnr);
@@ -122,22 +121,19 @@ public class XelnagaImpl extends XelnagaPOA {
 			return;
 		}
 			
-		for(Overlord i : overlords)
-			i.detector(msg);
 		for(Drone i : drones)
 			if(i.id() == id)
 				i.add_overmind(lstnr);
+		for(Overlord i : overlords)
+			i.detector(msg);
 	}
 
 	@Override
-	public void abandonDrone(int id, Overlord lstnr) {
+	public void unobserveDrone(int id, Overlord lstnr) {
 		String msg = "<drone in reaction to " + id + " deregistering overlord (listener)> Bbbbrrrraaaar!";
 		for(Overlord i : overlords)
 			i.detector(msg);
 		overlords.remove(lstnr);
-	}
-
-	public void setNcRef(NamingContextExt ncRef) {
 	}
 
 }

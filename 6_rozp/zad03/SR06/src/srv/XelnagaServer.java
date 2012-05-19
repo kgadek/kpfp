@@ -22,13 +22,13 @@ public class XelnagaServer {
 			org.omg.CORBA.Object ref = rootpoa.servant_to_reference(xelnagaImpl);
 			Xelnaga href = XelnagaHelper.narrow(ref);
 			
-			org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+//			org.omg.CORBA.Object objRef = orb.resolve_initial_references("NameService");
+			org.omg.CORBA.Object objRef = orb.string_to_object("IOR:010000002b00000049444c3a6f6d672e6f72672f436f734e616d696e672f4e616d696e67436f6e746578744578743a312e300000010000000000000074000000010102000f0000003137322e31372e3132382e3232340000c05a00000b0000004e616d6553657276696365000300000000000000080000000100000000545441010000001c000000010000000100010001000000010001050901010001000000090101000354544108000000e02a8c4f010004e4");
 			NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
 			
 			NameComponent path[] = ncRef.to_name("Xelnaga");
 			ncRef.rebind(path, href);
 			
-			xelnagaImpl.setNcRef(ncRef);
 			System.out.println("CORBA initialized on Zerus, yay!");
 			
 			orb.run();
