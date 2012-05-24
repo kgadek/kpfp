@@ -12,8 +12,8 @@ public class TestLab {
             Ice.ObjectAdapter adapter = ic.createObjectAdapter("TestLabAdapter");
             
             Ice.Object blackMesaTestLab = new BlackMesaTestLabI();
-            DevicesAvailable eviesFood = ((BlackMesaTestLab)blackMesaTestLab).list(null);
-            Ice.ServantLocator evie = new DevicesEvictor(eviesFood); // my little evictor!
+            DeviceAvailable[] eviesFood = ((BlackMesaTestLab)blackMesaTestLab).list(null);
+            Ice.ServantLocator evie = new DevicesEvictor(eviesFood); // my little Evictor!
             
             adapter.add(blackMesaTestLab, ic.stringToIdentity("TestLab"));
             adapter.addServantLocator(evie, "");

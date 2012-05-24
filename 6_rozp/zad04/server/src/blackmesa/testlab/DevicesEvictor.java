@@ -23,8 +23,7 @@ public class DevicesEvictor implements ServantLocator {
 	private List<Device> releasedDevices = new ArrayList<Device>(RELEASED_DEVICES_MAX_LEN+1);
 	
 	@Override
-	public Object locate(Current curr, LocalObjectHolder cookie)
-			throws UserException {
+	public synchronized Object locate(Current curr, LocalObjectHolder cookie) throws UserException {
 		String currname = null;
 		if(curr == null || curr.id==null || devices.containsKey(currname = curr.id.name))
 			return null; // throw exception?
@@ -41,10 +40,9 @@ public class DevicesEvictor implements ServantLocator {
 		return newDev;
 	}
 
-	public DevicesEvictor(DevicesAvailable[] allDevs) {
-		super();
+	public DevicesEvictor(DeviceAvailable[] allDevs) {
 		Class<?> device = null;
-		for(DevicesAvailable i : allDevs)
+		for(DeviceAvailable i : allDevs)
 			try {
 				device = Class.forName(DEVICE_PACKAGE + "." + i.type + "I");
 				for(String j : i.machines)
@@ -55,23 +53,16 @@ public class DevicesEvictor implements ServantLocator {
 	}
 
 	@Override
-	public void finished(Current curr, Object servant, java.lang.Object cookie)
-			throws UserException {
+	public synchronized void finished(Current curr, Object servant, java.lang.Object cookie) throws UserException {
 		if(! curr.operation.equals("release") && ! curr.operation.equals("ignore"))
 			releasedDevices.remove(initializedDevices.get(curr.id.name));
 		else if(((DeviceInfo)servant).toBeReleased()) {
 			releasedDevices.add((Device)servant);
-			while(releasedDevices.size() > RELEASED_DEVICES_MAX_LEN) { // in a case Java got silly again...
-				String name = ((DeviceInfo)releasedDevices.remove(0)).name();
-				initializedDevices.remove(name);
-			}
+			while(releasedDevices.size() > RELEASED_DEVICES_MAX_LEN) // in a case Java got silly again...
+				initializedDevices.remove(((DeviceInfo)releasedDevices.remove(0)).name());
 		}
 	}
 
 	@Override
-	public void deactivate(String category) {
-		// TODO Auto-generated method stub
-
-	}
-
+	public synchronized void deactivate(String category) { }
 }

@@ -40,10 +40,11 @@ module blackmesa {
 	module testlab {
 		// -[ on test lab ]------------------------------------------------------------
 		sequence<string> Strings;
-		struct DevicesAvailable {
+		struct DeviceAvailable {
 			string type; // in java terms: a class of a machine
 			Strings machines; // machines of a given type
 		};
+		sequence<DeviceAvailable> DevicesAvailable;
 		interface BlackMesaTestLab {
 			DevicesAvailable list();
 			// stupid structs, U Y cannot be forward declared? ;<

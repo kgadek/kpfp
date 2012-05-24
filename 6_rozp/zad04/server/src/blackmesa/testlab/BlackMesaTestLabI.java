@@ -8,18 +8,16 @@ import Ice.Current;
 public class BlackMesaTestLabI extends _BlackMesaTestLabDisp {
 	
 	private static final long serialVersionUID = -96075141793624732L;
-	private List<DevicesAvailable> devs = new ArrayList<DevicesAvailable>();
+	private List<DeviceAvailable> devs = new ArrayList<DeviceAvailable>();
 
 	public BlackMesaTestLabI() {
-		super();
-		
 		try {
 			String spectometers[] = {"antimass_spectometer"};
-			DevicesAvailable dev1 = new DevicesAvailable("analyzer", spectometers);
+			DeviceAvailable dev1 = new DeviceAvailable("analyzer", spectometers);
 			devs.add(dev1);
 			
 			String probes[] = {"xengg_3883"};
-			DevicesAvailable dev2 = new DevicesAvailable("probe", probes);
+			DeviceAvailable dev2 = new DeviceAvailable("probe", probes);
 			devs.add(dev2);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -27,8 +25,8 @@ public class BlackMesaTestLabI extends _BlackMesaTestLabDisp {
 	}
 
 	@Override
-	public DevicesAvailable list(Current __current) {
-		return null;
+	public DeviceAvailable[] list(Current __current) {
+		return devs.toArray(new DeviceAvailable[0]);
 	}
 
 }
