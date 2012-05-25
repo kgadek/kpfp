@@ -1,5 +1,7 @@
 package blackmesa.testlab;
 
+import IceSSL.Plugin;
+
 public class TestLab {
 
 	/**
@@ -9,6 +11,11 @@ public class TestLab {
 		Ice.Communicator ic = null;
         try {
             ic = Ice.Util.initialize(args);
+            
+            Ice.PluginManager pluginMgr = ic.getPluginManager();
+            IceSSL.Plugin pluginSSL = (Plugin) pluginMgr.getPlugin("IceSSL");
+            pluginSSL.setCertificateVerifier(new TestLabCredentialsVerifier()); // as simple as that ;P
+            
             Ice.ObjectAdapter adapter = ic.createObjectAdapter("TestLabAdapter");
             
             Ice.Object blackMesaTestLab = new BlackMesaTestLabI();
