@@ -1,0 +1,24 @@
+SR.Proxy=certsigner2011:tcp -h 149.156.100.134 -p 2002
+
+#
+# Warn about connection exceptions.
+#
+Ice.Warn.Connections=1
+
+#
+# Network Tracing
+#
+# 0 = no network tracing
+# 1 = trace connection establishment and closure
+# 2 = like 1, but more detailed
+# 3 = like 2, but also trace data transfer
+#
+#Ice.Trace.Network=2
+
+#
+# Security Tracing
+#
+# 0 = no security tracing
+# 1 = trace messages
+#
+#IceSSL.Trace.Security=1
