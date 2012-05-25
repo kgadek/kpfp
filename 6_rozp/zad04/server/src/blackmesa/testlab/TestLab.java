@@ -12,10 +12,6 @@ public class TestLab {
         try {
             ic = Ice.Util.initialize(args);
             
-            Ice.PluginManager pluginMgr = ic.getPluginManager();
-            IceSSL.Plugin pluginSSL = (Plugin) pluginMgr.getPlugin("IceSSL");
-            pluginSSL.setCertificateVerifier(new TestLabCredentialsVerifier()); // as simple as that ;P
-            
             Ice.ObjectAdapter adapter = ic.createObjectAdapter("TestLabAdapter");
             
             Ice.Object blackMesaTestLab = new BlackMesaTestLabI();

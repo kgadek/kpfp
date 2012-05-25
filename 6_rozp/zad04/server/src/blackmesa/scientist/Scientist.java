@@ -29,15 +29,6 @@ public class Scientist {
 			ic = Ice.Util.initialize(args);
 			BlackMesaTestLabPrx proxy = BlackMesaTestLabPrxHelper.checkedCast(ic.propertyToProxy("TestLab.Proxy"));
 			
-			Ice.PluginManager pluginMgr = ic.getPluginManager();
-			Ice.Plugin plugin = pluginMgr.getPlugin("IceSSL");
-			IceSSL.Plugin pluginSSL = (IceSSL.Plugin) plugin;
-			pluginSSL.setCertificateVerifier(new CertificateVerifier() {
-				@Override
-				public boolean verify(NativeConnectionInfo info) {
-					return true;
-				}
-			});
 			c.ice = ic;
 			c.proxy = proxy;
 			c.chooseClass(args[0]);
