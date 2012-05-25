@@ -1,4 +1,4 @@
-VirtualLab.Proxy=VirtualLab:ssl -h 127.0.0.1 -p 12349
+TestLab.Proxy=TestLab:ssl -h 127.0.0.1 -p 12349
 NotifyListener.Endpoints=ssl
 #NotifyListener.ThreadPool.Size=3
 #NotifyListener.ThreadPool.SizeMax=3

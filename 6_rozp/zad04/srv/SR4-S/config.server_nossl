@@ -1,4 +1,4 @@
-TestLabAdapter.Endpoints=ssl -p 12349
+TestLabAdapter.Endpoints=ssl -p 12343
 TestLabAdapter.ThreadPool.Size=3
 TestLabAdapter.ThreadPool.SizeMax=3
 
@@ -44,8 +44,3 @@ IceSSL.Trace.Security=1
 #
 # SSL Configuration
 #
-Ice.Plugin.IceSSL=IceSSL.PluginFactory
-IceSSL.DefaultDir=.
-IceSSL.Keystore=s.jks
-IceSSL.Password=szak905
-IceSSL.Truststore=s.jks

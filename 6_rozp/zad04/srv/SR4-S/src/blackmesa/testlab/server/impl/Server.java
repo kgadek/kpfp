@@ -20,12 +20,12 @@ public class Server {
 		IceSSL.Plugin sslPlugin = (IceSSL.Plugin)plugin;
 		sslPlugin.setCertificateVerifier(new TestLabCertificateVerifier());
 		
-		Ice.ObjectAdapter adapter = ic.createObjectAdapter("VirtualLabAdapter");
+		Ice.ObjectAdapter adapter = ic.createObjectAdapter("TestLabAdapter");
 
 		try {
-			Ice.Object vl = new VirtualLaboratoryI(args[1]);
-			adapter.add(vl, ic.stringToIdentity("VirtualLab"));
-			Ice.ServantLocator sl = new VirtualLabEvictor((VirtualLaboratoryI) vl, 2);
+			Ice.Object vl = new TestLabC33a(args[1]);
+			adapter.add(vl, ic.stringToIdentity("TestLab"));
+			Ice.ServantLocator sl = new TestLab33cEvictorOrMaybeFieldGeneratorHmm((TestLabC33a) vl, 2);
 			adapter.activate();
 			adapter.addServantLocator(sl, "");
 			System.out.println("### Server ready!");

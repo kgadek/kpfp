@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import blackmesa.credentials.TestLabCertificateVerifier;
 import blackmesa.testlab.devices.AlreadyUsedException;
 import blackmesa.testlab.devices.DevicePrx;
 import blackmesa.testlab.devices.DevicePrxHelper;
@@ -13,14 +12,14 @@ import blackmesa.testlab.devices.Lambda;
 import blackmesa.testlab.devices.WrongPasswordException;
 import blackmesa.testlab.scientist.PushFetcherPrx;
 import blackmesa.testlab.scientist.PushFetcherPrxHelper;
-import blackmesa.testlab.server.VirtualLaboratoryPrx;
-import blackmesa.testlab.server.VirtualLaboratoryPrxHelper;
+import blackmesa.testlab.server.TestLabC33aPrx;
+import blackmesa.testlab.server.TestLabC33aPrxHelper;
 
 public class Client {
 
 	private static Ice.Communicator ic;
 
-	private static VirtualLaboratoryPrx vl;
+	private static TestLabC33aPrx vl;
 
 	private static Scanner sc = new Scanner(System.in);
 
@@ -50,14 +49,14 @@ public class Client {
 		
 		ic = Ice.Util.initialize(args);
 
-		Ice.PluginManager pluginMgr = ic.getPluginManager();
-		Ice.Plugin plugin = pluginMgr.getPlugin("IceSSL");
-		IceSSL.Plugin sslPlugin = (IceSSL.Plugin) plugin;
-		sslPlugin.setCertificateVerifier(new TestLabCertificateVerifier());
+//		Ice.PluginManager pluginMgr = ic.getPluginManager();
+//		Ice.Plugin plugin = pluginMgr.getPlugin("IceSSL");
+//		IceSSL.Plugin sslPlugin = (IceSSL.Plugin) plugin;
+//		sslPlugin.setCertificateVerifier(new TestLabCertificateVerifier());
 
 		Ice.ObjectPrx base = ic.propertyToProxy("TestLab.Proxy");
 
-		vl = VirtualLaboratoryPrxHelper.checkedCast(base);
+		vl = TestLabC33aPrxHelper.checkedCast(base);
 		if (vl == null)
 			throw new Error("Invalid proxy");
 

@@ -11,35 +11,32 @@ import Ice.Object;
 import Ice.ServantLocator;
 import Ice.UserException;
 
-public class VirtualLabEvictor implements ServantLocator {
+public class TestLab33cEvictorOrMaybeFieldGeneratorHmm implements ServantLocator {
 
-	private VirtualLaboratoryI virtualLab;
-
-	private int servantPopulationSize;
-
-	private Map<String, Object> servantPool = new HashMap<String, Object>();
-
+	private TestLabC33a testLab;
+	private int servPop;
+	private Map<String, Object> servPool = new HashMap<String, Object>();
 	private Queue<Object> readyForEviction = new LinkedList<Object>();
 
-	public VirtualLabEvictor(VirtualLaboratoryI vl, int populationSize) {
-		virtualLab = vl;
-		servantPopulationSize = populationSize;
+	public TestLab33cEvictorOrMaybeFieldGeneratorHmm(TestLabC33a vl, int populationSize) {
+		testLab = vl;
+		servPop = populationSize;
 		System.out.println("### Evictor ready!");
 	}
 
 	@Override
 	public synchronized Object locate(Current curr, LocalObjectHolder cookie) throws UserException {
 		String DeviceName = curr.id.name;
-		Object Device = servantPool.get(DeviceName);
+		Object Device = servPool.get(DeviceName);
 		if (Device == null) {
-			while (servantPool.size() >= servantPopulationSize && readyForEviction.size() > 0) {
+			while (servPool.size() >= servPop && readyForEviction.size() > 0) {
 				tryEviction();
 			}
 			try {
-				Device = (Object) virtualLab.getDeviceClassForName(DeviceName).newInstance();
+				Device = (Object) testLab.getDeviceClassForName(DeviceName).newInstance();
 				((ITestLabServant) Device).setID(DeviceName);
-				servantPool.put(DeviceName, Device);
-				System.out.println("### Curent pool size: " + servantPool.size() + " !");
+				servPool.put(DeviceName, Device);
+				System.out.println("### Curent pool size: " + servPool.size() + " !");
 				if (!curr.operation.equals("takeAndUse") && !curr.operation.equals("startObserving")) {
 					readyForEviction.add(Device);
 				}
@@ -55,7 +52,7 @@ public class VirtualLabEvictor implements ServantLocator {
 	private void tryEviction() {
 		Object evicted = readyForEviction.poll();
 		if (evicted != null) {
-			servantPool.remove(((ITestLabServant) evicted).getID());
+			servPool.remove(((ITestLabServant) evicted).getID());
 			System.out.println("### Eviction successful!");
 		}
 	}

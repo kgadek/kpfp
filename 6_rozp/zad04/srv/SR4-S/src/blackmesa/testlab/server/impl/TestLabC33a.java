@@ -9,19 +9,19 @@ import java.util.Scanner;
 
 import Ice.Current;
 import blackmesa.testlab.exception.ConfigurationParsingException;
-import blackmesa.testlab.server._VirtualLaboratoryDisp;
+import blackmesa.testlab.server._TestLabC33aDisp;
 
-public class VirtualLaboratoryI extends _VirtualLaboratoryDisp {
+public class TestLabC33a extends _TestLabC33aDisp {
 
 	private static final long serialVersionUID = -3297343832494155447L;
 
-	private static final String Device_PACKAGE = "virtuallab.Devices.impl.";
+	private static final String Device_PACKAGE = "TestLab.Devices.impl.";
 
 	private Map<String, Class<?>> availableDevices = new HashMap<String, Class<?>>();
 	
 	private String[] DeviceList;
 
-	public VirtualLaboratoryI(String conf) throws ConfigurationParsingException {
+	public TestLabC33a(String conf) throws ConfigurationParsingException {
 		File file = new File(conf);
 		Scanner scanner = null;
 		try {
