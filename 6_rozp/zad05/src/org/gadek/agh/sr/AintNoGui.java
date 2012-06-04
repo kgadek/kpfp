@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,15 +16,17 @@ import javax.swing.JTextField;
 import org.jgroups.Message;
 
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatAction;
+import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatMessage;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatAction.ActionType;
 
 
 public class AintNoGui extends JPanel implements ActionListener {
+	
 	private static final long serialVersionUID = 1L;
 	protected JTextField textField;
     protected JTextArea textArea;
 	private SpamBot spamBot = null;
-	private String currCh = "defaultChannel";
+	private String currCh = SpamBot.DEFAULT_CHANNEL;
 	
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -70,6 +74,13 @@ public class AintNoGui extends JPanel implements ActionListener {
 		else {
 		
 			if(cmd.startsWith("/join ")) {
+				try {
+					if(!Inet4Address.getByName(cmd.substring("/join ".length())).isMulticastAddress())
+						throw new UnknownHostException();
+				} catch (UnknownHostException e1) {
+					textArea.insert("==> #" + cmd.substring("/join ".length()) + " is not a valid channel\n", 0);
+				}
+					
 				textArea.insert("==> joining #"+cmd.substring("/join ".length())+"\n", 0);
 				spamBot.spamuj(new Message(null,
 						ChatAction.newBuilder()
@@ -91,10 +102,13 @@ public class AintNoGui extends JPanel implements ActionListener {
 						.setChannel(currCh)
 						.setNickname(spamBot.getNickname())
 						.build()));
+				spamBot.stop();
 			} else if(cmd.equals("/users")) {
-				textArea.insert("==> users on #" + currCh + ":" + spamBot.getUsers() + "\n", 0);
+				textArea.insert("==> users on #" + currCh + ":" + spamBot.getUsersForCurrentCh() + "\n", 0);
+			} else if(cmd.equals("/channels")) {
+				textArea.insert("==> users on #" + currCh + ":" + spamBot.getChannels() + "\n", 0);
 			} else {
-				textArea.insert(cmd + "\n", 0);
+				spamBot.spamuj(new Message(null,ChatMessage.newBuilder().setMessage(cmd).build()));
 			}
         
 		}

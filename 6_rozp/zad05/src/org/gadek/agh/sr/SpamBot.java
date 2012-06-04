@@ -35,12 +35,14 @@ import org.jgroups.stack.ProtocolStack;
 import org.jgroups.util.Util;
 
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatAction;
+import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatMessage;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatAction.ActionType;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatState;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatState.Builder;
 
 public class SpamBot implements Receiver {
-	
+	public static final String DEFAULT_CHANNEL = "ChatManagement768264";
+
 	private String nickname;
 	private Map<String, HashSet<String>> addressBook = new ConcurrentHashMap<String, HashSet<String>>();
 	JChannel channel = null;
@@ -91,17 +93,23 @@ public class SpamBot implements Receiver {
 			
 			channel.setReceiver(this);
 			channel.setName(nickname);
-			channel.connect("ChatManagement768264");
+			channel.connect(DEFAULT_CHANNEL);
+			System.out.println("CONNECT");
 			channel.getState(null, 15000); // 15 sec is long enough... is it?
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
 			if(channel != null)
 				channel.close();
 		}
 		return this;
 	}
 
+	public SpamBot stop() {
+		if(channel != null)
+			channel.close();
+		return this;
+	}
+	
 	@Override
 	public void getState(OutputStream out) throws Exception {
 		Builder builder = ChatState.newBuilder();
@@ -133,8 +141,8 @@ public class SpamBot implements Receiver {
 					gui.textArea.insert("==> "+newcomer+" joined #"+channelName+"\n", 0);
 					gui.textField.selectAll();
 					gui.textArea.setCaretPosition(0);
+					currChnnl.add(newcomer);
 				}
-				currChnnl.add(newcomer);
 				break;
 			case LEAVE:
 				channelName = actn.getChannel();
@@ -147,11 +155,18 @@ public class SpamBot implements Receiver {
 					gui.textArea.insert("==> "+newcomer+" left #"+channelName+"\n", 0);
 					gui.textField.selectAll();
 					gui.textArea.setCaretPosition(0);
+					currChnnl.remove(newcomer);
 				}
-				currChnnl.remove(newcomer);
 			}
+		} else if(msg.getObject() instanceof ChatMessage) {
+			ChatMessage chtMsg = (ChatMessage) msg.getObject();
+			gui.textArea.insert(chtMsg.getMessage()+"\n", 0);
+			gui.textField.selectAll();
+			gui.textArea.setCaretPosition(0);
 		}
+		
 	}
+	
 	@Override
 	public void setState(InputStream in) throws Exception {
 		ChatState chat = (ChatState) Util.objectFromStream(new DataInputStream(in));
@@ -185,15 +200,24 @@ public class SpamBot implements Receiver {
 		}
 	}
 
-	public String getUsers() {
+	public String getUsersForCurrentCh() {
 		String currCh = gui.getCurrCh();
 		if(!addressBook.containsKey(currCh))
 			return "< no such channel exist? >";
 		StringBuilder sb = new StringBuilder();
-		for(String user : addressBook.get(currCh)) {
-			sb.append("\n\t");
-			sb.append(user);
-		}
+		for(String user : addressBook.get(currCh))
+			sb.append("\n  > ").append(user);
 		return sb.toString();
+	}
+	
+	public String getChannels() {
+		StringBuilder sb = new StringBuilder();
+		for(String i : addressBook.keySet())
+			sb.append("\n  > ").append(i);
+		return sb.toString();
+	}
+	
+	public boolean isClosed() {
+		return channel == null || !channel.isOpen();
 	}
 }
