@@ -35,8 +35,8 @@ import org.jgroups.stack.ProtocolStack;
 import org.jgroups.util.Util;
 
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatAction;
-import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatMessage;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatAction.ActionType;
+import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatMessage;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatState;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatState.Builder;
 
@@ -45,7 +45,8 @@ public class SpamBot implements Receiver {
 
 	private String nickname;
 	private Map<String, HashSet<String>> addressBook = new ConcurrentHashMap<String, HashSet<String>>();
-	JChannel channel = null;
+	private Map<String, JChannel> channelMap = new ConcurrentHashMap<String, JChannel>();
+	JChannel channelMgmnt = null;
 	ProtocolStack stack = null;
 	private AintNoGui gui = null;
 	
@@ -69,10 +70,10 @@ public class SpamBot implements Receiver {
 
 	public SpamBot start() {
 		try {
-			channel = new JChannel(false);
+			channelMgmnt = new JChannel(false);
 			
 			stack = new ProtocolStack();
-			channel.setProtocolStack(stack);
+			channelMgmnt.setProtocolStack(stack);
 			stack.addProtocol(new UDP())
 			.addProtocol(new PING())
 			.addProtocol(new MERGE2())
@@ -91,22 +92,22 @@ public class SpamBot implements Receiver {
 			.addProtocol(new FLUSH());
 			stack.init();
 			
-			channel.setReceiver(this);
-			channel.setName(nickname);
-			channel.connect(DEFAULT_CHANNEL);
+			channelMgmnt.setReceiver(this);
+			channelMgmnt.setName(nickname);
+			channelMgmnt.connect(DEFAULT_CHANNEL);
 			System.out.println("CONNECT");
-			channel.getState(null, 15000); // 15 sec is long enough... is it?
+			channelMgmnt.getState(null, 15000); // 15 sec is long enough... is it?
 		} catch (Exception e) {
 			e.printStackTrace();
-			if(channel != null)
-				channel.close();
+			if(channelMgmnt != null)
+				channelMgmnt.close();
 		}
 		return this;
 	}
 
 	public SpamBot stop() {
-		if(channel != null)
-			channel.close();
+		if(channelMgmnt != null)
+			channelMgmnt.close();
 		return this;
 	}
 	
@@ -194,7 +195,7 @@ public class SpamBot implements Receiver {
 	
 	public void spamuj(Message msg) {
 		try {
-			channel.send(msg);
+			channelMgmnt.send(msg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -218,6 +219,58 @@ public class SpamBot implements Receiver {
 	}
 	
 	public boolean isClosed() {
-		return channel == null || !channel.isOpen();
+		return channelMgmnt == null || !channelMgmnt.isOpen();
+	}
+
+	public void join(String chName) {
+		if(channelMap.containsKey(chName))
+			return;
+		
+		JChannel newCh = new JChannel(false);
+		ProtocolStack newStack = new ProtocolStack();
+		newCh.setProtocolStack(newStack);
+		newStack.addProtocol(new UDP())
+			.addProtocol(new PING())
+			.addProtocol(new MERGE2())
+			.addProtocol(new FD_SOCK())
+			.addProtocol(new FD_ALL().setValue("timeout", 12000).setValue("interval", 3000))
+			.addProtocol(new VERIFY_SUSPECT())
+			.addProtocol(new BARRIER())
+			.addProtocol(new NAKACK())
+			.addProtocol(new UNICAST2())
+			.addProtocol(new STABLE())
+			.addProtocol(new GMS())
+			.addProtocol(new UFC())
+			.addProtocol(new MFC())
+			.addProtocol(new FRAG2())
+			.addProtocol(new STATE_TRANSFER())
+			.addProtocol(new FLUSH());
+		try {
+			newStack.init();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		newCh.setReceiver(this);
+		newCh.setName(getNickname());
+		try {
+			newCh.connect(chName);
+			newCh.getState(null, 15000);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		channelMap.put(chName, newCh);
+	}
+
+	public void spamuj(String channelName, Message message) {
+		try {
+			JChannel channelH = channelMap.get(channelName);
+			if(channelH == null)
+				return;
+			channelH.send(message);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

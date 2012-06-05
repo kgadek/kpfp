@@ -16,8 +16,8 @@ import javax.swing.JTextField;
 import org.jgroups.Message;
 
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatAction;
-import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatMessage;
 import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatAction.ActionType;
+import pl.edu.agh.dsrg.sr.chat.protos.ChatOperationProtos.ChatMessage;
 
 
 public class AintNoGui extends JPanel implements ActionListener {
@@ -82,6 +82,8 @@ public class AintNoGui extends JPanel implements ActionListener {
 				}
 					
 				textArea.insert("==> joining #"+cmd.substring("/join ".length())+"\n", 0);
+				spamBot.join(cmd.substring("/join ".length()));
+				
 				spamBot.spamuj(new Message(null,
 						ChatAction.newBuilder()
 						.setAction(ActionType.LEAVE)
@@ -108,7 +110,11 @@ public class AintNoGui extends JPanel implements ActionListener {
 			} else if(cmd.equals("/channels")) {
 				textArea.insert("==> users on #" + currCh + ":" + spamBot.getChannels() + "\n", 0);
 			} else {
-				spamBot.spamuj(new Message(null,ChatMessage.newBuilder().setMessage(cmd).build()));
+				String[] msg = cmd.split(" ",2);
+				if(msg.length < 2)
+					return;
+				
+				spamBot.spamuj(msg[0], new Message(null,ChatMessage.newBuilder().setMessage(msg[1]).build()));
 			}
         
 		}
