@@ -1,0 +1,8 @@
+/etc/rc\.d/init\.d/boa	--	gen_context(system_u:object_r:boa_initrc_exec_t,s0)
+
+/usr/sbin/boa		--	gen_context(system_u:object_r:boa_exec_t,s0)
+
+/var/log/boa(/.*)?		gen_context(system_u:object_r:boa_log_t,s0)
+
+/etc/boa(/.*)?			gen_context(system_u:object_r:boa_etc_t,s0)
+

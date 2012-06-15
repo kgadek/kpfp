@@ -1,0 +1,139 @@
+
+## <summary>policy for boa</summary>
+
+
+########################################
+## <summary>
+##	Transition to boa.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`boa_domtrans',`
+	gen_require(`
+		type boa_t, boa_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, boa_exec_t, boa_t)
+')
+
+
+########################################
+## <summary>
+##	Execute boa server in the boa domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`boa_initrc_domtrans',`
+	gen_require(`
+		type boa_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, boa_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Read boa's log files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`boa_read_log',`
+	gen_require(`
+		type boa_log_t;
+	')
+
+	logging_search_logs($1)
+	read_files_pattern($1, boa_log_t, boa_log_t)
+')
+
+########################################
+## <summary>
+##	Append to boa log files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`boa_append_log',`
+	gen_require(`
+		type boa_log_t;
+	')
+
+	logging_search_logs($1)
+	append_files_pattern($1, boa_log_t, boa_log_t)
+')
+
+########################################
+## <summary>
+##	Manage boa log files
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`boa_manage_log',`
+	gen_require(`
+		type boa_log_t;
+	')
+
+	logging_search_logs($1)
+	manage_dirs_pattern($1, boa_log_t, boa_log_t)
+	manage_files_pattern($1, boa_log_t, boa_log_t)
+	manage_lnk_files_pattern($1, boa_log_t, boa_log_t)
+')
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	an boa environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`boa_admin',`
+	gen_require(`
+		type boa_t;
+	type boa_initrc_exec_t;
+	type boa_log_t;
+	')
+
+	allow $1 boa_t:process { ptrace signal_perms };
+	ps_process_pattern($1, boa_t)
+
+	boa_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 boa_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	logging_search_logs($1)
+	admin_pattern($1, boa_log_t)
+
+')
