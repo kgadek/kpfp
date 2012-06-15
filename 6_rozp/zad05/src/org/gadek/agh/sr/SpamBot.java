@@ -201,7 +201,7 @@ public class SpamBot implements Receiver {
 		}
 	}
 
-	public String getUsersForCurrentCh() {
+	public String getUsersForMgmntCh() {
 		String currCh = gui.getCurrCh();
 		if(!addressBook.containsKey(currCh))
 			return "< no such channel exist? >";

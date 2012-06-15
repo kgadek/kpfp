@@ -106,7 +106,7 @@ public class AintNoGui extends JPanel implements ActionListener {
 						.build()));
 				spamBot.stop();
 			} else if(cmd.equals("/users")) {
-				textArea.insert("==> users on #" + currCh + ":" + spamBot.getUsersForCurrentCh() + "\n", 0);
+				textArea.insert("==> users on #" + currCh + ":" + spamBot.getUsersForMgmntCh() + "\n", 0);
 			} else if(cmd.equals("/channels")) {
 				textArea.insert("==> users on #" + currCh + ":" + spamBot.getChannels() + "\n", 0);
 			} else {
