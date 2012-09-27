@@ -1,27 +1,22 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
+
+GLfloat redDiffuseMaterial[]    = { 1.f, 0.f, 0.f }; // set the material to red
+GLfloat whiteSpecularMaterial[] = { 1.f, 1.f, 1.f }; // set the material to white
+GLfloat greenEmissiveMaterial[] = { 0.f, 1.f, 0.f }; // set the material to green
+GLfloat whiteSpecularLight[]    = { 1.f, 1.f, 1.f }; // set the light specular to white
+GLfloat blackAmbientLight[]     = { 0.f, 0.f, 0.f }; // set the light ambient to black
+GLfloat whiteDiffuseLight[]     = { 1.f, 1.f, 1.f }; // set the diffuse light to white
+GLfloat blankMaterial[]         = { 0.f, 0.f, 0.f }; // set the diffuse light to white
+GLfloat mShininess[]            = { 128.f };         // set the shininess of the material
+
 GLfloat angle = 0.0;
 
-GLfloat redDiffuseMaterial[] = {1.0, 0.0, 0.0}; //set the material to red
-GLfloat whiteSpecularMaterial[] = {1.0, 1.0, 1.0}; //set the material to white
-GLfloat greenEmissiveMaterial[] = {0.0, 1.0, 0.0}; //set the material to green
-GLfloat whiteSpecularLight[] = {1.0, 1.0, 1.0}; //set the light specular to white
-GLfloat blackAmbientLight[] = {0.0, 0.0, 0.0}; //set the light ambient to black
-GLfloat whiteDiffuseLight[] = {1.0, 1.0, 1.0}; //set the diffuse light to white
-GLfloat blankMaterial[] = {0.0, 0.0, 0.0}; //set the diffuse light to white
-GLfloat mShininess[] = {128}; //set the shininess of the material
+void display(void) {
+    glClearColor(0.f,0.f,0.f,1.f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity(); 
 
-bool diffuse = true;
-bool emissive = false;
-bool specular = true;
-
-void init(void) {
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-}
-
-void light(void) {
     glLightfv(GL_LIGHT0, GL_SPECULAR, whiteSpecularLight);
     glLightfv(GL_LIGHT0, GL_AMBIENT, blackAmbientLight);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, whiteDiffuseLight);
@@ -29,18 +24,19 @@ void light(void) {
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, redDiffuseMaterial);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, whiteSpecularMaterial);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, mShininess);
-}
 
-void display(void) {
-    glClearColor(0.0,0.0,0.0,1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity(); 
-    light();
-    glTranslatef(0,0,-5);
+    glPushMatrix();
+    glTranslatef(-2.f,0.f,-5.f);
+    glRotatef(angle,0.f,1.f,0.f);
+    glutSolidTeapot(1.f);
+    glPopMatrix();
 
-    glRotatef(angle,1,1,1);
+    glPushMatrix();
+    glTranslatef(2.f,0.f,-5.f);
+    glRotatef(angle,1.f,0.f,0.f);
+    glutSolidTeapot(1.f);
+    glPopMatrix();
 
-    glutSolidTeapot(2);
     glutSwapBuffers();
     angle++;
 }
@@ -54,6 +50,18 @@ void reshape(int w, int h) {
 }
 
 void keyboard(unsigned char key, int x, int y) {
+    switch(key) {
+        case 'w':
+            break;
+        case 's':
+            break;
+        case 'a':
+            break;
+        case 'd':
+            break;
+        default:
+            ;
+    }
 }
 
 int main(int argc, char **argv) {
@@ -62,7 +70,11 @@ int main(int argc, char **argv) {
     glutInitWindowSize(500, 500);
     glutInitWindowPosition(100, 100);
     glutCreateWindow("A basic OpenGL Window");
-    init();
+    
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+
     glutDisplayFunc(display);
     glutIdleFunc(display);
     glutKeyboardFunc(keyboard);
