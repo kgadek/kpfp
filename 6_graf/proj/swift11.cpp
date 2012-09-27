@@ -12,6 +12,9 @@ GLfloat mShininess[]            = { 128.f };         // set the shininess of the
 
 GLfloat angle = 0.0;
 
+GLfloat step = 0.1;
+GLfloat wsad[] = {0.f, 0.f};
+
 void display(void) {
     glClearColor(0.f,0.f,0.f,1.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -27,13 +30,13 @@ void display(void) {
 
     glPushMatrix();
     glTranslatef(-2.f,0.f,-5.f);
-    glRotatef(angle,0.f,1.f,0.f);
+    glRotatef(angle,wsad[0],wsad[1],1.f);
     glutSolidTeapot(1.f);
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(2.f,0.f,-5.f);
-    glRotatef(angle,1.f,0.f,0.f);
+    glRotatef(angle,1.f,wsad[1],-wsad[0]);
     glutSolidTeapot(1.f);
     glPopMatrix();
 
@@ -51,14 +54,10 @@ void reshape(int w, int h) {
 
 void keyboard(unsigned char key, int x, int y) {
     switch(key) {
-        case 'w':
-            break;
-        case 's':
-            break;
-        case 'a':
-            break;
-        case 'd':
-            break;
+        case 'w': wsad[0] += step; break;
+        case 's': wsad[0] -= step; break;
+        case 'a': wsad[1] -= step; break;
+        case 'd': wsad[1] += step; break;
         default:
             ;
     }
