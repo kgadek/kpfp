@@ -430,7 +430,7 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutSpecialFunc(keybs);
-    glutTimerFunc(1000, animate, 0);
+    glutTimerFunc(50, animate, 0);
     glutMainLoop();
 
     delete [] Vertices;
