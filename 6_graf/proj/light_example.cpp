@@ -54,8 +54,8 @@ GLfloat white[4] = {1.0f, 1.0f, 1.0f, 1.0f};
 
 
 
-GLfloat light0_position[] = {0.0, 0.0, 0.0, 1.0};  //światło pozycyjne
-GLfloat light1_position[] = {0.0, 0.0, 0.0, 0.0};  //światło kierunkowe
+GLfloat light0_position[] = {1.0, 0.0, 0.0, 0.0};  //światło kierunkowe
+GLfloat light1_position[] = {0.0, 0.0, 0.0, 1.0};  //światło punktowe
 GLfloat light2_position[] = {0.0, 0.0, 0.0, 1.0};  //światło typu spot
 GLfloat light2_direction[] = {0.0, -1.0, 0.0, 1.0}; //kierunek światła typu spot
 GLint rotLight = 0;
@@ -389,8 +389,8 @@ void init()
 	
 	//definiujemy kolor światła 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, red_light);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, red_light); // rozproszone
-	glLightfv(GL_LIGHT0, GL_SPECULAR, red_light); // skierowane
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, red_light);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, red_light);
 	
 	glLightfv(GL_LIGHT1, GL_AMBIENT, white_light);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, white_light);
@@ -401,33 +401,27 @@ void init()
 	glLightfv(GL_LIGHT2, GL_DIFFUSE, white_light);
 	glLightfv(GL_LIGHT2, GL_SPECULAR, white_light);
 
-	glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 15.0);
+	glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 10.0);
 	glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 5.0);
-	
-	// światło kierunkowe i punktowe
-	// kierunkowe i posiada tylko kierunek
-	// punktowe i jest punktem i świeci na wszystkie strony
-	// spot i jest połączeniem tych dwóch powyższych, to jest 
 	
 	angle = 0.0f;
 	ye = 17.0;
 	xe = 30.0f;
 	ze = 0.0f; 
+
+	/* shader obslugujacy wszystkie typy swiatla = plus do oceny! */
 	
-	// kiedys wszystkie obliczenia od swiatla zaleza od OpenGL
-	// obecnie zaleza od shaderow
-	
-	setupShaders((char*)"pointlight.vert", 
+	/*setupShaders((char*)"pointlight.vert", 
 		     (char*)"pointlight.frag",
 		     &ProgramA, 
 		     &vertexShaderObjectA,
-		     &fragmentShaderObjectA);
+		     &fragmentShaderObjectA);*/
 	
-	/*setupShaders((char*)"dirLightAmbDiffSpecPix.vert", 
+	setupShaders((char*)"dirLightAmbDiffSpecPix.vert", 
 		     (char*)"dirLightAmbDiffSpecPix.frag",
 		     &ProgramA, 
 		     &vertexShaderObjectA,
-		     &fragmentShaderObjectA);*/
+		     &fragmentShaderObjectA);
 	
 	/*setupShaders((char*)"spotlight.vert", 
 		     (char*)"spotlight.frag",
@@ -476,7 +470,8 @@ void display()
 	glLoadIdentity();
 	
 	gluLookAt(xe, ye, ze, 0.0f, 5.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-	
+	//gluLookAt(zoom*cos(ye*PI/180)*cos(angle*PI/180), zoom*sin(ye*PI/180)*cos(angle*PI/180), zoom*sin(angle*PI/180), 0, 0, 0, 0, 0, 1);
+
 	 GLint var1 = glGetUniformLocation(ProgramA, "numLights");
 	 glUniform1i(var1, 3);
     
@@ -485,10 +480,6 @@ void display()
 	 glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_mat);
 	 glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular_mat);
 	 glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, 60);
-	 
-	 // mozna zdefiniowac, w jaki sposob nastepuje odbicie swiatla od powierzchni
-	 // mozna zdefiniowac sposoby odbicia dla roznych zrodel swiatla
-	 //
 	
 	glPushMatrix();
 	  glTranslatef(0.0f, 15.0f, 0.0f);
@@ -540,6 +531,7 @@ void display()
 
 
 void keybs(int skey, int x, int y ) {
+
 	switch (skey) {
 	case GLUT_KEY_LEFT: xe -=1.0f;
 		break;
@@ -555,6 +547,26 @@ void keybs(int skey, int x, int y ) {
 		break;
 	}
 	glutPostRedisplay();
+
+/*switch (skey) {
+        case GLUT_KEY_LEFT: angle -=2.0f;
+                if (angle < 0.0f) angle = 360.0f;
+                break;
+        case GLUT_KEY_RIGHT: angle +=2.0f;
+                if (angle > 360.0f) angle = 0.0f;
+                break;
+        case GLUT_KEY_UP: zoom -=2.0f;
+                if(zoom < 2.0f) zoom = 2.0f;
+                break;
+        case GLUT_KEY_DOWN: zoom += 2.0f;
+                break;
+        case GLUT_KEY_PAGE_UP: ye+=2.0f;
+                break;
+        case GLUT_KEY_PAGE_DOWN: ye-=2.0f;
+                break;
+        }
+        glutPostRedisplay();
+*/
 }
 
 
@@ -589,3 +601,17 @@ int main(int argc, char** argv) {
 	
 	return 0;
 }
+
+/*
+
+g++ light_example.cpp obj.cpp -lglut -lGLU -lGLEW -lGL
+
+napisać program : 
+minimum: przynajmnej dwa obiekty z .obj wczytane, będą się ona poruszać, światła poruszające się też będą je oświetlały (jakieś sensowne światła spot/punktowe + wlasnosci materialu dla obiektow). polozenie
+obserwatora klawiatura. Przerobienie tego programu to 3.0 .
+na cos wiecej: jakies bajery pododawac
+
+tekstury nie są obowiązkowe.
+
+Deadline do zamkniecia wirtualnego dziekanatu.*/
+
