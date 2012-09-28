@@ -59,9 +59,10 @@ GLuint ProgramA;
 
 GLfloat revmovex  = 0.0f;
 GLfloat revmovez  = 0.0f;
-GLfloat revmoved = 0.0f;
-GLfloat revrot   = 0.0f;
-GLfloat revrotd  = 0.0f;
+GLfloat revmoved  = 0.0f;
+GLfloat revmovedd = 0.0f;
+GLfloat revrot    = 0.0f;
+GLfloat revrotd   = 0.0f;
 
 
 unsigned long getFileLength(ifstream& file) {
@@ -330,11 +331,12 @@ void animate(int v) {
     rotLight = rotLight  % 360;
     glutPostRedisplay();
     glutTimerFunc(50, animate, 0);
-    revrot += revrotd;
-    while(revrot < 0.0f ) revrot += 360.0f;
-    while(revrot > 360.f) revrot -= 360.0f;
+    revmoved += revmovedd;
     revmovex += revmoved*sin(revrot*.01745329251994329576f);
     revmovez += revmoved*cos(revrot*.01745329251994329576f);
+    revrot   -= 2.0f*revrotd*revmoved;
+    while(revrot < 0.0f ) revrot += 360.0f;
+    while(revrot > 360.f) revrot -= 360.0f;
 }
 
 
@@ -429,13 +431,14 @@ void keyPress(unsigned char k, int _x, int _y) {
         case 'r':
             revmovex = 0.0f;
             revmovez = 0.0f;
+            revmoved = 0.0f;
             revrot   = 0.0f;
             break;
         case 'w':
-            revmoved = -1.5f;
+            revmovedd = -0.25f;
             break;
         case 's':
-            revmoved = 1.5f;
+            revmovedd = 0.25f;
             break;
         case 'a':
             revrotd  = 1.5f;
@@ -449,7 +452,7 @@ void keyRel(unsigned char k, int _x, int _y) {
     switch(k) {
         case 'w':
         case 's':
-            revmoved = 0.f;
+            revmovedd = 0.f;
             break;
         case 'a':
         case 'd':
