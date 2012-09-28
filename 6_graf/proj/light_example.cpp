@@ -44,9 +44,9 @@ GLfloat light2_position[]  = {0.0 ,  0.0  ,  0.0 ,  1.0};  //światło typu spot
 GLfloat light2_direction[] = {0.0 ,  -1.0 ,  0.0 ,  1.0}; //kierunek światła typu spot
 GLint rotLight = 0;
 
-GLfloat white_light[] = {0.2 ,  0.2 ,  0.2 ,  1.0};
-GLfloat red_light[]   = {0.8 ,  0.5 ,  0.6 ,  1.0};
-GLfloat blue_light[]  = {0.0 ,  0.0 ,  1.0 ,  1.0};
+GLfloat white_light[] = {0.3     , 0.3     , 0.3    , 1.0};
+GLfloat red_light[]   = {0.6196f , 0.9922f , 0.2196 , 1.0};
+GLfloat blue_light[]  = {0.2     , 0.2     , 0.7    , 1.0};
 
 GLfloat ambient_mat[]  = {0.2 ,  0.2 ,  0.2 ,  1.0};
 GLfloat specular_mat[] = {0.5 ,  0.5 ,  0.5 ,  1.0};
@@ -57,7 +57,10 @@ objShape obj;
 GLuint vertexShaderObjectA, fragmentShaderObjectA;
 GLuint ProgramA;
 
-GLfloat revrot = 0.0f;
+GLfloat revmove  = 0.0f;
+GLfloat revmoved = 0.0f;
+GLfloat revrot   = 0.0f;
+GLfloat revrotd  = 0.0f;
 
 
 unsigned long getFileLength(ifstream& file) {
@@ -326,6 +329,8 @@ void animate(int v) {
     rotLight = rotLight  % 360;
     glutPostRedisplay();
     glutTimerFunc(50, animate, 0);
+    revrot += revrotd;
+    revmove += revmoved;
 }
 
 
@@ -378,8 +383,8 @@ void display() {
     glBindVertexArray(handleVAO);
 
     glPushMatrix();
-    glTranslatef(0.0f, 0.0f, 0.0f);
-    glRotatef(0.0f, 0.0f, 0.0f, 0.0f);
+    glTranslatef(0.0f, 0.0f, revmove);
+    glRotatef(revrot, 0.0f, 1.0f, 0.0f);
     glScalef(25.0f, 25.0f, 25.0f);
     glBindVertexArray(handleOBJVAO);
     glDrawElements(GL_TRIANGLES, 3*obj.nFaces, GL_UNSIGNED_INT, BUFFER_OFFSET(0));
@@ -413,6 +418,34 @@ void keybs(int skey, int x, int y ) {
     glutPostRedisplay();
 }
 
+void keyPress(unsigned char k, int _x, int _y) {
+    switch(k) {
+        case 'w':
+            revmoved = -1.5f;
+            break;
+        case 's':
+            revmoved = 1.5f;
+            break;
+        case 'a':
+            revrotd  = 1.5f;
+            break;
+        case 'd':
+            revrotd  = -1.5f;
+    }
+}
+
+void keyRel(unsigned char k, int _x, int _y) {
+    switch(k) {
+        case 'w':
+        case 's':
+            revmoved = 0.f;
+            break;
+        case 'a':
+        case 'd':
+            revrotd  = 0.f;
+    }
+}
+
 
 int main(int argc, char** argv) {
     glutInit(&argc, argv);
@@ -430,6 +463,8 @@ int main(int argc, char** argv) {
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
     glutSpecialFunc(keybs);
+    glutKeyboardFunc(keyPress);
+    glutKeyboardUpFunc(keyRel);
     glutTimerFunc(50, animate, 0);
     glutMainLoop();
 
