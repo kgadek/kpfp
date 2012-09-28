@@ -305,8 +305,8 @@ void init() {
     glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 5.0);
 
     angle = 0.0f;
-    ye    = 17.0;
-    xe    = 30.0f;
+    ye    = 5.0;
+    xe    = 0.0f;
     ze    = 0.0f;
 
     setupShaders(
@@ -358,7 +358,7 @@ void display() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    gluLookAt(xe, ye, ze, 0.0f, 5.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    gluLookAt(30.0f, 17.0f, 0.0f, xe, ye, ze, 0.0f, 1.0f, 0.0f);
 
     GLint var1 = glGetUniformLocation(ProgramA, "numLights");
     glUniform1i(var1, 3);
@@ -406,10 +406,10 @@ void display() {
 void keybs(int skey, int x, int y ) {
     switch(skey) {
         case GLUT_KEY_LEFT:
-            xe -= 1.0f;
+            ze+= 1.0f;
             break;
         case GLUT_KEY_RIGHT:
-            xe += 1.0f;
+            ze-= 1.0f;
             break;
         case GLUT_KEY_UP:
             ye -= 1.0f;
@@ -417,11 +417,6 @@ void keybs(int skey, int x, int y ) {
         case GLUT_KEY_DOWN:
             ye += 1.0f;
             break;
-        case GLUT_KEY_PAGE_UP:
-            ze+= 1.0f;
-            break;
-        case GLUT_KEY_PAGE_DOWN:
-            ze-= 1.0f;
     }
     glutPostRedisplay();
 }
