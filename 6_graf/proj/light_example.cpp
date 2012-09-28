@@ -57,7 +57,8 @@ objShape obj;
 GLuint vertexShaderObjectA, fragmentShaderObjectA;
 GLuint ProgramA;
 
-GLfloat revmove  = 0.0f;
+GLfloat revmovex  = 0.0f;
+GLfloat revmovez  = 0.0f;
 GLfloat revmoved = 0.0f;
 GLfloat revrot   = 0.0f;
 GLfloat revrotd  = 0.0f;
@@ -330,7 +331,10 @@ void animate(int v) {
     glutPostRedisplay();
     glutTimerFunc(50, animate, 0);
     revrot += revrotd;
-    revmove += revmoved;
+    while(revrot < 0.0f ) revrot += 360.0f;
+    while(revrot > 360.f) revrot -= 360.0f;
+    revmovex += revmoved*sin(revrot*.01745329251994329576f);
+    revmovez += revmoved*cos(revrot*.01745329251994329576f);
 }
 
 
@@ -383,8 +387,10 @@ void display() {
     glBindVertexArray(handleVAO);
 
     glPushMatrix();
-    glTranslatef(0.0f, 0.0f, revmove);
+    glTranslatef(0.0f, 0.0f, 7.0f);
+    glTranslatef(revmovex, 0.0f, revmovez);
     glRotatef(revrot, 0.0f, 1.0f, 0.0f);
+    glTranslatef(0.0f, 0.0f, -7.0f);
     glScalef(25.0f, 25.0f, 25.0f);
     glBindVertexArray(handleOBJVAO);
     glDrawElements(GL_TRIANGLES, 3*obj.nFaces, GL_UNSIGNED_INT, BUFFER_OFFSET(0));
@@ -420,6 +426,11 @@ void keybs(int skey, int x, int y ) {
 
 void keyPress(unsigned char k, int _x, int _y) {
     switch(k) {
+        case 'r':
+            revmovex = 0.0f;
+            revmovez = 0.0f;
+            revrot   = 0.0f;
+            break;
         case 'w':
             revmoved = -1.5f;
             break;
