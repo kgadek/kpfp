@@ -358,7 +358,7 @@ void display() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    gluLookAt(xe, ye, ze, revmovex, 5.0f, revmovez, 0.0f, 1.0f, 0.0f);
+    gluLookAt(xe, ye, ze, 0.0f, 5.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     GLint var1 = glGetUniformLocation(ProgramA, "numLights");
     glUniform1i(var1, 3);
