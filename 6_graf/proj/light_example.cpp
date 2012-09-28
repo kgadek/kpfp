@@ -412,10 +412,10 @@ void keybs(int skey, int x, int y ) {
             ze-= 1.0f;
             break;
         case GLUT_KEY_UP:
-            ye -= 1.0f;
+            ye += 1.0f;
             break;
         case GLUT_KEY_DOWN:
-            ye += 1.0f;
+            ye -= 1.0f;
             break;
     }
     glutPostRedisplay();
