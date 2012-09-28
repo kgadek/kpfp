@@ -38,10 +38,10 @@ GLfloat green[4] = {0.1  ,  0.9  ,  0.2  ,  1.0};
 GLfloat blue[4]  = {0.3  ,  0.3  ,  1.0  ,  1.0};
 GLfloat white[4] = {1.0f ,  1.0f ,  1.0f ,  1.0f};
 
-GLfloat light0_position[]  = {1.0 ,  0.0  ,  0.0 ,  0.0};  //światło kierunkowe
-GLfloat light1_position[]  = {0.0 ,  0.0  ,  0.0 ,  1.0};  //światło punktowe
-GLfloat light2_position[]  = {0.0 ,  0.0  ,  0.0 ,  1.0};  //światło typu spot
-GLfloat light2_direction[] = {0.0 ,  -1.0 ,  0.0 ,  1.0}; //kierunek światła typu spot
+GLfloat light0_position[]  = {1.0 ,  0.0  ,  0.0 ,  0.0};
+GLfloat light1_position[]  = {0.0 ,  0.0  ,  0.0 ,  1.0};
+GLfloat light2_position[]  = {0.0 ,  0.0  ,  0.0 ,  1.0};
+GLfloat light2_direction[] = {0.0 ,  -1.0 ,  0.0 ,  1.0};
 GLint rotLight = 0;
 
 GLfloat white_light[] = {0.3     , 0.3     , 0.3    , 1.0};
@@ -372,17 +372,17 @@ void display() {
     glTranslatef(0.0f, 15.0f, 0.0f);
     glRotatef((GLfloat)rotLight, 0.0, 1.0, 0.0);
     glTranslatef(45.0f, 0.0f, 0.0f);
-    glLightfv(GL_LIGHT0, GL_POSITION, light0_position);	  
+    glLightfv(GL_LIGHT0, GL_POSITION, light0_position);   
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(00.0f, 45.0f, 0.0f);
-    glLightfv(GL_LIGHT1, GL_POSITION, light1_position);	  
+    glLightfv(GL_LIGHT1, GL_POSITION, light1_position);   
     glPopMatrix();
 
     glPushMatrix();
     glTranslatef(0.0f, 25.0f, 0.0f);
-    glLightfv(GL_LIGHT2, GL_POSITION, light2_position);	
+    glLightfv(GL_LIGHT2, GL_POSITION, light2_position); 
     glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, light2_direction);
     glPopMatrix();
 
